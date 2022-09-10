@@ -1,0 +1,40 @@
+﻿{
+  "NewSettingsOffByDefault": false,
+  "Spells": {
+    "DisableAll": false,
+    "Settings": {
+    },
+    "Feats": {
+      "DisableAll": false,
+      "Settings": {
+      }
+    },
+    "Items": {
+      "DisableAll": false,
+      "Settings": {
+      }
+    },
+    "NinjaTricks": {
+      "DisableAll": false,
+      "Settings": {
+      }
+    },
+    "RogueTalents": {
+      "DisableAll": false,
+      "Settings": {
+      }
+    },
+    "SlayerTalents": {
+      "DisableAll": false,
+      "Settings": {
+      }
+    },
+    "WildTalents": {
+      "DisableAll": false,
+      "Settings": {
+
+      }
+    }
+
+
+  }

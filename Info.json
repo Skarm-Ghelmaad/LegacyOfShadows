@@ -1,0 +1,11 @@
+{
+  "Id": "LegacyOfShadows",
+  "DisplayName": "LegacyOfShadows",
+  "Author": "Skarm Ghelmaad",
+  "Version": "0.0.1",
+  "ManagerVersion": "0.21.3",
+  "Requirements": [],
+  "AssemblyName": "LegacyOfShadows.dll",
+  "EntryMethod": "LegacyOfShadows.Main.Load"
+}
+
