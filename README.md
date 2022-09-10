@@ -1,7 +1,4 @@
-﻿## [![Download zip](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download zip")](https://github.com/Vek17/TabletopTweaks-Base/releases/latest/download/TabletopTweaks-Base.zip) Latest Release 
-
-## This is a TabletopTweaks mod and requires [TabletopTweaks-Core](https://github.com/Vek17/TabletopTweaks-Core/releases) [![Download zip](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download zip")](https://github.com/Vek17/TabletopTweaks-Core/releases/latest/download/TabletopTweaks-Core.zip) and
-   [TabletopTweaks-Base](https://github.com/Vek17/TabletopTweaks-Base/releases) [![Download zip](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download zip")](https://github.com/Vek17/TabletopTweaks-Base/releases/latest/download/TabletopTweaks-Base.zip).
+## This is a TabletopTweaks mod and requires [TabletopTweaks-Core](https://github.com/Vek17/TabletopTweaks-Core/releases) [![Download zip](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download zip")](https://github.com/Vek17/TabletopTweaks-Core/releases/latest/download/TabletopTweaks-Core.zip) and [TabletopTweaks-Base](https://github.com/Vek17/TabletopTweaks-Base/releases) [![Download zip](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download zip")](https://github.com/Vek17/TabletopTweaks-Base/releases/latest/download/TabletopTweaks-Base.zip).
 
 
 # Legacy of Shadows
@@ -19,7 +16,7 @@ All homebrew content or divergences from TT will be called out, but most homebre
 2. Run Unity Mod Manager and set it up to find Wrath of the Righteous.
 3. Download the [TabletopTweaks-Core](https://github.com/Vek17/TabletopTweaks-Core/releases) mod from the releases page.
 4. Download the [TabletopTweaks-Base](https://github.com/Vek17/TabletopTweaks-Base/releases) mod from the releases page.
-5. Download the [TabletopTweaks-Base](https://github.com/Vek17/TabletopTweaks-Base/releases) mod from the releases page.
+5. Download the mod from the releases page.
 6. Install the mods by dragging the zip file from step 3 & 4 into the Unity Mod Manager window under the Mods tab.
 
 ## Fixes
