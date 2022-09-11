@@ -2,7 +2,7 @@
   "LocalizedStrings": [
 
     {
-      "Key": "NoTraceNinjaFeature.Name",
+      "Key": "NinjaNoTraceFeature.Name",
       // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
       // links to encycolpedia pages.
       "ProcessTemplates": false,
@@ -10,7 +10,7 @@
     },
 
     {
-      "Key": "NoTraceNinjaFeature.Description",
+      "Key": "NinjaNoTraceFeature.Description",
       "enGB": "At 3rd level, a ninja gains a +1 bonus on Stealth checks. This bonus increases by 1 every 3 ninja levels thereafter."
     }
 
