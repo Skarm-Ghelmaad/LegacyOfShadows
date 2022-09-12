@@ -12,6 +12,32 @@
     {
       "Key": "NinjaNoTraceFeature.Description",
       "enGB": "At 3rd level, a ninja gains a +1 bonus on Stealth checks. This bonus increases by 1 every 3 ninja levels thereafter."
+    },
+
+    {
+      "Key": "NinjaDispatchmentFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Dispatchment"
+    },
+
+    {
+      "Key": "NinjaDispatchmentFeature.Description",
+      "enGB": "At 4th level, whenever a ninja attacks an opponent that would be denied a Dexterity bonus to AC or when she flanks her target, she gains a +2 bonus on her attack roll. At 9th level and every 5 levels thereafter, this bonus increases by +1 (to a total maximum of +5)."
+    },
+
+    {
+      "Key": "NinjaLightStepsFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Light Steps"
+    },
+
+    {
+      "Key": "NinjaLightStepsFeature.Description",
+      "enGB": "At 6th level, a ninja learns to move while barely touching the surface underneath her. As a full-round action, she can move to any location within medium range, ignoring difficult terrain. While moving in this way, any surface will support her, no matter how much she weighs. This allows her to move across water, lava, or even the thinnest tree branches. She must end her move on a surface that can support her normally. She cannot move across air in this way, nor can she walk up walls or other vertical surfaces. When moving in this way, she does not take damage from surfaces or hazards that react to being touched, such as lava or caltrops, nor does she need to make Mobility checks to avoid falling on slippery or rough surfaces. Finally, when using light steps, the ninja ignores any mechanical traps that use a location-based trigger."
     }
 
   ]

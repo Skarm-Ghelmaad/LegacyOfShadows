@@ -21,7 +21,7 @@ namespace LegacyOfShadows.NewContent.Features
 {
     internal class NoTrace
     {
-        private static readonly string NoTraceFeatureName = "NinjaNoTraceFeature";
+        private static readonly string NoTraceFeatureName = "NinjaNoTraceFeature.Name";
         private static readonly string NoTraceDescription = "NinjaNoTraceFeature.Description";
 
 
@@ -37,6 +37,9 @@ namespace LegacyOfShadows.NewContent.Features
                 bp.AddComponent<AddContextStatBonus>(c => {
                     c.Stat = StatType.SkillStealth;
                     c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    c.Value = new ContextValue() { ValueType = ContextValueType.Rank };
+                    c.Value.ValueRank = AbilityRankType.Default;
+                    c.Multiplier = 1;
                 });
                 bp.IsClassFeature = true;
                 bp.Ranks = 6;
