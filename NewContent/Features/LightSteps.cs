@@ -62,10 +62,10 @@ namespace LegacyOfShadows.NewContent.Features
                 bp.m_Icon = LightStepsIcon;
                 bp.AddComponent<AbilityCustomDimensionDoor>(c => {
                     c.Radius = 0.Feet();
-                    c.PortalFromPrefab = HlEX.createPrefabLink("1886751171485164");
-                    c.PortalToPrefab = HlEX.createPrefabLink("1886751171485164");
-                    c.CasterDisappearFx = HlEX.createPrefabLink("ccd3a2dcada23c145b232501d105c55d"); // Uses the Invisibility Fx
-                    c.SideDisappearFx = HlEX.createPrefabLink("ccd3a2dcada23c145b232501d105c55d"); // Uses the Invisibility Fx
+                    c.PortalFromPrefab = HlEX.CreatePrefabLink("1886751171485164");
+                    c.PortalToPrefab = HlEX.CreatePrefabLink("1886751171485164");
+                    c.CasterDisappearFx = HlEX.CreatePrefabLink("ccd3a2dcada23c145b232501d105c55d"); // Uses the Invisibility Fx
+                    c.SideDisappearFx = HlEX.CreatePrefabLink("ccd3a2dcada23c145b232501d105c55d"); // Uses the Invisibility Fx
                     c.m_CasterDisappearProjectile = MonkAbundantStepCasterDisappearProjectile.ToReference<BlueprintProjectileReference>();
                     c.m_CasterAppearProjectile = MonkAbundantStepCasterAppearProjectile.ToReference<BlueprintProjectileReference>();
                     c.m_SideDisappearProjectile = MonkAbundantSideDisappearProjectile.ToReference<BlueprintProjectileReference>();
