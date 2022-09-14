@@ -72,12 +72,44 @@ using TabletopTweaks.Core.Utilities;
 using static LegacyOfShadows.Main;
 using LegacyOfShadows.NewComponents;
 using LegacyOfShadows.Utilities;
-using HlEX = LegacyOfShadows.Utilities.HelpersExtension;
+using Epic.OnlineServices;
+using static TabletopTweaks.Core.Utilities.ClassTools;
+using static LayoutRedirectElement;
+using System.Drawing;
+using System.Xml.Linq;
+using TabletopTweaks.Core.UMMTools.Utility;
+using HarmonyLib;
 
 namespace LegacyOfShadows.Utilities
 {
-    internal class HelpersExtension
+    public static class HelpersExtension
     {
+        //++++++++++++++++++++++++++++++++++++++++++++++++++/ GETTER & SETTERS /++++++++++++++++++++++++++++++++++++++++++++++++++//
+
+        // BORROWED CODE
+        // Note: This was cannibalized from KingmakerToolkit.Shared in Races Unleashed Kingmaker mod and ported to WotR and was further adjusted by borrowing code from CotW Kingmaker mod. 
+
+        public static T GetField<T>(object obj, string name)
+        {
+            return (T)((object)HarmonyLib.AccessTools.Field(obj.GetType(), name).GetValue(obj));
+        }
+
+        public static object GetField(Type type, object obj, string name)
+        {
+            return HarmonyLib.AccessTools.Field(type, name).GetValue(obj);
+        }
+
+        public static object GetField(object obj, string name)
+        {
+            return HarmonyLib.AccessTools.Field(obj.GetType(), name).GetValue(obj);
+        }
+
+        public static void SetField(object obj, string name, object value)
+        {
+            HarmonyLib.AccessTools.Field(obj.GetType(), name).SetValue(obj, value);
+        }
+
+
 
         //++++++++++++++++++++++++++++++++++++++++++++++++++/ CREATORS /++++++++++++++++++++++++++++++++++++++++++++++++++//
 
@@ -87,6 +119,8 @@ namespace LegacyOfShadows.Utilities
         // Copyright (c) 2020 Denis Biryukov
         // This code is licensed under MIT license (see LICENSE for details)
         // -------------------------------------------------------------------------------------------------------------------------
+
+        //------------------------------------------------/ GENERIC CREATORS /----------------------------------------------------//
 
         public static PrefabLink CreatePrefabLink(string asset_id)
         {
@@ -102,6 +136,120 @@ namespace LegacyOfShadows.Utilities
             return link;
         }
 
+        //----------------------------------------/ QUICK COMPONENT CREATORS /----------------------------------------------------//
+
+        // -------------------------------------------------------------------------------------------------------------------------
+        // Note: These were inspired by Holic75's KingmakerRebalance/CotW Kingmaker mod. 
+        // -------------------------------------------------------------------------------------------------------------------------
+
+        public static ContextCalculateAbilityParamsBasedOnClass CreateContextCalculateAbilityParamsBasedOnClass( BlueprintCharacterClassReference character_class,
+                                                                                                                 StatType stat, 
+                                                                                                                 bool use_kineticist_main_stat = false)
+        {
+            var c = Helpers.Create<ContextCalculateAbilityParamsBasedOnClass>();
+            c.m_CharacterClass = character_class;
+            c.StatType = stat;
+            c.UseKineticistMainStat = use_kineticist_main_stat;
+            return c;
+        }
+
+
+        public static ContextCalculateAbilityParamsBasedOnClasses CreateContextCalculateAbilityParamsBasedOnClasses (BlueprintCharacterClassReference[] character_classes,
+                                                                                                                                   StatType stat )
+        {
+            var c = Helpers.Create<ContextCalculateAbilityParamsBasedOnClasses>();
+            c.m_CharacterClasses = character_classes;
+            c.m_StatType = stat;
+            return c;
+        }
+
+
+        public static ContextCalculateAbilityParamsBasedOnClasses createContextCalculateAbilityParamsBasedOnClassesWithProperty (BlueprintCharacterClassReference[] character_classes,
+                                                                                                                                 BlueprintUnitPropertyReference property,
+                                                                                                                                 StatType stat = StatType.Charisma )
+        {
+            var c = Helpers.Create<ContextCalculateAbilityParamsBasedOnClasses>();
+            c.m_CharacterClasses = character_classes;
+            c.m_StatType = stat;
+            c.StatTypeFromCustomProperty = true;
+            c.m_CustomProperty = property;
+            return c;
+        }
+
+
+        public static ContextCalculateAbilityParamsBasedOnClasses CreateContextCalculateAbilityParamsBasedOnClassesWithArchetypes   (BlueprintCharacterClassReference[] character_classes,
+                                                                                                                                     BlueprintArchetypeReference[] archetypes,
+                                                                                                                                     StatType stat)
+        {
+            var c = Helpers.Create<ContextCalculateAbilityParamsBasedOnClasses>();
+            c.m_CharacterClasses = character_classes;
+            c.CheckArchetype = true;
+            c.m_Archetypes = archetypes;
+            c.m_StatType = stat;
+            return c;
+        }
+
+        public static ContextCalculateAbilityParamsBasedOnClasses CreateContextCalculateAbilityParamsBasedOnClassesWithArchetypesWithProperty (BlueprintCharacterClassReference[] character_classes,
+                                                                                                                                               BlueprintArchetypeReference[] archetypes,
+                                                                                                                                               BlueprintUnitPropertyReference property,
+                                                                                                                                               StatType stat = StatType.Charisma)
+        {
+            var c = Helpers.Create<ContextCalculateAbilityParamsBasedOnClasses>();
+            c.m_CharacterClasses = character_classes;
+            c.CheckArchetype = true;
+            c.m_Archetypes = archetypes;
+            c.m_StatType = stat;
+            c.StatTypeFromCustomProperty = true;
+            c.m_CustomProperty = property;
+            return c;
+        }
+
+
+        public static BlueprintAbilityResource CreateAbilityResource(String name,
+                                                                      Sprite icon = null,
+                                                                      params BlueprintComponent[] components  )
+
+        {
+            var resource = Helpers.CreateBlueprint<BlueprintAbilityResource> (LoSContext, name, bp => {
+                                                                                bp.m_Icon = icon;
+                                                                                bp.SetComponents(components);
+                                                                                });
+            return resource;
+        }
+
+        public static AbilityResourceLogic CreateResourceLogic(this BlueprintAbilityResource resource, 
+                                                                bool spend = true, 
+                                                                int amount = 1, 
+                                                                bool cost_is_custom = false)
+
+        {
+            var arl = Helpers.Create<AbilityResourceLogic>();
+            arl.m_IsSpendResource = spend;
+            arl.m_RequiredResource = resource.ToReference<BlueprintAbilityResourceReference>();
+            arl.Amount = amount;
+            arl.CostIsCustom = cost_is_custom;
+            return arl;
+        }
+
+        //----------------------------------------/ RESOURCE-RELATED FUNCTIONS /----------------------------------------------------//
+
+        public static void SetFixedResource(this BlueprintAbilityResource resource, int baseValue)
+        {
+            var amount = resource.m_MaxAmount;
+            amount.BaseValue = baseValue;
+
+            // Enusre arrays are at least initialized to empty.
+            var emptyClasses = Array.Empty<BlueprintCharacterClassReference>();
+            var emptyArchetypes = Array.Empty<BlueprintArchetypeReference>();
+
+
+            if ( amount.m_Class == null) amount.m_Class = emptyClasses;
+            if (amount.m_ClassDiv == null) amount.m_ClassDiv = emptyClasses;
+            if (amount.m_Archetypes == null) amount.m_Archetypes = emptyArchetypes;
+            if (amount.m_ArchetypesDiv == null) amount.m_ArchetypesDiv = emptyArchetypes;
+
+            resource.m_MaxAmount = amount;
+        }
 
         //++++++++++++++++++++++++++++++++++++++++++++++++++// CONVERTERS //++++++++++++++++++++++++++++++++++++++++++++++++++//
 
@@ -112,7 +260,7 @@ namespace LegacyOfShadows.Utilities
         // This code is licensed under MIT license (see LICENSE for details)
         // -------------------------------------------------------------------------------------------------------------------------
 
-        //------------------------------------------------/ FEATURE CREATORS /----------------------------------------------------//
+        //------------------------------------------------/ CONVERTERS FOR FEATURE CREATION  /----------------------------------------------------//
 
         // This converter creates a feature that matches the ability from which has been created.
         // This was mostly used (in Holic75's mod) to create features that add bonus or required features (such as Iroran Paladin's auto-selection of Irori as Deity)
@@ -354,6 +502,124 @@ namespace LegacyOfShadows.Utilities
 
             return feature;
         }
+
+
+        //------------------------------------------------/ CONVERTERS FOR ABILITIES FROM SPELLS  /----------------------------------------------------//
+
+        // This converter creates a spell-like ability from an existing spell.
+        // Compared to the original Holic75's version, I have added more optional string parameters to allow to customize the name of the spell-like ability.
+
+        static public BlueprintAbility ConvertSpellToSpellLike(BlueprintAbility spell,
+                                                               BlueprintCharacterClassReference[] classes,
+                                                               StatType stat, 
+                                                               BlueprintAbilityResource resource = null,
+                                                               string prefixAdd = "",
+                                                               string prefixRemove = "",
+                                                               string suffixAdd = "",
+                                                               string suffixRemove = "",
+                                                               string replaceOldText1 = "",
+                                                               string replaceOldText2 = "",
+                                                               string replaceOldText3 = "",
+                                                               string replaceNewText1 = "",
+                                                               string replaceNewText2 = "",
+                                                               string replaceNewText3 = "",
+                                                               bool no_resource = false,
+                                                               bool no_scaling = false,
+                                                               string guid = "",
+                                                               BlueprintArchetypeReference[] archetypes = null,
+                                                               int cost = 1
+
+                                                              )
+        {
+
+            string spellliketName = spell.Name;
+
+            if (!String.IsNullOrEmpty(prefixRemove))
+            {
+                spellliketName.Replace(prefixRemove, "");
+            }
+            if (!String.IsNullOrEmpty(suffixRemove))
+            {
+                spellliketName.Replace(suffixRemove, "");
+            }
+            if (!String.IsNullOrEmpty(prefixAdd))
+            {
+                spellliketName = prefixAdd + spellliketName;
+            }
+            if (!String.IsNullOrEmpty(suffixAdd))
+            {
+                spellliketName = spellliketName + suffixAdd;
+            }
+            if (!String.IsNullOrEmpty(replaceOldText1))
+            {
+                spellliketName.Replace(replaceOldText1, replaceNewText1);
+            }
+            if (!String.IsNullOrEmpty(replaceOldText2))
+            {
+                spellliketName.Replace(replaceOldText2, replaceNewText2);
+            }
+            if (!String.IsNullOrEmpty(replaceOldText3))
+            {
+                spellliketName.Replace(replaceOldText3, replaceNewText3);
+            }
+
+            var ability = spell.CreateCopy(LoSContext, spellliketName);
+
+            if (!no_scaling)
+            {
+                ability.RemoveComponents<SpellListComponent>();
+            }
+
+            ability.Type = AbilityType.SpellLike;
+
+            if (!no_scaling)
+            {
+                ability.AddComponent(CreateContextCalculateAbilityParamsBasedOnClassesWithArchetypes(classes, archetypes, stat));
+            }
+
+            ability.MaterialComponent = BlueprintTools.GetBlueprint<BlueprintAbility>("2d81362af43aeac4387a3d4fced489c3").MaterialComponent; // Fireball spell (no component)
+
+            if (!no_resource)
+            {
+                var resource2 = resource;
+                if (resource2 == null)
+                {
+                    resource2 = CreateAbilityResource(spellliketName + "Resource", null);
+                    resource2.SetFixedResource(cost);
+                }
+                ability.AddComponent(CreateResourceLogic(resource2, amount: cost));
+            }
+
+            ability.Parent = null;
+            return ability;
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
