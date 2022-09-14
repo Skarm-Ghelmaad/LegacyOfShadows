@@ -103,7 +103,7 @@ namespace LegacyOfShadows.Utilities
         }
 
 
-        //++++++++++++++++++++++++++++++++++++++++++++++++++/ CONVERTERS /++++++++++++++++++++++++++++++++++++++++++++++++++//
+        //++++++++++++++++++++++++++++++++++++++++++++++++++// CONVERTERS //++++++++++++++++++++++++++++++++++++++++++++++++++//
 
         // -------------------------------------------------------------------------------------------------------------------------
         // Note: These were borrowed from Holic75's KingmakerRebalance/CotW Kingmaker mod. 
@@ -112,6 +112,75 @@ namespace LegacyOfShadows.Utilities
         // This code is licensed under MIT license (see LICENSE for details)
         // -------------------------------------------------------------------------------------------------------------------------
 
+        //------------------------------------------------/ FEATURE CREATORS /----------------------------------------------------//
+
+        // This converter creates a feature that matches the ability from which has been created.
+        // This was mostly used (in Holic75's mod) to create features that add bonus or required features (such as Iroran Paladin's auto-selection of Irori as Deity)
+
+        static public BlueprintFeature ConvertFeatureToFeature(BlueprintFeature feature1,
+                                                                    string prefixAdd = "",
+                                                                    string prefixRemove = "",
+                                                                    string suffixAdd = "",
+                                                                    string suffixRemove = "",
+                                                                    string replaceOldText1 = "",
+                                                                    string replaceOldText2 = "",
+                                                                    string replaceOldText3 = "",
+                                                                    string replaceNewText1 = "",
+                                                                    string replaceNewText2 = "",
+                                                                    string replaceNewText3 = "",
+                                                                    bool hide = true
+                                                                )
+        {
+
+            string feature1AltName = feature1.Name;
+
+            if (!String.IsNullOrEmpty(prefixRemove))
+            {
+                feature1AltName.Replace(prefixRemove, "");
+            }
+            if (!String.IsNullOrEmpty(suffixRemove))
+            {
+                feature1AltName.Replace(suffixRemove, "");
+            }
+            if (!String.IsNullOrEmpty(prefixAdd))
+            {
+                feature1AltName = prefixAdd + feature1AltName;
+            }
+            if (!String.IsNullOrEmpty(suffixAdd))
+            {
+                feature1AltName = feature1AltName + suffixAdd;
+            }
+            if (!String.IsNullOrEmpty(replaceOldText1))
+            {
+                feature1AltName.Replace(replaceOldText1, replaceNewText1);
+            }
+            if (!String.IsNullOrEmpty(replaceOldText2))
+            {
+                feature1AltName.Replace(replaceOldText2, replaceNewText2);
+            }
+            if (!String.IsNullOrEmpty(replaceOldText3))
+            {
+                feature1AltName.Replace(replaceOldText3, replaceNewText3);
+            }
+
+            var feature2 = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, feature1AltName, bp => {
+                bp.SetName(LoSContext, feature1.Name);
+                bp.SetDescription(LoSContext, feature1.Description);
+                bp.m_Icon = feature1.Icon;
+                bp.AddComponent<AddFeatureOnApply>(c => {
+                    c.m_Feature = feature1.ToReference<BlueprintFeatureReference>();
+                });
+
+
+                bp.Groups = new FeatureGroup[] { FeatureGroup.None };
+            });
+            if (hide)
+            {
+                feature2.HideInCharacterSheetAndLevelUp = true;
+            }
+
+            return feature2;
+        }
 
         // This converter creates a feature that matches the ability from which has been created.
 
