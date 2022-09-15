@@ -79,6 +79,9 @@ using System.Drawing;
 using System.Xml.Linq;
 using TabletopTweaks.Core.UMMTools.Utility;
 using HarmonyLib;
+using Owlcat.Runtime.Core.Physics.PositionBasedDynamics.Forces;
+using System.ComponentModel;
+
 
 namespace LegacyOfShadows.Utilities
 {
@@ -107,8 +110,8 @@ namespace LegacyOfShadows.Utilities
         public static void SetField(object obj, string name, object value)
         {
             HarmonyLib.AccessTools.Field(obj.GetType(), name).SetValue(obj, value);
-        }
 
+         }
 
 
         //++++++++++++++++++++++++++++++++++++++++++++++++++/ CREATORS /++++++++++++++++++++++++++++++++++++++++++++++++++//
@@ -525,7 +528,6 @@ namespace LegacyOfShadows.Utilities
                                                                string replaceNewText3 = "",
                                                                bool no_resource = false,
                                                                bool no_scaling = false,
-                                                               string guid = "",
                                                                BlueprintArchetypeReference[] archetypes = null,
                                                                int cost = 1
 
@@ -596,18 +598,148 @@ namespace LegacyOfShadows.Utilities
         }
 
 
+        // This converter variant converts a spell-like ability from an existing spell, but drops all the string alterations BUT the prefix.
+
+        static public BlueprintAbility ConvertSpellToSpellLike(BlueprintAbility spell,
+                                                               BlueprintCharacterClassReference[] classes,
+                                                               StatType stat,
+                                                               BlueprintAbilityResource resource = null,
+                                                               string prefixAdd = "",
+                                                               bool no_resource = false,
+                                                               bool no_scaling = false,
+                                                               BlueprintArchetypeReference[] archetypes = null,
+                                                               int cost = 1
+
+                                                              )
+        {
+
+            string spellliketName = spell.Name;
+
+            if (!String.IsNullOrEmpty(prefixAdd))
+            {
+                spellliketName = prefixAdd + spellliketName;
+            }
+
+            var ability = spell.CreateCopy(LoSContext, spellliketName);
+
+            if (!no_scaling)
+            {
+                ability.RemoveComponents<SpellListComponent>();
+            }
+
+            ability.Type = AbilityType.SpellLike;
+
+            if (!no_scaling)
+            {
+                ability.AddComponent(CreateContextCalculateAbilityParamsBasedOnClassesWithArchetypes(classes, archetypes, stat));
+            }
+
+            ability.MaterialComponent = BlueprintTools.GetBlueprint<BlueprintAbility>("2d81362af43aeac4387a3d4fced489c3").MaterialComponent; // Fireball spell (no component)
+
+            if (!no_resource)
+            {
+                var resource2 = resource;
+                if (resource2 == null)
+                {
+                    resource2 = CreateAbilityResource(spellliketName + "Resource", null);
+                    resource2.SetFixedResource(cost);
+                }
+                ability.AddComponent(CreateResourceLogic(resource2, amount: cost));
+            }
+
+            ability.Parent = null;
+            return ability;
+
+        }
+
+        // This converter creates a supernatural ability from an existing spell.
+        // Compared to the original Holic75's version, I have added more optional string parameters to allow to customize the name of the supernatural ability,
+        // moreover I have completely redone the part of non-dispellable buffs to avoid to have to port the changeAction method, which seemed either impossible or (more likely)
+        // too hard for me to port!
+
+        static public BlueprintAbility ConvertSpellToSupernatural (BlueprintAbility spell,
+                                                                   BlueprintCharacterClassReference[] classes,
+                                                                   StatType stat,
+                                                                   BlueprintAbilityResource resource = null,
+                                                                   string prefixAdd = "",
+                                                                   bool no_resource = false,
+                                                                   bool no_scaling = false,
+                                                                   BlueprintArchetypeReference[] archetypes = null,
+                                                                   int cost = 1
+
+                                                                  )
+        {
+
+            var ability = ConvertSpellToSpellLike(spell, classes, stat, resource, prefixAdd, no_resource, no_scaling, archetypes: archetypes, cost: cost);
+            ability.Type = AbilityType.Supernatural;
+            ability.SpellResistance = false;
+            ability.RemoveComponents<SpellComponent>();
+            ability.AvailableMetamagic = (Metamagic)0;
+
+            GameAction[] action_storage = new GameAction[0];
+
+            //make buffs non dispellable
+            var actions = ability.GetComponent<AbilityEffectRunAction>();
+
+            ability.FlattenAllActions()
+                   .OfType<ContextActionApplyBuff>()
+                        .ForEach(b => {
+                                        b.IsNotDispelable = true;
+                                        b.IsFromSpell = false;
+                        });
 
 
+            return ability;
+
+        }
 
 
+        // This converter creates a supernatural ability from an existing spell, but drops all the string alterations BUT the prefix.
+
+        static public BlueprintAbility ConvertSpellToSupernatural(BlueprintAbility spell,
+                                                                   BlueprintCharacterClassReference[] classes,
+                                                                   StatType stat,
+                                                                   BlueprintAbilityResource resource = null,
+                                                                   string prefixAdd = "",
+                                                                   string prefixRemove = "",
+                                                                   string suffixAdd = "",
+                                                                   string suffixRemove = "",
+                                                                   string replaceOldText1 = "",
+                                                                   string replaceOldText2 = "",
+                                                                   string replaceOldText3 = "",
+                                                                   string replaceNewText1 = "",
+                                                                   string replaceNewText2 = "",
+                                                                   string replaceNewText3 = "",
+                                                                   bool no_resource = false,
+                                                                   bool no_scaling = false,
+                                                                   BlueprintArchetypeReference[] archetypes = null,
+                                                                   int cost = 1
+
+                                                                  )
+        {
+
+            var ability = ConvertSpellToSpellLike(spell, classes, stat, resource, prefixAdd, prefixRemove, suffixAdd, suffixRemove, replaceOldText1, replaceOldText2, replaceOldText3, replaceNewText1, replaceNewText2, replaceNewText3, no_resource, no_scaling, archetypes: archetypes, cost: cost);
+            ability.Type = AbilityType.Supernatural;
+            ability.SpellResistance = false;
+            ability.RemoveComponents<SpellComponent>();
+            ability.AvailableMetamagic = (Metamagic)0;
+
+            GameAction[] action_storage = new GameAction[0];
+
+            //make buffs non dispellable
+            var actions = ability.GetComponent<AbilityEffectRunAction>();
+
+            ability.FlattenAllActions()
+                   .OfType<ContextActionApplyBuff>()
+                        .ForEach(b => {
+                            b.IsNotDispelable = true;
+                            b.IsFromSpell = false;
+                        });
 
 
+            return ability;
 
-
-
-
-
-
+        }
 
 
 
