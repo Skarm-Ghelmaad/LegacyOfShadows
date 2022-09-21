@@ -68,6 +68,7 @@ using System.IO;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.EntitySystem.Entities;
 using Dreamteck.Splines.Primitives;
+using Owlcat.QA.Validation;
 using TabletopTweaks.Core.Utilities;
 using static LegacyOfShadows.Main;
 using LegacyOfShadows.NewComponents;
@@ -506,6 +507,61 @@ namespace LegacyOfShadows.Utilities
             return feature;
         }
 
+        //------------------------------------------------/ ABILITY VARIANTS MANIPULATION  /----------------------------------------------------//
+        // -------------------------------------------------------------------------------------------------------------------------
+        // Note: These were borrowed from Holic75's KingmakerRebalance/CotW Kingmaker mod. 
+        // Copyright (c) 2019 Jennifer Messerly
+        // Copyright (c) 2020 Denis Biryukov
+        // This code is licensed under MIT license (see LICENSE for details)
+        // -------------------------------------------------------------------------------------------------------------------------
+
+
+        // These creators create a list of variant of the parent BlueprintAbility from a given variants list and then adds the parent as such in each of these variants' Blueprints
+
+        public static AbilityVariants CreateAbilityVariants(this BlueprintAbility parent, IEnumerable<BlueprintAbility> variants) => CreateAbilityVariants(parent, variants.ToArray());
+
+        public static AbilityVariants CreateAbilityVariants(this BlueprintAbility parent, params BlueprintAbility[] variants)
+        {
+            var a = Helpers.Create<AbilityVariants>();
+
+            BlueprintAbilityReference[] variants_reference = new BlueprintAbilityReference[variants.Length];
+
+            for (int i = 0; i < variants_reference.Length; i++)
+            {
+                variants_reference[i] = variants[i].ToReference<BlueprintAbilityReference>();
+            }
+
+            a.m_Variants = variants_reference;
+            foreach (var vr in variants)
+            {
+                vr.m_Parent = parent.ToReference<BlueprintAbilityReference>();
+            }
+            return a;
+        }
+
+        // This method adds variants to an existing ability variants list and then adds the parent as such in each of these new variants' Blueprints
+
+        public static bool AddToAbilityVariants(this BlueprintAbility parent, params BlueprintAbility[] variants)
+        {
+            var cmp = parent.GetComponent<AbilityVariants>();
+
+            BlueprintAbilityReference[] variants_reference = new BlueprintAbilityReference[variants.Length];
+
+            for (int i = 0; i < variants_reference.Length; i++)
+            {
+                variants_reference[i] = variants[i].ToReference<BlueprintAbilityReference>();
+            }
+
+            cmp.m_Variants = cmp.m_Variants.AppendToArray(variants_reference);
+
+            foreach (var vr in variants)
+            {
+                vr.m_Parent = parent.ToReference<BlueprintAbilityReference>();
+            }
+
+            return true;
+
+        }
 
         //------------------------------------------------/ CONVERTERS FOR ABILITIES FROM SPELLS  /----------------------------------------------------//
 
