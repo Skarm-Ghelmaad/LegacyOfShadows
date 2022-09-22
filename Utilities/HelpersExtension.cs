@@ -82,6 +82,7 @@ using TabletopTweaks.Core.UMMTools.Utility;
 using HarmonyLib;
 using Owlcat.Runtime.Core.Physics.PositionBasedDynamics.Forces;
 using System.ComponentModel;
+using AK.Wwise;
 
 
 namespace LegacyOfShadows.Utilities
@@ -563,6 +564,344 @@ namespace LegacyOfShadows.Utilities
 
         }
 
+        // This method creates a wrapper for certain variants
+
+        public static BlueprintAbility CreateVariantWrapper(string name, params BlueprintAbility[] variants)
+        {
+            var first_variant = variants[0];
+
+            var wrapper = first_variant.CreateCopy(LoSContext, name, bp => {
+
+                List<BlueprintComponent> cmps = new List<BlueprintComponent>();
+                cmps.Add(CreateAbilityVariants(bp, variants));
+                bp.ComponentsArray = cmps.ToArray();
+
+            });
+
+            return wrapper;
+        }
+
+        // This method creates spell-like variants from a spell (with variants). This is the most complete version, which allows to add a specific prefix for the wrapper and a lot of text modifications.
+
+        static public BlueprintAbility ConvertSpellToSpellLikeVariants(BlueprintAbility spell,
+                                                                       BlueprintCharacterClassReference[] classes,
+                                                                       StatType stat,
+                                                                       BlueprintAbilityResource resource = null,
+                                                                       string prefixforWrapperAdd = "",
+                                                                       string prefixAdd = "",
+                                                                       string prefixRemove = "",
+                                                                       string suffixAdd = "",
+                                                                       string suffixRemove = "",
+                                                                       string replaceOldText1 = "",
+                                                                       string replaceOldText2 = "",
+                                                                       string replaceOldText3 = "",
+                                                                       string replaceNewText1 = "",
+                                                                       string replaceNewText2 = "",
+                                                                       string replaceNewText3 = "",
+                                                                       bool no_resource = false,
+                                                                       bool no_scaling = false,
+                                                                       bool self_only = false,
+                                                                       BlueprintArchetypeReference[] archetypes = null,
+                                                                       int cost = 1
+                                                                       )
+        {
+            if (!spell.HasVariants)
+            {
+                var a = ConvertSpellToSpellLike(spell,classes,stat,resource,prefixAdd,prefixRemove,suffixAdd,suffixRemove,replaceOldText1,replaceOldText2,replaceOldText3, replaceNewText1, replaceNewText2, replaceNewText3,no_resource,no_scaling,archetypes,cost);
+                if (self_only)
+                {
+                    a.Range = AbilityRange.Personal;
+                }
+                return a;
+            }
+
+            var spell_variants = spell.GetComponent<AbilityVariants>().m_Variants;
+
+            int num_variants = spell_variants.Length;
+
+            var abilities = new BlueprintAbility[num_variants];
+
+            for (int i = 0; i < num_variants; i++) 
+            {
+                abilities[i] = ConvertSpellToSpellLike(spell_variants[i], classes, stat, resource, prefixAdd, prefixRemove, suffixAdd, suffixRemove, replaceOldText1, replaceOldText2, replaceOldText3, replaceNewText1, replaceNewText2, replaceNewText3, no_resource, no_scaling, archetypes, cost);
+                if (self_only)
+                {
+                    abilities[i].Range = AbilityRange.Personal;
+                }
+            }
+
+            string spelllikeWrapperName = spell.Name;
+
+            if (!String.IsNullOrEmpty(prefixRemove))
+            {
+                spelllikeWrapperName.Replace(prefixRemove, "");
+            }
+            if (!String.IsNullOrEmpty(suffixRemove))
+            {
+                spelllikeWrapperName.Replace(suffixRemove, "");
+            }
+            if (!String.IsNullOrEmpty(prefixAdd))
+            {
+                spelllikeWrapperName = prefixAdd + spelllikeWrapperName;
+            }
+            if (!String.IsNullOrEmpty(prefixforWrapperAdd))
+            {
+                spelllikeWrapperName = prefixforWrapperAdd + spelllikeWrapperName;
+            }
+            if (!String.IsNullOrEmpty(suffixAdd))
+            {
+                spelllikeWrapperName = spelllikeWrapperName + suffixAdd;
+            }
+            if (!String.IsNullOrEmpty(replaceOldText1))
+            {
+                spelllikeWrapperName.Replace(replaceOldText1, replaceNewText1);
+            }
+            if (!String.IsNullOrEmpty(replaceOldText2))
+            {
+                spelllikeWrapperName.Replace(replaceOldText2, replaceNewText2);
+            }
+            if (!String.IsNullOrEmpty(replaceOldText3))
+            {
+                spelllikeWrapperName.Replace(replaceOldText3, replaceNewText3);
+            }
+
+            var wrapper = CreateVariantWrapper(spelllikeWrapperName, abilities);
+
+            wrapper.SetName(LoSContext, spell.Name);
+            wrapper.SetDescription(LoSContext, spell.Description);
+            wrapper.m_Icon = spell.m_Icon;
+
+            return wrapper;
+
+        }
+
+
+        // This method creates spell-like variants from a spell (with variants), but drops all the string alterations BUT the prefix AND the prefix for the wrapper.
+
+        static public BlueprintAbility ConvertSpellToSpellLikeVariants(BlueprintAbility spell,
+                                                                       BlueprintCharacterClassReference[] classes,
+                                                                       StatType stat,
+                                                                       BlueprintAbilityResource resource = null,
+                                                                       string prefixforWrapperAdd = "",
+                                                                       string prefixAdd = "",
+                                                                       bool no_resource = false,
+                                                                       bool no_scaling = false,
+                                                                       bool self_only = false,
+                                                                       BlueprintArchetypeReference[] archetypes = null,
+                                                                       int cost = 1
+                                                                       )
+        {
+            if (!spell.HasVariants)
+            {
+                var a = ConvertSpellToSpellLike(spell, classes, stat, resource, prefixAdd, no_resource, no_scaling, archetypes, cost);
+                if (self_only)
+                {
+                    a.Range = AbilityRange.Personal;
+                }
+                return a;
+            }
+
+            var spell_variants = spell.GetComponent<AbilityVariants>().m_Variants;
+
+            int num_variants = spell_variants.Length;
+
+            var abilities = new BlueprintAbility[num_variants];
+
+            for (int i = 0; i < num_variants; i++)
+            {
+                abilities[i] = ConvertSpellToSpellLike(spell_variants[i], classes, stat, resource, prefixAdd, no_resource, no_scaling, archetypes, cost);
+                if (self_only)
+                {
+                    abilities[i].Range = AbilityRange.Personal;
+                }
+            }
+
+            string spelllikeWrapperName = spell.Name;
+
+            if (!String.IsNullOrEmpty(prefixAdd))
+            {
+                spelllikeWrapperName = prefixAdd + spelllikeWrapperName;
+            }
+            if (!String.IsNullOrEmpty(prefixforWrapperAdd))
+            {
+                spelllikeWrapperName = prefixforWrapperAdd + spelllikeWrapperName;
+            }
+
+            var wrapper = CreateVariantWrapper(spelllikeWrapperName, abilities);
+
+            wrapper.SetName(LoSContext, spell.Name);
+            wrapper.SetDescription(LoSContext, spell.Description);
+            wrapper.m_Icon = spell.m_Icon;
+
+            return wrapper;
+
+        }
+
+        // This method creates supernatural variants from a spell (with variants).  This is the most complete version, which allows to add a specific prefix for the wrapper and a lot of text modifications.
+
+        static public BlueprintAbility ConvertSpellToSupernaturalVariants(BlueprintAbility spell,
+                                                                       BlueprintCharacterClassReference[] classes,
+                                                                       StatType stat,
+                                                                       BlueprintAbilityResource resource = null,
+                                                                       string prefixforWrapperAdd = "",
+                                                                       string prefixAdd = "",
+                                                                       string prefixRemove = "",
+                                                                       string suffixAdd = "",
+                                                                       string suffixRemove = "",
+                                                                       string replaceOldText1 = "",
+                                                                       string replaceOldText2 = "",
+                                                                       string replaceOldText3 = "",
+                                                                       string replaceNewText1 = "",
+                                                                       string replaceNewText2 = "",
+                                                                       string replaceNewText3 = "",
+                                                                       bool no_resource = false,
+                                                                       bool no_scaling = false,
+                                                                       bool self_only = false,
+                                                                       BlueprintArchetypeReference[] archetypes = null,
+                                                                       int cost = 1
+                                                                       )
+        {
+
+            if (!spell.HasVariants)
+            {
+                var a = ConvertSpellToSupernatural(spell,classes,stat,resource,prefixAdd,prefixRemove,suffixAdd,suffixRemove,replaceOldText1,replaceOldText2,replaceOldText3,replaceNewText1,replaceNewText2,replaceNewText3,no_resource,no_scaling,archetypes,cost);
+                if (self_only)
+                {
+                    a.Range = AbilityRange.Personal;
+                }
+                return a;
+
+            }
+
+            var spell_variants = spell.GetComponent<AbilityVariants>().m_Variants;
+
+            int num_variants = spell_variants.Length;
+
+            var abilities = new BlueprintAbility[num_variants];
+
+            for (int i = 0; i < num_variants; i++)
+            {
+                abilities[i] = ConvertSpellToSupernatural(spell_variants[i], classes, stat, resource, prefixAdd, prefixRemove, suffixAdd, suffixRemove, replaceOldText1, replaceOldText2, replaceOldText3, replaceNewText1, replaceNewText2, replaceNewText3, no_resource, no_scaling, archetypes, cost);
+                if (self_only)
+                {
+                    abilities[i].Range = AbilityRange.Personal;
+                }
+            }
+
+
+            string supernaturalWrapperName = spell.Name;
+
+            if (!String.IsNullOrEmpty(prefixRemove))
+            {
+                supernaturalWrapperName.Replace(prefixRemove, "");
+            }
+            if (!String.IsNullOrEmpty(suffixRemove))
+            {
+                supernaturalWrapperName.Replace(suffixRemove, "");
+            }
+            if (!String.IsNullOrEmpty(prefixAdd))
+            {
+                supernaturalWrapperName = prefixAdd + supernaturalWrapperName;
+            }
+            if (!String.IsNullOrEmpty(prefixforWrapperAdd))
+            {
+                supernaturalWrapperName = prefixforWrapperAdd + supernaturalWrapperName;
+            }
+            if (!String.IsNullOrEmpty(suffixAdd))
+            {
+                supernaturalWrapperName = supernaturalWrapperName + suffixAdd;
+            }
+            if (!String.IsNullOrEmpty(replaceOldText1))
+            {
+                supernaturalWrapperName.Replace(replaceOldText1, replaceNewText1);
+            }
+            if (!String.IsNullOrEmpty(replaceOldText2))
+            {
+                supernaturalWrapperName.Replace(replaceOldText2, replaceNewText2);
+            }
+            if (!String.IsNullOrEmpty(replaceOldText3))
+            {
+                supernaturalWrapperName.Replace(replaceOldText3, replaceNewText3);
+            }
+
+            var wrapper = CreateVariantWrapper(supernaturalWrapperName, abilities);
+
+            wrapper.SetName(LoSContext, spell.Name);
+            wrapper.SetDescription(LoSContext, spell.Description);
+            wrapper.m_Icon = spell.m_Icon;
+
+            return wrapper;
+
+
+        }
+
+        // This method creates supernatural variants from a spell (with variants), but drops all the string alterations BUT the prefix AND the prefix for the wrapper.
+
+        static public BlueprintAbility ConvertSpellToSupernaturalVariants(BlueprintAbility spell,
+                                                                       BlueprintCharacterClassReference[] classes,
+                                                                       StatType stat,
+                                                                       BlueprintAbilityResource resource = null,
+                                                                       string prefixforWrapperAdd = "",
+                                                                       string prefixAdd = "",
+                                                                       bool no_resource = false,
+                                                                       bool no_scaling = false,
+                                                                       bool self_only = false,
+                                                                       BlueprintArchetypeReference[] archetypes = null,
+                                                                       int cost = 1
+                                                                       )
+        {
+
+            if (!spell.HasVariants)
+            {
+                var a = ConvertSpellToSupernatural(spell, classes, stat, resource, prefixAdd, no_resource, no_scaling, archetypes, cost);
+                if (self_only)
+                {
+                    a.Range = AbilityRange.Personal;
+                }
+                return a;
+
+            }
+
+            var spell_variants = spell.GetComponent<AbilityVariants>().m_Variants;
+
+            int num_variants = spell_variants.Length;
+
+            var abilities = new BlueprintAbility[num_variants];
+
+            for (int i = 0; i < num_variants; i++)
+            {
+                abilities[i] = ConvertSpellToSupernatural(spell_variants[i], classes, stat, resource, prefixAdd, no_resource, no_scaling, archetypes, cost);
+                if (self_only)
+                {
+                    abilities[i].Range = AbilityRange.Personal;
+                }
+            }
+
+
+            string supernaturalWrapperName = spell.Name;
+
+            if (!String.IsNullOrEmpty(prefixAdd))
+            {
+                supernaturalWrapperName = prefixAdd + supernaturalWrapperName;
+            }
+            if (!String.IsNullOrEmpty(prefixforWrapperAdd))
+            {
+                supernaturalWrapperName = prefixforWrapperAdd + supernaturalWrapperName;
+            }
+
+            var wrapper = CreateVariantWrapper(supernaturalWrapperName, abilities);
+
+            wrapper.SetName(LoSContext, spell.Name);
+            wrapper.SetDescription(LoSContext, spell.Description);
+            wrapper.m_Icon = spell.m_Icon;
+
+            return wrapper;
+
+
+        }
+
+
+
         //------------------------------------------------/ CONVERTERS FOR ABILITIES FROM SPELLS  /----------------------------------------------------//
 
         // This converter creates a spell-like ability from an existing spell.
@@ -590,38 +929,38 @@ namespace LegacyOfShadows.Utilities
                                                               )
         {
 
-            string spellliketName = spell.Name;
+            string spelllikeName = spell.Name;
 
             if (!String.IsNullOrEmpty(prefixRemove))
             {
-                spellliketName.Replace(prefixRemove, "");
+                spelllikeName.Replace(prefixRemove, "");
             }
             if (!String.IsNullOrEmpty(suffixRemove))
             {
-                spellliketName.Replace(suffixRemove, "");
+                spelllikeName.Replace(suffixRemove, "");
             }
             if (!String.IsNullOrEmpty(prefixAdd))
             {
-                spellliketName = prefixAdd + spellliketName;
+                spelllikeName = prefixAdd + spelllikeName;
             }
             if (!String.IsNullOrEmpty(suffixAdd))
             {
-                spellliketName = spellliketName + suffixAdd;
+                spelllikeName = spelllikeName + suffixAdd;
             }
             if (!String.IsNullOrEmpty(replaceOldText1))
             {
-                spellliketName.Replace(replaceOldText1, replaceNewText1);
+                spelllikeName.Replace(replaceOldText1, replaceNewText1);
             }
             if (!String.IsNullOrEmpty(replaceOldText2))
             {
-                spellliketName.Replace(replaceOldText2, replaceNewText2);
+                spelllikeName.Replace(replaceOldText2, replaceNewText2);
             }
             if (!String.IsNullOrEmpty(replaceOldText3))
             {
-                spellliketName.Replace(replaceOldText3, replaceNewText3);
+                spelllikeName.Replace(replaceOldText3, replaceNewText3);
             }
 
-            var ability = spell.CreateCopy(LoSContext, spellliketName);
+            var ability = spell.CreateCopy(LoSContext, spelllikeName);
 
             if (!no_scaling)
             {
@@ -642,7 +981,7 @@ namespace LegacyOfShadows.Utilities
                 var resource2 = resource;
                 if (resource2 == null)
                 {
-                    resource2 = CreateAbilityResource(spellliketName + "Resource", null);
+                    resource2 = CreateAbilityResource(spelllikeName + "Resource", null);
                     resource2.SetFixedResource(cost);
                 }
                 ability.AddComponent(CreateResourceLogic(resource2, amount: cost));
@@ -669,14 +1008,14 @@ namespace LegacyOfShadows.Utilities
                                                               )
         {
 
-            string spellliketName = spell.Name;
+            string spelllikeName = spell.Name;
 
             if (!String.IsNullOrEmpty(prefixAdd))
             {
-                spellliketName = prefixAdd + spellliketName;
+                spelllikeName = prefixAdd + spelllikeName;
             }
 
-            var ability = spell.CreateCopy(LoSContext, spellliketName);
+            var ability = spell.CreateCopy(LoSContext, spelllikeName);
 
             if (!no_scaling)
             {
@@ -697,7 +1036,7 @@ namespace LegacyOfShadows.Utilities
                 var resource2 = resource;
                 if (resource2 == null)
                 {
-                    resource2 = CreateAbilityResource(spellliketName + "Resource", null);
+                    resource2 = CreateAbilityResource(spelllikeName + "Resource", null);
                     resource2.SetFixedResource(cost);
                 }
                 ability.AddComponent(CreateResourceLogic(resource2, amount: cost));
