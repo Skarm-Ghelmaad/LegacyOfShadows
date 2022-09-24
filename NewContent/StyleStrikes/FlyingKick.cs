@@ -35,9 +35,9 @@ namespace LegacyOfShadows.NewContent.StyleStrikes
             var FlyingKickIcon = AssetLoader.LoadInternal(LoSContext, folder: "assets/icons", file: "FlyingKick.png");
 
             var FlyingKickBuff = Helpers.CreateBlueprint<BlueprintBuff>(LoSContext, "MonkFlyingKickBuff", bp => {
-                bp.SetName(LoSContext, FlyingKickFeatureName);
-                bp.SetDescription(LoSContext, FlyingKickDescription);
-                bp.m_Icon = FlyingKickIcon;
+                bp.SetName(LoSContext, "");
+                bp.SetDescription(LoSContext, "");
+                bp.m_Icon = null;
                 bp.AddComponent<AddMechanicsFeature>(c => {
                     c.m_Feature = Kingmaker.UnitLogic.FactLogic.AddMechanicsFeature.MechanicsFeatureType.Pounce;
                 });
@@ -45,6 +45,16 @@ namespace LegacyOfShadows.NewContent.StyleStrikes
             });
 
             var FlyingKickToggle = HelpersExtension.ConvertBuffToActivatableAbility(FlyingKickBuff, Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Free, false, "ToggleAbility", "Buff");
+
+            FlyingKickToggle.Group = Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityGroup.StyleStrike;
+            FlyingKickToggle.SetName(LoSContext, FlyingKickFeatureName);
+            FlyingKickToggle.SetDescription(LoSContext, FlyingKickDescription);
+            FlyingKickToggle.m_Icon = FlyingKickIcon;
+
+
+            var FlyingKickFeature = HelpersExtension.ConvertActivatableAbilityToFeature(FlyingKickToggle, "", "", "Feature", "ToggleAbility", false);
+
+            FeatToolsExtension.AddAsStyleStrike(FlyingKickFeature);
 
         }
 
