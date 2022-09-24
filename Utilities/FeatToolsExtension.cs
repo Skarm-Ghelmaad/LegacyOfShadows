@@ -38,9 +38,21 @@ namespace LegacyOfShadows.Utilities
 
         }
 
+        public static void AddAsStyleStrike(BlueprintFeature feature)
+        {
+            var StyleStrikeSelections = new BlueprintFeatureSelection[] { Selections.MonkStyleStrike };
+            StyleStrikeSelections.ForEach(selection => selection.AddFeatures(feature));
 
 
+        }
 
+        public static void AddAsWildTalent(BlueprintFeature feature)
+        {
+            var WildTalentSelections = new BlueprintFeatureSelection[] { Selections.WildTalentSelection };
+            WildTalentSelections.ForEach(selection => selection.AddFeatures(feature));
+
+
+        }
 
 
 
