@@ -252,6 +252,7 @@ namespace LegacyOfShadows.Utilities
         }
 
 
+
         //----------------------------------------/ RESOURCE-RELATED FUNCTIONS /----------------------------------------------------//
 
         public static void SetFixedResource(this BlueprintAbilityResource resource, int baseValue)
@@ -280,6 +281,118 @@ namespace LegacyOfShadows.Utilities
         // Copyright (c) 2020 Denis Biryukov
         // This code is licensed under MIT license (see LICENSE for details)
         // -------------------------------------------------------------------------------------------------------------------------
+
+        //------------------------------------------------/ CONVERTERS FOR ACTIVABLE ABILITY CREATION  /----------------------------------------------------//
+
+        // This converter creates a toggle that activates the buff. This is the full version, which adds all kind of name modification features.
+
+        static public BlueprintActivatableAbility ConvertBuffToActivatableAbility(BlueprintBuff buff,
+                                                                                  CommandType command, 
+                                                                                  bool deactivate_immediately, 
+                                                                                  string prefixAdd = "",
+                                                                                  string prefixRemove = "",
+                                                                                  string suffixAdd = "ToggleAbility",
+                                                                                  string suffixRemove = "Buff",
+                                                                                  string replaceOldText1 = "",
+                                                                                  string replaceOldText2 = "",
+                                                                                  string replaceOldText3 = "",
+                                                                                  string replaceNewText1 = "",
+                                                                                  string replaceNewText2 = "",
+                                                                                 string replaceNewText3 = "",
+                                                                                 params BlueprintComponent[] components
+                                                        )
+        {
+
+            string toggleName = buff.Name;
+
+            if (!String.IsNullOrEmpty(prefixRemove))
+            {
+                toggleName.Replace(prefixRemove, "");
+            }
+            if (!String.IsNullOrEmpty(suffixRemove))
+            {
+                toggleName.Replace(suffixRemove, "");
+            }
+            if (!String.IsNullOrEmpty(prefixAdd))
+            {
+                toggleName = prefixAdd + toggleName;
+            }
+            if (!String.IsNullOrEmpty(suffixAdd))
+            {
+                toggleName = toggleName + suffixAdd;
+            }
+            if (!String.IsNullOrEmpty(replaceOldText1))
+            {
+                toggleName.Replace(replaceOldText1, replaceNewText1);
+            }
+            if (!String.IsNullOrEmpty(replaceOldText2))
+            {
+                toggleName.Replace(replaceOldText2, replaceNewText2);
+            }
+            if (!String.IsNullOrEmpty(replaceOldText3))
+            {
+                toggleName.Replace(replaceOldText3, replaceNewText3);
+            }
+
+
+            var toggle = Helpers.CreateBlueprint<BlueprintActivatableAbility>(LoSContext, toggleName, bp => {
+                bp.m_Buff = buff.ToReference<BlueprintBuffReference>();
+                bp.SetName(LoSContext, buff.Name);
+                bp.SetDescription(LoSContext, buff.Description);
+                bp.m_Icon = buff.Icon;
+                bp.ResourceAssetIds = new string[0];
+                bp.ActivationType = (command == CommandType.Free) ? AbilityActivationType.Immediately : AbilityActivationType.WithUnitCommand;
+                bp.m_ActivateWithUnitCommand = command;
+                bp.SetComponents(components);
+                bp.DeactivateImmediately = deactivate_immediately;
+
+            });
+
+            return toggle;
+
+        }
+
+        // This converter creates a toggle that activates the buff. This is the barebone version which lists only suffix to remove and to add.
+
+        static public BlueprintActivatableAbility ConvertBuffToActivatableAbility(BlueprintBuff buff,
+                                                                                  CommandType command,
+                                                                                  bool deactivate_immediately,
+                                                                                  string suffixAdd = "ToggleAbility",
+                                                                                  string suffixRemove = "Buff",
+                                                                                 params BlueprintComponent[] components
+                                                        )
+        {
+
+            string toggleName = buff.Name;
+
+            if (!String.IsNullOrEmpty(suffixRemove))
+            {
+                toggleName.Replace(suffixRemove, "");
+            }
+            if (!String.IsNullOrEmpty(suffixAdd))
+            {
+                toggleName = toggleName + suffixAdd;
+            }
+
+
+            var toggle = Helpers.CreateBlueprint<BlueprintActivatableAbility>(LoSContext, toggleName, bp => {
+                bp.m_Buff = buff.ToReference<BlueprintBuffReference>();
+                bp.SetName(LoSContext, buff.Name);
+                bp.SetDescription(LoSContext, buff.Description);
+                bp.m_Icon = buff.Icon;
+                bp.ResourceAssetIds = new string[0];
+                bp.ActivationType = (command == CommandType.Free) ? AbilityActivationType.Immediately : AbilityActivationType.WithUnitCommand;
+                bp.m_ActivateWithUnitCommand = command;
+                bp.SetComponents(components);
+                bp.DeactivateImmediately = deactivate_immediately;
+
+            });
+
+            return toggle;
+
+        }
+
+
 
         //------------------------------------------------/ CONVERTERS FOR FEATURE CREATION  /----------------------------------------------------//
 
@@ -480,7 +593,53 @@ namespace LegacyOfShadows.Utilities
             return feature;
         }
 
+        // This converter creates a feature that matches the activatable ability from which has been created and adds it without checking.
 
+        static public BlueprintFeature ConvertActivatableAbilityToFeature(BlueprintActivatableAbility ability,
+                                                                        string prefixAdd = "",
+                                                                        string prefixRemove = "",
+                                                                        string suffixAdd = "Feature",
+                                                                        string suffixRemove = "ToggleAbility",
+                                                                        bool hide = true
+                                                                    )
+        {
+
+            string activatable_abilityAltName = ability.Name;
+
+            if (!String.IsNullOrEmpty(prefixRemove))
+            {
+                activatable_abilityAltName.Replace(prefixRemove, "");
+            }
+            if (!String.IsNullOrEmpty(suffixRemove))
+            {
+                activatable_abilityAltName.Replace(suffixRemove, "");
+            }
+            if (!String.IsNullOrEmpty(prefixAdd))
+            {
+                activatable_abilityAltName = prefixAdd + activatable_abilityAltName;
+            }
+            if (!String.IsNullOrEmpty(suffixAdd))
+            {
+                activatable_abilityAltName = activatable_abilityAltName + suffixAdd;
+            }
+
+            var feature = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, activatable_abilityAltName, bp => {
+                bp.SetName(LoSContext, ability.Name);
+                bp.SetDescription(LoSContext, ability.Description);
+                bp.m_Icon = ability.Icon;
+                bp.AddComponent<AddFacts>(c => {
+                    c.m_Facts = new BlueprintUnitFactReference[] { ability.ToReference<BlueprintUnitFactReference>() };
+                });
+                bp.Groups = new FeatureGroup[] { FeatureGroup.None };
+            });
+            if (hide)
+            {
+                feature.HideInCharacterSheetAndLevelUp = true;
+                feature.HideInUI = true;
+            }
+
+            return feature;
+        }
 
         // This converter creates a feature that matches the buff from which has been created.
 
