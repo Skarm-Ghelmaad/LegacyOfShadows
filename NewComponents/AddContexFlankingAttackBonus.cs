@@ -30,7 +30,7 @@ namespace LegacyOfShadows.NewComponents
     [ComponentName("Context-based Bonus to attack against flanked opponents if has fact")]
     [AllowedOn(typeof(BlueprintUnitFact), false)]
     [AllowMultipleComponents]
-    [TypeId("E92634A9-FA97-465A-85FF-7BC3AE0E14D2")]
+    [TypeId("E92634A9FA97465A85FF7BC3AE0E14D2")]
     public class AddContexFlankingAttackBonus : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleCalculateAttackBonus>, IRulebookHandler<RuleCalculateAttackBonus>, ISubscriber, IInitiatorRulebookSubscriber
     {
 

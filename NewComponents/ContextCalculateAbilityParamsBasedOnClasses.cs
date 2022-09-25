@@ -28,7 +28,7 @@ namespace LegacyOfShadows.NewComponents
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    [TypeId("88B84199-61F8-4FC5-B956-0E7F67DD236C")]
+    [TypeId("88B8419961F84FC5B9560E7F67DD236C")] 
     public class ContextCalculateAbilityParamsBasedOnClasses : ContextAbilityParamsCalculator
     {
 
