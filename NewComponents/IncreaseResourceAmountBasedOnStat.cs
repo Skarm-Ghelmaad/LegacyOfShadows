@@ -21,7 +21,7 @@ namespace LegacyOfShadows.NewComponents
     // Used for the change in Ki Resource mechanics and in the Potential Ki resource.
 
     [TypeId("653F8009D29A478A8F7DD21C9E531782")]
-    internal class IncreaseResourceAmountBasedOnStat: UnitFactComponentDelegate, IResourceAmountBonusHandler, IUnitSubscriber, ISubscriber
+    internal class IncreaseResourceAmountBasedOnStatOnly: UnitFactComponentDelegate, IResourceAmountBonusHandler, IUnitSubscriber, ISubscriber
     {
 
         public ModifiableValueAttributeStat FindHighestAttributeStat(UnitDescriptor unit)
@@ -68,9 +68,17 @@ namespace LegacyOfShadows.NewComponents
             if (modifiableValueAttributeStat != null)
             {
 
-                if (UseResourceMultiplier)
+                if ((UseResourceMultiplier == true) & (UseResourceDivisor == true))
+                {
+                    num += (int)((float)modifiableValueAttributeStat.Bonus * (ResourceMultiplier / ResourceDivisor));
+                }
+                if ((UseResourceMultiplier == true) & (UseResourceDivisor == false))
                 {
                     num += (int)((float)modifiableValueAttributeStat.Bonus * ResourceMultiplier); 
+                }
+                else if ((UseResourceMultiplier == false) & (UseResourceDivisor == true))
+                {
+                    num += (int)((float)modifiableValueAttributeStat.Bonus / ResourceDivisor);
                 }
                 else
                 {
@@ -118,6 +126,8 @@ namespace LegacyOfShadows.NewComponents
 
         public bool UseResourceMultiplier = false;
 
+        public bool UseResourceDivisor = false;
+
         public bool Subtract = false;
 
         public bool NotUseHighestStat = true;
@@ -129,6 +139,10 @@ namespace LegacyOfShadows.NewComponents
         [UsedImplicitly]
         [ShowIf("UseResourceMultiplier")]
         public float ResourceMultiplier = 1.0f;        // This is a resource multiplier which is used to tweak the adjustment.
+
+        [UsedImplicitly]
+        [ShowIf("UseResourceDivisor")]
+        public float ResourceDivisor = 1.0f;        // This is a resource divisor which is used to tweak the adjustment.
 
 
     }
