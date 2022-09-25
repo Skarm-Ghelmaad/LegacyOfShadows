@@ -52,7 +52,7 @@ namespace LegacyOfShadows.NewComponents
 
             ModifiableValueAttributeStat modifiableValueAttributeStat = null;
 
-            if (NotUseHighestStat)
+            if (this.NotUseHighestStat)
             {
 
                 modifiableValueAttributeStat = unit.Stats.GetStat(this.ResourceBonusStat) as ModifiableValueAttributeStat;
@@ -68,17 +68,17 @@ namespace LegacyOfShadows.NewComponents
             if (modifiableValueAttributeStat != null)
             {
 
-                if ((UseResourceMultiplier == true) & (UseResourceDivisor == true))
+                if ((this.UseResourceMultiplier == true) & (this.UseResourceDivisor == true))
                 {
-                    num += (int)((float)modifiableValueAttributeStat.Bonus * (ResourceMultiplier / ResourceDivisor));
+                    num += (int)((float)(modifiableValueAttributeStat.Bonus) * (this.ResourceMultiplier / this.ResourceDivisor));
                 }
-                if ((UseResourceMultiplier == true) & (UseResourceDivisor == false))
+                if ((this.UseResourceMultiplier == true) & (this.UseResourceDivisor == false))
                 {
-                    num += (int)((float)modifiableValueAttributeStat.Bonus * ResourceMultiplier); 
+                    num += (int)((float)(modifiableValueAttributeStat.Bonus) * this.ResourceMultiplier); 
                 }
-                else if ((UseResourceMultiplier == false) & (UseResourceDivisor == true))
+                else if ((this.UseResourceMultiplier == false) & (this.UseResourceDivisor == true))
                 {
-                    num += (int)((float)modifiableValueAttributeStat.Bonus / ResourceDivisor);
+                    num += (int)((float)(modifiableValueAttributeStat.Bonus) / this.ResourceDivisor);
                 }
                 else
                 {
@@ -102,7 +102,7 @@ namespace LegacyOfShadows.NewComponents
         public void CalculateMaxResourceAmount(BlueprintAbilityResource resource, ref int bonus)
         {
 
-            if (base.Fact.Active && resource == m_Resource.Get())
+            if (base.Fact.Active && resource == this.m_Resource.Get())
             {
 
                 int resource_amount = CalculateStatBonusAmount();
