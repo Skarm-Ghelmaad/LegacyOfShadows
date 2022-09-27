@@ -25,7 +25,7 @@ namespace LegacyOfShadows.NewComponents
     // - A resource multiplier and a resource divider (to further tweak the calculation).
     // - The subtraction of the calculated amount (which allows to reduce a resource)
 
-
+    [TypeId("28E39A6C16F142578132DD1A2BA81ED3")]
     public class IncreaseResourcesByGestaltCharacterLevel : UnitFactComponentDelegate, IResourceAmountBonusHandler, IUnitSubscriber, ISubscriber
     {
 
