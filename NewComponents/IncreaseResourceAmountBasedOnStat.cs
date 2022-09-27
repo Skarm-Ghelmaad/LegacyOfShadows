@@ -138,11 +138,11 @@ namespace LegacyOfShadows.NewComponents
 
         [UsedImplicitly]
         [ShowIf("UseResourceMultiplier")]
-        public float ResourceMultiplier = 1.0f;        // This is a resource multiplier which is used to tweak the adjustment.
+        public float ResourceMultiplier = 1.00f;        // This is a resource multiplier which is used to tweak the adjustment.
 
         [UsedImplicitly]
         [ShowIf("UseResourceDivisor")]
-        public float ResourceDivisor = 1.0f;        // This is a resource divisor which is used to tweak the adjustment.
+        public float ResourceDivisor = 1.00f;        // This is a resource divisor which is used to tweak the adjustment.
 
 
     }

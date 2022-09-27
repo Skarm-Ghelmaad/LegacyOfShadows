@@ -21,6 +21,7 @@ namespace LegacyOfShadows.NewComponents
     // - A resource multiplier and a resource divider (to further tweak the calculation).
     // - The subtraction of the calculated amount (which allows to reduce a resource)
 
+    [TypeId("EAD249FB3E5E47EFB780017C86FD9BE8")]
     public class IncreaseResourcesByClassLOS : UnitFactComponentDelegate, IResourceAmountBonusHandler, IUnitSubscriber, ISubscriber
     {
 
@@ -57,7 +58,7 @@ namespace LegacyOfShadows.NewComponents
         {
             int num = 0;
 
-            float final_Resource_Multiplier = 1.0f;
+            float final_Resource_Multiplier = 1.00f;
 
             if ((this.UseResourceMultiplier == true) & (this.UseResourceMultiplier = true))
             {
@@ -65,7 +66,7 @@ namespace LegacyOfShadows.NewComponents
             }
             else if ((this.UseResourceMultiplier == false) & (this.UseResourceMultiplier = true))
             {
-                final_Resource_Multiplier = 1.0f / this.ResourceDivisor;
+                final_Resource_Multiplier = 1.00f / this.ResourceDivisor;
             }
             else if ((this.UseResourceMultiplier == true) & (this.UseResourceMultiplier = false))
             {
@@ -198,11 +199,11 @@ namespace LegacyOfShadows.NewComponents
 
         [UsedImplicitly]
         [ShowIf("UseResourceMultiplier")]
-        public float ResourceMultiplier = 1.0f;        // This is a resource multiplier which is used to tweak the adjustment.
+        public float ResourceMultiplier = 1.00f;        // This is a resource multiplier which is used to tweak the adjustment.
 
         [UsedImplicitly]
         [ShowIf("UseResourceDivisor")]
-        public float ResourceDivisor = 1.0f;        // This is a resource divisor which is used to tweak the adjustment.
+        public float ResourceDivisor = 1.00f;        // This is a resource divisor which is used to tweak the adjustment.
 
         public bool Subtract = false;
 
