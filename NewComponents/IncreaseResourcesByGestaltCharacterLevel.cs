@@ -296,7 +296,14 @@ namespace LegacyOfShadows.NewComponents
         }
 
 
-
+        // This component works as follows:
+        // - Counts all class levels of classes and archetypes which aren't excluded or listed as partial to the gestalt character level calculation.
+        // - Remove excluded classes and archetypes from the character class.
+        // - Add partial classes and archetypes' levels multiplied by chosen multiplier and divider to the gestalt character level calculation.
+        // - Remove the complement to 1 of the chosen multiplier and divider multiplied by partial classes and archetypes' levels from character class.
+        // - Compare adjusted character level with gestalt character level and choose the highest option.
+        // - Calculate the bonus with the chosen method and then multiplied by the chosen resource multiplier and divider.
+        // - Either add or subtract to define if this component is an increase or a reduction.
 
 
 
