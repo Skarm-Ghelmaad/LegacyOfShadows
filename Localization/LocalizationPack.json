@@ -51,6 +51,32 @@
     {
       "Key": "MonkFlyingKickFeature.Description",
       "enGB": "The monk leaps through the air to strike a foe with a kick. The monk can make a full-attack at the end of charge action."
+    },
+
+    {
+      "Key": "WisdomKiPoolCanonFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Ki Pool - {g|Encyclopedia:Wisdom}Wisdom{/g}"
+    },
+
+    {
+      "Key": "WisdomKiPoolCanonFeature.Description",
+      "enGB": "This character adds his {g|Encyclopedia:Wisdom}Wisdom{/g} modifier to his ki pool, to the DC of his ki abilities and \n to any other ability parameter that would be affected by an attribute."
+    },
+
+    {
+      "Key": "CharismaKiPoolCanonFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Ki Pool - {g|Encyclopedia:Charisma}Charisma{/g}"
+    },
+
+    {
+      "Key": "CharismaKiPoolCanonFeature.Description",
+      "enGB": "This character adds his {g|Encyclopedia:Charisma}Charisma{/g} modifier to his ki pool, to the DC of his ki abilities and \n to any other ability parameter that would be affected by an attribute."
     }
 
   ]

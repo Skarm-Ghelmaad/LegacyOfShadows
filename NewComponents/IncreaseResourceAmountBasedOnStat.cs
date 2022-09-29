@@ -21,8 +21,21 @@ namespace LegacyOfShadows.NewComponents
     // Used for the change in Ki Resource mechanics and in the Potential Ki resource.
 
     [TypeId("653F8009D29A478A8F7DD21C9E531782")]
-    internal class IncreaseResourceAmountBasedOnStatOnly: UnitFactComponentDelegate, IResourceAmountBonusHandler, IUnitSubscriber, ISubscriber
+    internal class IncreaseResourceAmountBasedOnStat : UnitFactComponentDelegate, IResourceAmountBonusHandler, IUnitSubscriber, ISubscriber
     {
+
+        public BlueprintAbilityResource Resource
+        {
+            get
+            {
+                BlueprintAbilityResourceReference resource = this.m_Resource;
+                if (resource == null)
+                {
+                    return null;
+                }
+                return resource.Get();
+            }
+        }
 
         public ModifiableValueAttributeStat FindHighestAttributeStat(UnitDescriptor unit)
         {
@@ -102,7 +115,9 @@ namespace LegacyOfShadows.NewComponents
         public void CalculateMaxResourceAmount(BlueprintAbilityResource resource, ref int bonus)
         {
 
-            if (base.Fact.Active && resource == this.m_Resource.Get())
+            
+
+            if (base.Fact.Active && resource == this.Resource)
             {
 
                 int resource_amount = CalculateStatBonusAmount();
