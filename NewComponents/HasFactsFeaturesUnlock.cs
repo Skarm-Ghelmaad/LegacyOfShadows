@@ -10,12 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using TabletopTweaks.Core.Utilities;
 using UnityEngine;
+using Kingmaker.Blueprints.JsonSystem;
 
 namespace LegacyOfShadows.NewComponents
 {
 
     // This new component allows to add a block of features if the unit has (or hasn't) a block of features.
-    internal class HasFactsFeaturesUnlock : UnitFactComponentDelegate<HasFactsFeaturesUnlockData>, IUnitGainFactHandler, IUnitLostFactHandler, IUnitSubscriber, ISubscriber
+    [TypeId("CEB162D2E3AC4C61B6D415AE77F5A587")]
+    public class HasFactsFeaturesUnlock : UnitFactComponentDelegate<HasFactsFeaturesUnlockData>, IUnitGainFactHandler, IUnitLostFactHandler, IUnitSubscriber, ISubscriber
     {
         public ReferenceArrayProxy<BlueprintUnitFact, BlueprintUnitFactReference> CheckedFacts
         {

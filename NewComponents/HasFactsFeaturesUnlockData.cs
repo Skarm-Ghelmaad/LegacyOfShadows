@@ -7,7 +7,7 @@ namespace LegacyOfShadows.NewComponents
 {
 
     // This is the equivalent of UnitFactComponentDelegate<AddFeatureIfHasFactData> but works in blocks of facts (array) instead of individual facts.
-    internal class HasFactsFeaturesUnlockData
+    public class HasFactsFeaturesUnlockData
     {
         public EntityFact[] AppliedFacts;
     }
