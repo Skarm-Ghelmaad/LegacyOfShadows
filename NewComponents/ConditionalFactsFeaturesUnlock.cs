@@ -16,6 +16,8 @@ using Kingmaker.Blueprints.JsonSystem;
 namespace LegacyOfShadows.NewComponents
 {
     // This new component allows to add a specific feature if the unit has a certain feat.
+    // Note that this component is designed to allow for mutually-exclusionary conditional selection, so, if multiple conditions are met, only the first feature found will be added.
+    
     [TypeId("E4A2CF7131BF45099D50E3115D6EB1D8")]
     public class ConditionalFactsFeaturesUnlock : UnitFactComponentDelegate<ConditionalFactsFeaturesUnlockData>, IUnitGainFactHandler, IUnitLostFactHandler, IUnitSubscriber, ISubscriber
     {
@@ -122,7 +124,7 @@ namespace LegacyOfShadows.NewComponents
         }
 
 
-        public IDictionary<BlueprintFeatureReference, BlueprintFeatureReference> m_ConditionalFeatures = new Dictionary<BlueprintFeatureReference, BlueprintFeatureReference>();
+        public IDictionary<BlueprintUnitFactReference, BlueprintFeatureReference> m_ConditionalFeatures = new Dictionary<BlueprintUnitFactReference, BlueprintFeatureReference>();
 
         public bool Not;
 
