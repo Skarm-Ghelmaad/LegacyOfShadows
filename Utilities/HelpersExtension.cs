@@ -1700,9 +1700,105 @@ namespace LegacyOfShadows.Utilities
         }
 
 
-    } 
+    
+
     #endregion
 
 
+    #region |------------------------------------------------/ CONDITION CHECKERS CREATORS  /--------------------------------------------------|
+
+    public static ConditionsChecker CreateConditionsCheckerAnd(params Condition[] conditions)
+    {
+        return new ConditionsChecker() { Conditions = conditions, Operation = Operation.And };
+    }
+
+    public static ConditionsChecker CreateConditionsCheckerOr(params Condition[] conditions)
+    {
+        return new ConditionsChecker() { Conditions = conditions, Operation = Operation.Or };
+    }
+
+        #endregion
+
+
+        #region |------------------------------------------------------/ CONDITIONAL CREATORS  /--------------------------------------------------------|
+
+        public static Conditional CreateConditional(Condition condition, GameAction ifTrue, GameAction ifFalse = null)
+        {
+            var c = Helpers.Create<Conditional>();
+            c.ConditionsChecker = CreateConditionsCheckerAnd(condition);
+            c.IfTrue = Helpers.CreateActionList(ifTrue);
+            c.IfFalse = Helpers.CreateActionList(ifFalse);
+            return c;
+        }
+
+        public static Conditional CreateConditional(Condition[] condition, GameAction ifTrue, GameAction ifFalse = null)
+        {
+            var c = Helpers.Create<Conditional>();
+            c.ConditionsChecker = CreateConditionsCheckerAnd(condition);
+            c.IfTrue = Helpers.CreateActionList(ifTrue);
+            c.IfFalse = Helpers.CreateActionList(ifFalse);
+            return c;
+        }
+
+
+        public static Conditional CreateConditionalOr(Condition[] condition, GameAction ifTrue, GameAction ifFalse = null)
+        {
+            var c = Helpers.Create<Conditional>();
+            c.ConditionsChecker = CreateConditionsCheckerOr(condition);
+            c.IfTrue = Helpers.CreateActionList(ifTrue);
+            c.IfFalse = Helpers.CreateActionList(ifFalse);
+            return c;
+        }
+
+        public static Conditional CreateConditional(Condition[] condition, GameAction[] ifTrue, GameAction[] ifFalse = null)
+        {
+            var c = Helpers.Create<Conditional>();
+            c.ConditionsChecker = CreateConditionsCheckerAnd(condition);
+            c.IfTrue = Helpers.CreateActionList(ifTrue);
+            c.IfFalse = Helpers.CreateActionList(ifFalse);
+            return c;
+        }
+
+        public static Conditional CreateConditional(ConditionsChecker conditions, GameAction ifTrue, GameAction ifFalse = null)
+        {
+            var c = Helpers.Create<Conditional>();
+            c.ConditionsChecker = conditions;
+            c.IfTrue = Helpers.CreateActionList(ifTrue);
+            c.IfFalse = Helpers.CreateActionList(ifFalse);
+            return c;
+        }
+
+        public static Conditional CreateConditional(Condition condition, GameAction[] ifTrue, GameAction[] ifFalse = null)
+        {
+            var c = Helpers.Create<Conditional>();
+            c.ConditionsChecker = new ConditionsChecker() { Conditions = new Condition[] { condition } };
+            c.IfTrue = Helpers.CreateActionList(ifTrue);
+            c.IfFalse = Helpers.CreateActionList(ifFalse ?? Array.Empty<GameAction>());
+            return c;
+        }
+
+        public static Conditional CreateConditional(ConditionsChecker condition, GameAction[] ifTrue, GameAction[] ifFalse = null)
+        {
+            var c = Helpers.Create<Conditional>();
+            c.ConditionsChecker = condition;
+            c.IfTrue = Helpers.CreateActionList(ifTrue);
+            c.IfFalse = Helpers.CreateActionList(ifFalse ?? Array.Empty<GameAction>());
+            return c;
+        }
+
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+    }
 
 }

@@ -90,7 +90,34 @@
     {
       "Key": "NinjaProficiencies.Description",
       "enGB": "Ninja are proficient with all simple weapons, plus the kama, dueling sword, nunchaku, sai, shortbow, short sword, shuriken, and scimitar. Ninjas are proficient with light armor but not with shields."
+    },
+
+    {
+      "Key": "NinjaTrickInvisibleBladeFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Invisible Blade"
+    },
+
+    {
+      "Key": "NinjaTrickInvisibleBladeFeature.Description",
+      "enGB": "Whenever a ninja uses the Vanishing Trick ninja trick, she is treated as if she were under the effects of Greater Invisibility."
+    },
+
+    {
+      "Key": "NinjaTrickVanishingTrickFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Vanishing Trick"
+    },
+
+    {
+      "Key": "NinjaTrickVanishingTrickFeature.Description",
+      "enGB": "As a swift action, the ninja can disappear for 1 round per level. This ability functions as Invisibility. Using this ability uses up 1 ki point."
     }
+
 
   ]
 }
