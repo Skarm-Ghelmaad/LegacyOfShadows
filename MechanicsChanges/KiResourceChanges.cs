@@ -13,6 +13,13 @@ using LegacyOfShadows.Utilities;
 using Kingmaker.ResourceLinks;
 using Kingmaker.UnitLogic.FactLogic;
 using LegacyOfShadows.NewComponents;
+using Kingmaker.Blueprints.Classes.Prerequisites;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.Mechanics.Actions;
+using Kingmaker.UnitLogic.Mechanics.Components;
+using Kingmaker.UnitLogic.Abilities.Components;
+using Kingmaker.Designers.Mechanics.Facts;
+using TabletopTweaks.Core.NewComponents;
 
 namespace LegacyOfShadows.MechanicsChanges
 {
@@ -53,20 +60,20 @@ namespace LegacyOfShadows.MechanicsChanges
             scaledFistKiResource.m_MaxAmount.IncreasedByStat = false;
             scaledFistKiResource.m_Max = 5000;
 
-
-
-
             #endregion
 
             #region | Creation of Wis and Charisma Ki Resouce Bonus Feature |
 
             // A resource bonus based on Wisdom and Charisma are created for Monk, Scaled Fist and Ninja. 
             // These are introduced for canon, in order to align the basic and the advanced ki resource.
+            // Note that these features are hidden in the UI.
 
             var wisdom_KiPoolCanon = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, "WisdomKiPoolCanonFeature", bp => {
                 bp.SetName(LoSContext, WisdomKiPoolCanonFeatureName);
                 bp.SetDescription(LoSContext, WisdomKiPoolCanonFeatureDescription);
                 bp.m_Icon = wisdomKiPoolIcon;
+                bp.HideInUI = true;
+                bp.HideInCharacterSheetAndLevelUp = true;
                 bp.AddComponent(Helpers.Create<IncreaseResourceAmountBasedOnStat>(c => {
                     c.m_Resource = kiResource.ToReference<BlueprintAbilityResourceReference>();
                     c.Subtract = false;
@@ -76,20 +83,68 @@ namespace LegacyOfShadows.MechanicsChanges
                 }));
             });
 
+            LoSContext.Logger.LogPatch("Created traditional Ki Pool modifier for Wisdom", wisdom_KiPoolCanon);
+
             var charisma_KiPoolCanon = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, "CharismaKiPoolCanonFeature", bp => {
                 bp.SetName(LoSContext, CharismaKiPoolCanonFeatureName);
                 bp.SetDescription(LoSContext, CharismaKiPoolCanonFeatureDescription);
                 bp.m_Icon = wisdomKiPoolIcon;
+                bp.HideInUI = true;
+                bp.HideInCharacterSheetAndLevelUp = true;
                 bp.AddComponent(Helpers.Create<IncreaseResourceAmountBasedOnStat>(c => {
                     c.m_Resource = kiResource.ToReference<BlueprintAbilityResourceReference>();
                     c.Subtract = false;
                     c.NotUseHighestStat = true;
                     c.ResourceBonusStat = StatType.Charisma;
-
                 }));
             });
 
+            LoSContext.Logger.LogPatch("Created traditional Ki Pool modifier for Charisma", charisma_KiPoolCanon);
+
             #endregion
+
+            #region | Changed Scaled Fist Ki Pool to use generic Monk Ki resource. |
+
+            scaledFistKiPowerFeature.GetComponent<AddAbilityResources>().TemporaryContext(c => {
+                c.m_Resource = kiResource.ToReference<BlueprintAbilityResourceReference>();
+            });
+            LoSContext.Logger.LogPatch("Enabled generic Monk Ki for Scaled Fist", scaledFistKiPowerFeature);
+
+
+            #endregion
+
+
+            #region | Replace Scaled Fist resource with basic monk resource. |
+
+            foreach (BlueprintAbility scaledFistKiAbility in KiTools.MonkScaledFistKiAbilities.AllMonkScaledFistKiAbilties)
+            {
+                scaledFistKiAbility.GetComponent<AbilityResourceLogic>().TemporaryContext(c => {
+                    c.m_RequiredResource = kiResource.ToReference<BlueprintAbilityResourceReference>();
+                });
+                LoSContext.Logger.LogPatch("Altered Scaled Fist Monk abilities to use generic Monk Ki", scaledFistKiAbility);
+            }
+
+            #endregion
+
+
+            #region | Attach resource bonus features to the the original Ki Pool feature. |
+
+            // Add the feature which grant the distinct (and not embedded) Ki Stat modifier.
+
+            var canon_ki_modifier_exclusions = new BlueprintUnitFactReference[] { wisdom_KiPoolCanon.ToReference<BlueprintUnitFactReference>(), charisma_KiPoolCanon.ToReference<BlueprintUnitFactReference>() };
+
+            kiPowerFeature.AddComponent<HasFactsFeaturesUnlock> (c => {
+                c.m_CheckedFacts = canon_ki_modifier_exclusions;
+                c.m_Features = new BlueprintUnitFactReference[] { wisdom_KiPoolCanon.ToReference<BlueprintUnitFactReference>() };
+            });
+
+            scaledFistKiPowerFeature.AddComponent<HasFactsFeaturesUnlock>(c => {
+                c.m_CheckedFacts = canon_ki_modifier_exclusions;
+                c.m_Features = new BlueprintUnitFactReference[] { charisma_KiPoolCanon.ToReference<BlueprintUnitFactReference>() };
+            });
+
+            #endregion
+
 
 
         }

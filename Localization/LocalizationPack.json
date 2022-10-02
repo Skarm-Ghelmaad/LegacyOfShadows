@@ -77,6 +77,19 @@
     {
       "Key": "CharismaKiPoolCanonFeature.Description",
       "enGB": "This character adds his {g|Encyclopedia:Charisma}Charisma{/g} modifier to his ki pool, to the DC of his ki abilities and \n to any other ability parameter that would be affected by an attribute."
+    },
+
+    {
+      "Key": "NinjaProficiencies.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Ninja Proficiencies"
+    },
+
+    {
+      "Key": "NinjaProficiencies.Description",
+      "enGB": "Ninja are proficient with all simple weapons, plus the kama, dueling sword, nunchaku, sai, shortbow, short sword, shuriken, and scimitar. Ninjas are proficient with light armor but not with shields."
     }
 
   ]

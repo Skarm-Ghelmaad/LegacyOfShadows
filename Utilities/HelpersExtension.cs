@@ -93,6 +93,8 @@ namespace LegacyOfShadows.Utilities
     {
         //++++++++++++++++++++++++++++++++++++++++++++++++++/ GETTER & SETTERS /++++++++++++++++++++++++++++++++++++++++++++++++++//
 
+        #region |---------------------------------------------------------/ FIELD GETTERS & SETTERS /---------------------------------------------------------|
+
         // BORROWED CODE
         // Note: This was cannibalized from KingmakerToolkit.Shared in Races Unleashed Kingmaker mod and ported to WotR and was further adjusted by borrowing code from CotW Kingmaker mod. 
 
@@ -115,8 +117,10 @@ namespace LegacyOfShadows.Utilities
         {
             HarmonyLib.AccessTools.Field(obj.GetType(), name).SetValue(obj, value);
 
-         }
+        }
 
+
+        #endregion
 
         //++++++++++++++++++++++++++++++++++++++++++++++++++/ CREATORS /++++++++++++++++++++++++++++++++++++++++++++++++++//
 
@@ -127,7 +131,10 @@ namespace LegacyOfShadows.Utilities
         // This code is licensed under MIT license (see LICENSE for details)
         // -------------------------------------------------------------------------------------------------------------------------
 
-        //------------------------------------------------/ GENERIC CREATORS /----------------------------------------------------//
+
+        #region |------------------------------------------------------------/ GENERIC CREATORS /-------------------------------------------------------------|
+
+
 
         public static PrefabLink CreatePrefabLink(string asset_id)
         {
@@ -143,14 +150,17 @@ namespace LegacyOfShadows.Utilities
             return link;
         }
 
-        //----------------------------------------/ QUICK COMPONENT CREATORS /----------------------------------------------------//
+        #endregion
+
+        #region |----------------------------------------------------/ QUICK COMPONENT CREATORS /-------------------------------------------------------------|
+
 
         // -------------------------------------------------------------------------------------------------------------------------
         // Note: These were inspired by Holic75's KingmakerRebalance/CotW Kingmaker mod. 
         // -------------------------------------------------------------------------------------------------------------------------
 
-        public static ContextCalculateAbilityParamsBasedOnClass CreateContextCalculateAbilityParamsBasedOnClass( BlueprintCharacterClassReference character_class,
-                                                                                                                 StatType stat, 
+        public static ContextCalculateAbilityParamsBasedOnClass CreateContextCalculateAbilityParamsBasedOnClass(BlueprintCharacterClassReference character_class,
+                                                                                                                 StatType stat,
                                                                                                                  bool use_kineticist_main_stat = false)
         {
             var c = Helpers.Create<ContextCalculateAbilityParamsBasedOnClass>();
@@ -161,8 +171,8 @@ namespace LegacyOfShadows.Utilities
         }
 
 
-        public static ContextCalculateAbilityParamsBasedOnClasses CreateContextCalculateAbilityParamsBasedOnClasses (BlueprintCharacterClassReference[] character_classes,
-                                                                                                                                   StatType stat )
+        public static ContextCalculateAbilityParamsBasedOnClasses CreateContextCalculateAbilityParamsBasedOnClasses(BlueprintCharacterClassReference[] character_classes,
+                                                                                                                                   StatType stat)
         {
             var c = Helpers.Create<ContextCalculateAbilityParamsBasedOnClasses>();
             c.m_CharacterClasses = character_classes;
@@ -171,9 +181,9 @@ namespace LegacyOfShadows.Utilities
         }
 
 
-        public static ContextCalculateAbilityParamsBasedOnClasses createContextCalculateAbilityParamsBasedOnClassesWithProperty (BlueprintCharacterClassReference[] character_classes,
+        public static ContextCalculateAbilityParamsBasedOnClasses createContextCalculateAbilityParamsBasedOnClassesWithProperty(BlueprintCharacterClassReference[] character_classes,
                                                                                                                                  BlueprintUnitPropertyReference property,
-                                                                                                                                 StatType stat = StatType.Charisma )
+                                                                                                                                 StatType stat = StatType.Charisma)
         {
             var c = Helpers.Create<ContextCalculateAbilityParamsBasedOnClasses>();
             c.m_CharacterClasses = character_classes;
@@ -184,7 +194,7 @@ namespace LegacyOfShadows.Utilities
         }
 
 
-        public static ContextCalculateAbilityParamsBasedOnClasses CreateContextCalculateAbilityParamsBasedOnClassesWithArchetypes   (BlueprintCharacterClassReference[] character_classes,
+        public static ContextCalculateAbilityParamsBasedOnClasses CreateContextCalculateAbilityParamsBasedOnClassesWithArchetypes(BlueprintCharacterClassReference[] character_classes,
                                                                                                                                      BlueprintArchetypeReference[] archetypes,
                                                                                                                                      StatType stat)
         {
@@ -196,7 +206,7 @@ namespace LegacyOfShadows.Utilities
             return c;
         }
 
-        public static ContextCalculateAbilityParamsBasedOnClasses CreateContextCalculateAbilityParamsBasedOnClassesWithArchetypesWithProperty (BlueprintCharacterClassReference[] character_classes,
+        public static ContextCalculateAbilityParamsBasedOnClasses CreateContextCalculateAbilityParamsBasedOnClassesWithArchetypesWithProperty(BlueprintCharacterClassReference[] character_classes,
                                                                                                                                                BlueprintArchetypeReference[] archetypes,
                                                                                                                                                BlueprintUnitPropertyReference property,
                                                                                                                                                StatType stat = StatType.Charisma)
@@ -214,19 +224,20 @@ namespace LegacyOfShadows.Utilities
 
         public static BlueprintAbilityResource CreateAbilityResource(String name,
                                                                       Sprite icon = null,
-                                                                      params BlueprintComponent[] components  )
+                                                                      params BlueprintComponent[] components)
 
         {
-            var resource = Helpers.CreateBlueprint<BlueprintAbilityResource> (LoSContext, name, bp => {
-                                                                                bp.m_Icon = icon;
-                                                                                bp.SetComponents(components);
-                                                                                });
+            var resource = Helpers.CreateBlueprint<BlueprintAbilityResource>(LoSContext, name, bp =>
+            {
+                bp.m_Icon = icon;
+                bp.SetComponents(components);
+            });
             return resource;
         }
 
-        public static AbilityResourceLogic CreateResourceLogic(this BlueprintAbilityResource resource, 
-                                                                bool spend = true, 
-                                                                int amount = 1, 
+        public static AbilityResourceLogic CreateResourceLogic(this BlueprintAbilityResource resource,
+                                                                bool spend = true,
+                                                                int amount = 1,
                                                                 bool cost_is_custom = false)
 
         {
@@ -252,8 +263,10 @@ namespace LegacyOfShadows.Utilities
         }
 
 
+        #endregion
 
-        //----------------------------------------/ RESOURCE-RELATED FUNCTIONS /----------------------------------------------------//
+        #region |---------------------------------------------------/ RESOURCE-RELATED FUNCTIONS /------------------------------------------------------------|
+
 
         public static void SetFixedResource(this BlueprintAbilityResource resource, int baseValue)
         {
@@ -265,13 +278,15 @@ namespace LegacyOfShadows.Utilities
             var emptyArchetypes = Array.Empty<BlueprintArchetypeReference>();
 
 
-            if ( amount.m_Class == null) amount.m_Class = emptyClasses;
+            if (amount.m_Class == null) amount.m_Class = emptyClasses;
             if (amount.m_ClassDiv == null) amount.m_ClassDiv = emptyClasses;
             if (amount.m_Archetypes == null) amount.m_Archetypes = emptyArchetypes;
             if (amount.m_ArchetypesDiv == null) amount.m_ArchetypesDiv = emptyArchetypes;
 
             resource.m_MaxAmount = amount;
         }
+
+        #endregion
 
         //++++++++++++++++++++++++++++++++++++++++++++++++++// CONVERTERS //++++++++++++++++++++++++++++++++++++++++++++++++++//
 
@@ -282,13 +297,14 @@ namespace LegacyOfShadows.Utilities
         // This code is licensed under MIT license (see LICENSE for details)
         // -------------------------------------------------------------------------------------------------------------------------
 
-        //------------------------------------------------/ CONVERTERS FOR ACTIVABLE ABILITY CREATION  /----------------------------------------------------//
+        #region |-------------------------------------------/ CONVERTERS FOR ACTIVABLE ABILITY CREATION  /----------------------------------------------------|
+
 
         // This converter creates a toggle that activates the buff. This is the full version, which adds all kind of name modification features.
 
         static public BlueprintActivatableAbility ConvertBuffToActivatableAbility(BlueprintBuff buff,
-                                                                                  CommandType command, 
-                                                                                  bool deactivate_immediately, 
+                                                                                  CommandType command,
+                                                                                  bool deactivate_immediately,
                                                                                   string prefixAdd = "",
                                                                                   string prefixRemove = "",
                                                                                   string suffixAdd = "ToggleAbility",
@@ -335,7 +351,8 @@ namespace LegacyOfShadows.Utilities
             }
 
 
-            var toggle = Helpers.CreateBlueprint<BlueprintActivatableAbility>(LoSContext, toggleName, bp => {
+            var toggle = Helpers.CreateBlueprint<BlueprintActivatableAbility>(LoSContext, toggleName, bp =>
+            {
                 bp.m_Buff = buff.ToReference<BlueprintBuffReference>();
                 bp.SetName(LoSContext, buff.Name);
                 bp.SetDescription(LoSContext, buff.Description);
@@ -375,7 +392,8 @@ namespace LegacyOfShadows.Utilities
             }
 
 
-            var toggle = Helpers.CreateBlueprint<BlueprintActivatableAbility>(LoSContext, toggleName, bp => {
+            var toggle = Helpers.CreateBlueprint<BlueprintActivatableAbility>(LoSContext, toggleName, bp =>
+            {
                 bp.m_Buff = buff.ToReference<BlueprintBuffReference>();
                 bp.SetName(LoSContext, buff.Name);
                 bp.SetDescription(LoSContext, buff.Description);
@@ -393,8 +411,10 @@ namespace LegacyOfShadows.Utilities
         }
 
 
+        #endregion
 
-        //------------------------------------------------/ CONVERTERS FOR FEATURE CREATION  /----------------------------------------------------//
+        #region |------------------------------------------------/ CONVERTERS FOR FEATURE CREATION  /---------------------------------------------------------|
+
 
         // This converter creates a feature that matches the ability from which has been created.
         // This was mostly used (in Holic75's mod) to create features that add bonus or required features (such as Iroran Paladin's auto-selection of Irori as Deity)
@@ -445,11 +465,13 @@ namespace LegacyOfShadows.Utilities
                 feature1AltName.Replace(replaceOldText3, replaceNewText3);
             }
 
-            var feature2 = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, feature1AltName, bp => {
+            var feature2 = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, feature1AltName, bp =>
+            {
                 bp.SetName(LoSContext, feature1.Name);
                 bp.SetDescription(LoSContext, feature1.Description);
                 bp.m_Icon = feature1.Icon;
-                bp.AddComponent<AddFeatureOnApply>(c => {
+                bp.AddComponent<AddFeatureOnApply>(c =>
+                {
                     c.m_Feature = feature1.ToReference<BlueprintFeatureReference>();
                 });
 
@@ -466,12 +488,12 @@ namespace LegacyOfShadows.Utilities
 
         // This converter creates a feature that matches the ability from which has been created.
 
-        static public BlueprintFeature ConvertAbilityToFeature ( BlueprintAbility ability,
+        static public BlueprintFeature ConvertAbilityToFeature(BlueprintAbility ability,
                                                                     string prefixAdd = "",
                                                                     string prefixRemove = "",
                                                                     string suffixAdd = "Feature",
                                                                     string suffixRemove = "Ability",
-                                                                    bool hide = true            
+                                                                    bool hide = true
                                                                 )
         {
 
@@ -479,11 +501,11 @@ namespace LegacyOfShadows.Utilities
 
             if (!String.IsNullOrEmpty(prefixRemove))
             {
-                abilityAltName.Replace(prefixRemove,"");
+                abilityAltName.Replace(prefixRemove, "");
             }
             if (!String.IsNullOrEmpty(suffixRemove))
             {
-                abilityAltName.Replace(suffixRemove,"");
+                abilityAltName.Replace(suffixRemove, "");
             }
             if (!String.IsNullOrEmpty(prefixAdd))
             {
@@ -494,11 +516,13 @@ namespace LegacyOfShadows.Utilities
                 abilityAltName = abilityAltName + suffixAdd;
             }
 
-            var feature = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, abilityAltName, bp => {
+            var feature = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, abilityAltName, bp =>
+            {
                 bp.SetName(LoSContext, ability.Name);
                 bp.SetDescription(LoSContext, ability.Description);
                 bp.m_Icon = ability.Icon;
-                bp.AddComponent<AddFeatureIfHasFact>(c => {
+                bp.AddComponent<AddFeatureIfHasFact>(c =>
+                {
                     c.m_CheckedFact = ability.ToReference<BlueprintUnitFactReference>();
                     c.m_Feature = ability.ToReference<BlueprintUnitFactReference>();
                     c.Not = true;
@@ -524,11 +548,13 @@ namespace LegacyOfShadows.Utilities
             string abilityAltName = ability.Name + "Feature";
 
 
-            var feature = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, abilityAltName, bp => {
+            var feature = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, abilityAltName, bp =>
+            {
                 bp.SetName(LoSContext, ability.Name);
                 bp.SetDescription(LoSContext, ability.Description);
                 bp.m_Icon = ability.Icon;
-                bp.AddComponent<AddFeatureIfHasFact>(c => {
+                bp.AddComponent<AddFeatureIfHasFact>(c =>
+                {
                     c.m_CheckedFact = ability.ToReference<BlueprintUnitFactReference>();
                     c.m_Feature = ability.ToReference<BlueprintUnitFactReference>();
                     c.Not = true;
@@ -575,12 +601,14 @@ namespace LegacyOfShadows.Utilities
                 abilityAltName = abilityAltName + suffixAdd;
             }
 
-            var feature = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, abilityAltName, bp => {
+            var feature = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, abilityAltName, bp =>
+            {
                 bp.SetName(LoSContext, ability.Name);
                 bp.SetDescription(LoSContext, ability.Description);
                 bp.m_Icon = ability.Icon;
-                bp.AddComponent<AddFacts>(c => {
-                    c.m_Facts = new BlueprintUnitFactReference[]{ ability.ToReference<BlueprintUnitFactReference>() };
+                bp.AddComponent<AddFacts>(c =>
+                {
+                    c.m_Facts = new BlueprintUnitFactReference[] { ability.ToReference<BlueprintUnitFactReference>() };
                 });
                 bp.Groups = new FeatureGroup[] { FeatureGroup.None };
             });
@@ -623,11 +651,13 @@ namespace LegacyOfShadows.Utilities
                 activatable_abilityAltName = activatable_abilityAltName + suffixAdd;
             }
 
-            var feature = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, activatable_abilityAltName, bp => {
+            var feature = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, activatable_abilityAltName, bp =>
+            {
                 bp.SetName(LoSContext, ability.Name);
                 bp.SetDescription(LoSContext, ability.Description);
                 bp.m_Icon = ability.Icon;
-                bp.AddComponent<AddFacts>(c => {
+                bp.AddComponent<AddFacts>(c =>
+                {
                     c.m_Facts = new BlueprintUnitFactReference[] { ability.ToReference<BlueprintUnitFactReference>() };
                 });
                 bp.Groups = new FeatureGroup[] { FeatureGroup.None };
@@ -671,7 +701,8 @@ namespace LegacyOfShadows.Utilities
                 buffAltName = buffAltName + suffixAdd;
             }
 
-            var feature = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, buffAltName, bp => {
+            var feature = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, buffAltName, bp =>
+            {
                 bp.SetName(LoSContext, buff.Name);
                 bp.SetDescription(LoSContext, buff.Description);
                 bp.m_Icon = buff.Icon;
@@ -683,7 +714,10 @@ namespace LegacyOfShadows.Utilities
             return feature;
         }
 
-        //------------------------------------------------/ ABILITY VARIANTS MANIPULATION  /----------------------------------------------------//
+        #endregion
+
+        #region |------------------------------------------------/ ABILITY VARIANTS MANIPULATION  /-----------------------------------------------------------|
+
         // -------------------------------------------------------------------------------------------------------------------------
         // Note: These were borrowed from Holic75's KingmakerRebalance/CotW Kingmaker mod. 
         // Copyright (c) 2019 Jennifer Messerly
@@ -745,7 +779,8 @@ namespace LegacyOfShadows.Utilities
         {
             var first_variant = variants[0];
 
-            var wrapper = first_variant.CreateCopy(LoSContext, name, bp => {
+            var wrapper = first_variant.CreateCopy(LoSContext, name, bp =>
+            {
 
                 List<BlueprintComponent> cmps = new List<BlueprintComponent>();
                 cmps.Add(CreateAbilityVariants(bp, variants));
@@ -784,7 +819,7 @@ namespace LegacyOfShadows.Utilities
         {
             if (!spell.HasVariants)
             {
-                var a = ConvertSpellToSpellLike(spell,classes,stat,resource,prefixAdd,prefixRemove,suffixAdd,suffixRemove,replaceOldText1,replaceOldText2,replaceOldText3, replaceNewText1, replaceNewText2, replaceNewText3,no_resource,no_scaling,archetypes,cost);
+                var a = ConvertSpellToSpellLike(spell, classes, stat, resource, prefixAdd, prefixRemove, suffixAdd, suffixRemove, replaceOldText1, replaceOldText2, replaceOldText3, replaceNewText1, replaceNewText2, replaceNewText3, no_resource, no_scaling, archetypes, cost);
                 if (self_only)
                 {
                     a.Range = AbilityRange.Personal;
@@ -798,7 +833,7 @@ namespace LegacyOfShadows.Utilities
 
             var abilities = new BlueprintAbility[num_variants];
 
-            for (int i = 0; i < num_variants; i++) 
+            for (int i = 0; i < num_variants; i++)
             {
                 abilities[i] = ConvertSpellToSpellLike(spell_variants[i], classes, stat, resource, prefixAdd, prefixRemove, suffixAdd, suffixRemove, replaceOldText1, replaceOldText2, replaceOldText3, replaceNewText1, replaceNewText2, replaceNewText3, no_resource, no_scaling, archetypes, cost);
                 if (self_only)
@@ -945,7 +980,7 @@ namespace LegacyOfShadows.Utilities
 
             if (!spell.HasVariants)
             {
-                var a = ConvertSpellToSupernatural(spell,classes,stat,resource,prefixAdd,prefixRemove,suffixAdd,suffixRemove,replaceOldText1,replaceOldText2,replaceOldText3,replaceNewText1,replaceNewText2,replaceNewText3,no_resource,no_scaling,archetypes,cost);
+                var a = ConvertSpellToSupernatural(spell, classes, stat, resource, prefixAdd, prefixRemove, suffixAdd, suffixRemove, replaceOldText1, replaceOldText2, replaceOldText3, replaceNewText1, replaceNewText2, replaceNewText3, no_resource, no_scaling, archetypes, cost);
                 if (self_only)
                 {
                     a.Range = AbilityRange.Personal;
@@ -1085,15 +1120,17 @@ namespace LegacyOfShadows.Utilities
         }
 
 
+        #endregion
 
-        //------------------------------------------------/ CONVERTERS FOR ABILITIES FROM SPELLS  /----------------------------------------------------//
+        #region |------------------------------------------------/ CONVERTERS FOR ABILITIES FROM SPELLS  /----------------------------------------------------|
+
 
         // This converter creates a spell-like ability from an existing spell.
         // Compared to the original Holic75's version, I have added more optional string parameters to allow to customize the name of the spell-like ability.
 
         static public BlueprintAbility ConvertSpellToSpellLike(BlueprintAbility spell,
                                                                BlueprintCharacterClassReference[] classes,
-                                                               StatType stat, 
+                                                               StatType stat,
                                                                BlueprintAbilityResource resource = null,
                                                                string prefixAdd = "",
                                                                string prefixRemove = "",
@@ -1236,7 +1273,7 @@ namespace LegacyOfShadows.Utilities
         // moreover I have completely redone the part of non-dispellable buffs to avoid to have to port the changeAction method, which seemed either impossible or (more likely)
         // too hard for me to port!
 
-        static public BlueprintAbility ConvertSpellToSupernatural (BlueprintAbility spell,
+        static public BlueprintAbility ConvertSpellToSupernatural(BlueprintAbility spell,
                                                                    BlueprintCharacterClassReference[] classes,
                                                                    StatType stat,
                                                                    BlueprintAbilityResource resource = null,
@@ -1262,9 +1299,10 @@ namespace LegacyOfShadows.Utilities
 
             ability.FlattenAllActions()
                    .OfType<ContextActionApplyBuff>()
-                        .ForEach(b => {
-                                        b.IsNotDispelable = true;
-                                        b.IsFromSpell = false;
+                        .ForEach(b =>
+                        {
+                            b.IsNotDispelable = true;
+                            b.IsFromSpell = false;
                         });
 
 
@@ -1310,7 +1348,8 @@ namespace LegacyOfShadows.Utilities
 
             ability.FlattenAllActions()
                    .OfType<ContextActionApplyBuff>()
-                        .ForEach(b => {
+                        .ForEach(b =>
+                        {
                             b.IsNotDispelable = true;
                             b.IsFromSpell = false;
                         });
@@ -1321,8 +1360,10 @@ namespace LegacyOfShadows.Utilities
         }
 
 
+        #endregion
 
-        //------------------------------------------------/ CONVERTERS FOR SPECIFIC FEATURE CREATION  /----------------------------------------------------//
+        #region |------------------------------------------------/ CONVERTERS FOR SPECIFIC FEATURE CREATION  /------------------------------------------------|
+
 
         // These converters are meant to create specific class features from existing spells.
 
@@ -1330,7 +1371,7 @@ namespace LegacyOfShadows.Utilities
 
         // This converts a spell to a kinetic talent, allowing for different name alterations.
 
-        static public BlueprintAbility ConvertSpellToKineticistTalent( BlueprintAbility spell,
+        static public BlueprintAbility ConvertSpellToKineticistTalent(BlueprintAbility spell,
                                                                        string prefixAdd = "",
                                                                        string prefixRemove = "",
                                                                        string suffixAdd = "",
@@ -1410,7 +1451,7 @@ namespace LegacyOfShadows.Utilities
 
             var description = $"A monk with this ki power can spend {cost} point{(cost != 1 ? "s" : "")} from his ki pool to apply effect of the {spell.Name} spell to himself as a {action_type} action.\n"
             + spell.Name + ": " + spell.Description;
-            
+
             var name = "Ki Power: " + spell.Name;
 
             var monk_ability = ConvertSpellToSpellLikeVariants(spell, new BlueprintCharacterClassReference[] { monk }, StatType.Wisdom, wis_resource, "Base", "KiPower", false, false, personal_only, null, cost);
@@ -1429,7 +1470,7 @@ namespace LegacyOfShadows.Utilities
                 foreach (var v in monk_ability_variants_reference)
                 {
                     var v_orig = v.Get();
-                    v_orig.SetName(LoSContext,"Ki Power: " + v_orig.Name);
+                    v_orig.SetName(LoSContext, "Ki Power: " + v_orig.Name);
                 }
 
             }
@@ -1459,7 +1500,8 @@ namespace LegacyOfShadows.Utilities
 
             FeatToolsExtension.AddAsScaledFistKiPower(scaled_fist_feature);
 
-            var mystic_wisdom_ability = monk_ability.CreateCopy(LoSContext, "SenseiAdvice" + monk_ability.name, bp => {
+            var mystic_wisdom_ability = monk_ability.CreateCopy(LoSContext, "SenseiAdvice" + monk_ability.name, bp =>
+            {
 
                 bp.Range = AbilityRange.Close;
                 bp.SetMiscAbilityParametersSingleTargetRangedFriendly();
@@ -1481,7 +1523,8 @@ namespace LegacyOfShadows.Utilities
 
                 for (int i = 0; i < num_variants; i++)
                 {
-                    mystic_wisdom_abilities[i] = mystic_wisdom_abilities[i].CreateCopy(LoSContext, "SenseiAdvice" + mystic_wisdom_abilities[i].name, bp => {
+                    mystic_wisdom_abilities[i] = mystic_wisdom_abilities[i].CreateCopy(LoSContext, "SenseiAdvice" + mystic_wisdom_abilities[i].name, bp =>
+                    {
 
                         bp.Range = AbilityRange.Close;
                         bp.SetMiscAbilityParametersSingleTargetRangedFriendly();
@@ -1496,16 +1539,18 @@ namespace LegacyOfShadows.Utilities
                 }
                 mystic_wisdom_ability.GetComponent<AbilityVariants>().m_Variants = mystic_wisdom_abilities_reference;
 
-                sensei_mystic_powers.Get().AddComponent<AddFeatureIfHasFact>(c => {
-                                                                             c.m_CheckedFact = monk_feature.ToReference<BlueprintUnitFactReference>();
-                                                                             c.m_Feature = mystic_wisdom_ability.ToReference<BlueprintUnitFactReference>();
+                sensei_mystic_powers.Get().AddComponent<AddFeatureIfHasFact>(c =>
+                {
+                    c.m_CheckedFact = monk_feature.ToReference<BlueprintUnitFactReference>();
+                    c.m_Feature = mystic_wisdom_ability.ToReference<BlueprintUnitFactReference>();
                 });
 
 
             }
 
 
-            var mystic_wisdom_ability_mass = monk_ability.CreateCopy(LoSContext, "SenseiAdviceMass" + monk_ability.name, bp => {
+            var mystic_wisdom_ability_mass = monk_ability.CreateCopy(LoSContext, "SenseiAdviceMass" + monk_ability.name, bp =>
+            {
 
                 bp.SetName(LoSContext, bp.Name.Replace("Ki Power: ", "Sensei Advice: Mass "));
                 var cmp = bp.GetComponent<AbilityResourceLogic>();
@@ -1526,7 +1571,8 @@ namespace LegacyOfShadows.Utilities
 
                 for (int i = 0; i < num_variants; i++)
                 {
-                    mystic_wisdom_abilities_mass[i] = mystic_wisdom_abilities_mass[i].CreateCopy(LoSContext, "SenseiAdviceMass" + mystic_wisdom_abilities_mass[i].name, bp => {
+                    mystic_wisdom_abilities_mass[i] = mystic_wisdom_abilities_mass[i].CreateCopy(LoSContext, "SenseiAdviceMass" + mystic_wisdom_abilities_mass[i].name, bp =>
+                    {
 
                         bp.SetName(LoSContext, bp.Name.Replace("Ki Power: ", "Sensei Advice: Mass "));
                         bp.Parent = mystic_wisdom_ability_mass;
@@ -1548,7 +1594,8 @@ namespace LegacyOfShadows.Utilities
 
             }
 
-            sensei_mystic_powers_mass.Get().AddComponent<AddFeatureIfHasFact>(c => {
+            sensei_mystic_powers_mass.Get().AddComponent<AddFeatureIfHasFact>(c =>
+            {
                 c.m_CheckedFact = monk_feature.ToReference<BlueprintUnitFactReference>();
                 c.m_Feature = mystic_wisdom_ability_mass.ToReference<BlueprintUnitFactReference>();
             });
@@ -1556,12 +1603,14 @@ namespace LegacyOfShadows.Utilities
 
         }
 
+        #endregion
 
 
-        //------------------------------------------------/ ABILITY PARAMETERS QUICK CONFIGURATORS  /----------------------------------------------------//
+        #region |------------------------------------------------/ ABILITY PARAMETERS QUICK CONFIGURATORS  /--------------------------------------------------|
 
 
-        public static void SetMiscAbilityParametersSingleTargetRangedHarmful(this BlueprintAbility ability, 
+
+        public static void SetMiscAbilityParametersSingleTargetRangedHarmful(this BlueprintAbility ability,
                                                                              bool works_on_allies = false,
                                                                              Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle animation = Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Point)
         {
@@ -1577,7 +1626,7 @@ namespace LegacyOfShadows.Utilities
 
 
 
-        public static void SetMiscAbilityParametersSingleTargetRangedFriendly(this BlueprintAbility ability, 
+        public static void SetMiscAbilityParametersSingleTargetRangedFriendly(this BlueprintAbility ability,
                                                                               bool works_on_self = false,
                                                                               Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle animation = Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Point)
         {
@@ -1591,7 +1640,7 @@ namespace LegacyOfShadows.Utilities
         }
 
 
-        public static void SetMiscAbilityParametersTouchHarmful(this BlueprintAbility ability, 
+        public static void SetMiscAbilityParametersTouchHarmful(this BlueprintAbility ability,
                                                                 bool works_on_allies = true,
                                                                 Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle animation = Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Touch)
         {
@@ -1606,7 +1655,7 @@ namespace LegacyOfShadows.Utilities
         }
 
 
-        public static void SetMiscAbilityParametersTouchFriendly(this BlueprintAbility ability, 
+        public static void SetMiscAbilityParametersTouchFriendly(this BlueprintAbility ability,
                                                                  bool works_on_self = true,
                                                                  Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle animation = Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Touch)
         {
@@ -1620,7 +1669,7 @@ namespace LegacyOfShadows.Utilities
 
         }
 
-        public static void SetMiscAbilityParametersRangedDirectional( this BlueprintAbility ability, 
+        public static void SetMiscAbilityParametersRangedDirectional(this BlueprintAbility ability,
                                                                       bool works_on_units = true,
                                                                       AbilityEffectOnUnit effect_on_ally = AbilityEffectOnUnit.Harmful,
                                                                       AbilityEffectOnUnit effect_on_enemy = AbilityEffectOnUnit.Harmful,
@@ -1651,7 +1700,8 @@ namespace LegacyOfShadows.Utilities
         }
 
 
-    }
+    } 
+    #endregion
 
 
 
