@@ -1700,22 +1700,80 @@ namespace LegacyOfShadows.Utilities
         }
 
 
-    
-
-    #endregion
 
 
-    #region |------------------------------------------------/ CONDITION CHECKERS CREATORS  /--------------------------------------------------|
 
-    public static ConditionsChecker CreateConditionsCheckerAnd(params Condition[] conditions)
-    {
-        return new ConditionsChecker() { Conditions = conditions, Operation = Operation.And };
-    }
+        #endregion
 
-    public static ConditionsChecker CreateConditionsCheckerOr(params Condition[] conditions)
-    {
-        return new ConditionsChecker() { Conditions = conditions, Operation = Operation.Or };
-    }
+
+        #region |------------------------------------------------/ CONTEXT PARAMETERS CREATORS  /--------------------------------------------------|
+
+        // These are taken straight-away from CotW.
+
+
+        public static ContextValue CreateContextValueRank(AbilityRankType value = AbilityRankType.Default) => value.CreateContextValue();
+
+        public static ContextValue CreateContextValue(this AbilityRankType value)
+        {
+            return new ContextValue() { ValueType = ContextValueType.Rank, ValueRank = value };
+        }
+
+        public static ContextValue CreateContextValue(this AbilitySharedValue value)
+        {
+            return new ContextValue() { ValueType = ContextValueType.Shared, ValueShared = value };
+        }
+
+        public static ContextDiceValue CreateContextDiceValue(this DiceType dice, ContextValue diceCount = null, ContextValue bonus = null)
+        {
+            return new ContextDiceValue()
+            {
+                DiceType = dice,
+                DiceCountValue = diceCount ?? CreateContextValueRank(),
+                BonusValue = bonus ?? 0
+            };
+        }
+
+
+        public static ContextDurationValue CreateContextDuration(ContextValue bonus = null, DurationRate rate = DurationRate.Rounds, DiceType diceType = DiceType.Zero, ContextValue diceCount = null)
+        {
+            return new ContextDurationValue()
+            {
+                BonusValue = bonus ?? CreateContextValueRank(),
+                Rate = rate,
+                DiceCountValue = diceCount ?? 0,
+                DiceType = diceType
+            };
+        }
+
+
+        public static ContextDurationValue CreateContextDurationNonExtandable(ContextValue bonus = null, DurationRate rate = DurationRate.Rounds, DiceType diceType = DiceType.Zero, ContextValue diceCount = null)
+        {
+            var d = new ContextDurationValue()
+            {
+                BonusValue = bonus ?? CreateContextValueRank(),
+                Rate = rate,
+                DiceCountValue = diceCount ?? 0,
+                DiceType = diceType
+            };
+            d.m_IsExtendable = false;
+
+            return d;
+        }
+
+        #endregion
+
+
+        #region |------------------------------------------------/ CONDITION CHECKERS CREATORS  /--------------------------------------------------|
+
+        public static ConditionsChecker CreateConditionsCheckerAnd(params Condition[] conditions)
+        {
+            return new ConditionsChecker() { Conditions = conditions, Operation = Operation.And };
+        }
+
+        public static ConditionsChecker CreateConditionsCheckerOr(params Condition[] conditions)
+        {
+            return new ConditionsChecker() { Conditions = conditions, Operation = Operation.Or };
+        }
 
         #endregion
 
@@ -1862,7 +1920,7 @@ namespace LegacyOfShadows.Utilities
 
 
 
-        public static ContextActionApplyBuff CreateApplyBuff(this BlueprintBuff buff, ContextDurationValue duration, bool fromSpell, bool dispellable = true, bool toCaster = false, bool asChild = false, bool permanent = false)
+        public static ContextActionApplyBuff CreateContextActionApplyBuff(this BlueprintBuff buff, ContextDurationValue duration, bool fromSpell, bool dispellable = true, bool toCaster = false, bool asChild = false, bool permanent = false)
         {
             var result = Helpers.Create<ContextActionApplyBuff>();
             result.m_Buff = buff.ToReference<BlueprintBuffReference>();

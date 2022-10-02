@@ -45,51 +45,18 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
             var VanishingTrickIcon = AssetLoader.LoadInternal(LoSContext, folder: "assets/icons", file: "VanishingTrick.png");
 
-            var Apply_Invisibility_Buff = Helpers.Create<ContextActionApplyBuff>(a => {
-                                                                                                    a.m_Buff = Invisibility_Buff.ToReference<BlueprintBuffReference>();
-                                                                                                    a.DurationValue = new ContextDurationValue()
-                                                                                                    {
-                                                                                                        BonusValue = new ContextValue() {
-
-                                                                                                            ValueType = ContextValueType.Rank,
-                                                                                                            ValueRank = 0
-                                                                                                        },
-                                                                                                        Rate = DurationRate.Rounds,
-                                                                                                        DiceCountValue = 0,
-                                                                                                        DiceType = DiceType.Zero
-
-                                                                                                    };
-                                                                                                    a.IsFromSpell = false;
-                                                                                                    a.IsNotDispelable = true;
-                                                                                                    a.ToCaster = false;
-                                                                                                    a.AsChild = false;
-                                                                                                    a.Permanent = false;
-                                                                                            });
+            var Apply_Invisibility_Buff = HlEX.CreateContextActionApplyBuff(Invisibility_Buff.ToReference<BlueprintBuffReference>(),
+                                                                            HlEX.CreateContextDuration(HlEX.CreateContextValue(AbilityRankType.Default)),
+                                                                            false, false, false, false, false);
 
 
-            var Apply_Improved_Invisibility_Buff = Helpers.Create<ContextActionApplyBuff>(a => {
-                                                                                                    a.m_Buff = Improved_Invisibility_Buff.ToReference<BlueprintBuffReference>();
-                                                                                                    a.DurationValue = new ContextDurationValue()
-                                                                                                    {
-                                                                                                        BonusValue = new ContextValue()
-                                                                                                        {
 
-                                                                                                            ValueType = ContextValueType.Rank,
-                                                                                                            ValueRank = 0
-                                                                                                        },
-                                                                                                        Rate = DurationRate.Rounds,
-                                                                                                        DiceCountValue = 0,
-                                                                                                        DiceType = DiceType.Zero
+            var Apply_Improved_Invisibility_Buff = HlEX.CreateContextActionApplyBuff(Improved_Invisibility_Buff.ToReference<BlueprintBuffReference>(),
+                                                                            HlEX.CreateContextDuration(HlEX.CreateContextValue(AbilityRankType.Default)),
+                                                                            false, false, false, false, false);
 
-                                                                                                    };
-                                                                                                    a.IsFromSpell = false;
-                                                                                                    a.IsNotDispelable = true;
-                                                                                                    a.ToCaster = false;
-                                                                                                    a.AsChild = false;
-                                                                                                    a.Permanent = false;
-                                                                                               });
 
-            var upgrade_action
+            var upgrade_action = HlEX.CreateConditional(HlEX.CreateContextConditionHasFact(InvisibleBlade.NinjaTrickInvisibleBladeFeature), Apply_Improved_Invisibility_Buff, Apply_Invisibility_Buff);
 
 
 
