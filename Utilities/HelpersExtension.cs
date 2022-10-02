@@ -1893,7 +1893,31 @@ namespace LegacyOfShadows.Utilities
         #endregion
 
 
+        #region |------------------------------------------------------/ COMPONENT CREATORS  /--------------------------------------------------------|
 
+        public static AbilityAreaEffectRunAction CreateAreaEffectRunAction(GameAction unitEnter = null, GameAction unitExit = null, GameAction unitMove = null, GameAction round = null)
+        {
+            var a = Helpers.Create<AbilityAreaEffectRunAction>();
+            a.UnitEnter = Helpers.CreateActionList(unitEnter);
+            a.UnitExit = Helpers.CreateActionList(unitExit);
+            a.UnitMove = Helpers.CreateActionList(unitMove);
+            a.Round = Helpers.CreateActionList(round);
+            return a;
+        }
+
+
+
+        public static AbilityAreaEffectRunAction CreateAreaEffectRunAction(GameAction[] unitEnter = null, GameAction[] unitExit = null, GameAction[] unitMove = null, GameAction[] round = null)
+        {
+            var a = Helpers.Create<AbilityAreaEffectRunAction>();
+            a.UnitEnter = Helpers.CreateActionList(unitEnter);
+            a.UnitExit = Helpers.CreateActionList(unitExit);
+            a.UnitMove = Helpers.CreateActionList(unitMove);
+            a.Round = Helpers.CreateActionList(round);
+            return a;
+        }
+
+        #endregion
 
 
 
