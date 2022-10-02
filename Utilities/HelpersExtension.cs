@@ -1789,6 +1789,65 @@ namespace LegacyOfShadows.Utilities
         #endregion
 
 
+        #region |------------------------------------------------------/ CONTEXT CONDITION CREATORS  /--------------------------------------------------------|
+
+        public static ContextConditionAlignment CreateContextConditionAlignment(AlignmentComponent alignment, bool check_caster = false, bool not = false)
+        {
+            var c = Helpers.Create<ContextConditionAlignment>();
+            c.Alignment = alignment;
+            c.Not = not;
+            c.CheckCaster = check_caster;
+            return c;
+        }
+
+        static public ContextConditionCasterHasFact CreateContextConditionCasterHasFact(BlueprintUnitFact fact, bool has = true)
+        {
+            var c = Helpers.Create<ContextConditionCasterHasFact>();
+            c.m_Fact = fact.ToReference<BlueprintUnitFactReference>();
+            c.Not = !has;
+            return c;
+        }
+
+        public static ContextConditionHasBuff CreateConditionHasBuff(this BlueprintBuff buff)
+        {
+            var hasBuff = Helpers.Create<ContextConditionHasBuff>();
+            hasBuff.m_Buff = buff.ToReference<BlueprintBuffReference>();
+            return hasBuff;
+        }
+
+        public static ContextConditionHasBuff CreateConditionHasNoBuff(this BlueprintBuff buff)
+        {
+            var hasBuff = Helpers.Create<ContextConditionHasBuff>();
+            hasBuff.m_Buff = buff.ToReference<BlueprintBuffReference>();
+            hasBuff.Not = true;
+            return hasBuff;
+        }
+
+        public static ContextConditionHasBuffFromCaster CreateContextConditionHasBuffFromCaster(BlueprintBuff buff, bool not = false)
+        {
+            var c = Helpers.Create<ContextConditionHasBuffFromCaster>();
+            c.m_Buff = buff.ToReference<BlueprintBuffReference>();
+            c.Not = not;
+            return c;
+        }
+
+        static public ContextConditionHasFact CreateContextConditionHasFact(BlueprintUnitFact fact, bool has = true)
+        {
+            var c = Helpers.Create<ContextConditionHasFact>();
+            c.m_Fact = fact.ToReference<BlueprintUnitFactReference>();
+            c.Not = !has;
+            return c;
+        }
+
+        static public ContextConditionIsCaster CreateContextConditionIsCaster(bool not = false)
+        {
+            var c = Helpers.Create<ContextConditionIsCaster>();
+            c.Not = not;
+            return c;
+        }
+
+        #endregion
+
 
 
 
