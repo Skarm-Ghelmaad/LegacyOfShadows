@@ -1849,7 +1849,48 @@ namespace LegacyOfShadows.Utilities
         #endregion
 
 
+        #region |------------------------------------------------------/ ACTION CREATORS  /--------------------------------------------------------|
 
+        public static AddFactContextActions CreateAddFactContextActions(GameAction[] onActivate = null, GameAction[] onDeactivate = null, GameAction[] onNewRound = null)
+        {
+            var a = Helpers.Create<AddFactContextActions>();
+            a.Activated = Helpers.CreateActionList(onActivate);
+            a.Deactivated = Helpers.CreateActionList(onDeactivate);
+            a.NewRound = Helpers.CreateActionList(onNewRound);
+            return a;
+        }
+
+
+
+        public static ContextActionApplyBuff CreateApplyBuff(this BlueprintBuff buff, ContextDurationValue duration, bool fromSpell, bool dispellable = true, bool toCaster = false, bool asChild = false, bool permanent = false)
+        {
+            var result = Helpers.Create<ContextActionApplyBuff>();
+            result.m_Buff = buff.ToReference<BlueprintBuffReference>();
+            result.DurationValue = duration;
+            result.IsFromSpell = fromSpell;
+            result.IsNotDispelable = !dispellable;
+            result.ToCaster = toCaster;
+            result.AsChild = asChild;
+            result.Permanent = permanent;
+            return result;
+        }
+
+        static public ContextActionRemoveBuff CreateContextActionRemoveBuff(BlueprintBuff buff)
+        {
+            var r = Helpers.Create<ContextActionRemoveBuff>();
+            r.m_Buff = buff.ToReference<BlueprintBuffReference>();
+            return r;
+        }
+
+        static public ContextActionRemoveBuffsByDescriptor CreateContextActionRemoveBuffsByDescriptor(SpellDescriptor descriptor, bool not_self = true)
+        {
+            var r = Helpers.Create<ContextActionRemoveBuffsByDescriptor>();
+            r.SpellDescriptor = descriptor;
+            r.NotSelf = not_self;
+            return r;
+        }
+
+        #endregion
 
 
 
