@@ -85,6 +85,7 @@ using Owlcat.Runtime.Core.Physics.PositionBasedDynamics.Forces;
 using System.ComponentModel;
 using AK.Wwise;
 using System.Reflection.Emit;
+using Kingmaker.UnitLogic.Abilities.Components.Base;
 
 
 namespace LegacyOfShadows.Utilities
@@ -1980,6 +1981,50 @@ namespace LegacyOfShadows.Utilities
             a.UnitExit = Helpers.CreateActionList(unitExit);
             a.UnitMove = Helpers.CreateActionList(unitMove);
             a.Round = Helpers.CreateActionList(round);
+            return a;
+        }
+
+        // These SpawnFx are copied straight-away from CotW
+
+        public static AbilitySpawnFx CreateAbilitySpawnFx(string asset_id, 
+                                                          AbilitySpawnFxAnchor position_anchor = AbilitySpawnFxAnchor.None,
+                                                          AbilitySpawnFxAnchor orientation_anchor = AbilitySpawnFxAnchor.None,
+                                                          AbilitySpawnFxAnchor anchor = AbilitySpawnFxAnchor.None)
+        {
+            var a = Helpers.Create<AbilitySpawnFx>();
+            a.PrefabLink = CreatePrefabLink(asset_id);
+            a.PositionAnchor = position_anchor;
+            a.OrientationAnchor = orientation_anchor;
+            a.Anchor = anchor;
+
+            return a;
+        }
+
+        public static AbilitySpawnFx CreateAbilitySpawnFxTime(string asset_id, AbilitySpawnFxTime time,
+                                                              AbilitySpawnFxAnchor position_anchor = AbilitySpawnFxAnchor.None,
+                                                              AbilitySpawnFxAnchor orientation_anchor = AbilitySpawnFxAnchor.None,
+                                                              AbilitySpawnFxAnchor anchor = AbilitySpawnFxAnchor.None)
+        {
+            var a = Helpers.Create<AbilitySpawnFx>();
+            a.PrefabLink = CreatePrefabLink(asset_id);
+            a.PositionAnchor = position_anchor;
+            a.OrientationAnchor = orientation_anchor;
+            a.Anchor = anchor;
+            a.Time = time;
+            return a;
+        }
+
+        public static AbilitySpawnFx CreateAbilitySpawnFxDestroyOnCast(string asset_id, 
+                                                                       AbilitySpawnFxAnchor position_anchor = AbilitySpawnFxAnchor.None,
+                                                                       AbilitySpawnFxAnchor orientation_anchor = AbilitySpawnFxAnchor.None,
+                                                                       AbilitySpawnFxAnchor anchor = AbilitySpawnFxAnchor.None)
+        {
+            var a = Helpers.Create<AbilitySpawnFx>();
+            a.PrefabLink = CreatePrefabLink(asset_id);
+            a.PositionAnchor = position_anchor;
+            a.OrientationAnchor = orientation_anchor;
+            a.Anchor = anchor;
+            a.DestroyOnCast = true;
             return a;
         }
 

@@ -73,7 +73,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
                 bp.Type = AbilityType.Supernatural;
                 bp.ActionType = UnitCommand.CommandType.Swift;
                 bp.Range = AbilityRange.Personal;
-                bp.LocalizedDuration = Helpers.CreateString(LoSContext, "VanishingTrickAbility.Duration", "1 round/level");
+                bp.LocalizedDuration = Helpers.CreateString(LoSContext, "NinjaTrickVanishingTrickAbility.Duration", "1 round/level");
                 bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
                 bp.AddComponent(HlEX.CreateRunActions(upgrade_action));
                 bp.AddContextRankConfig(c => {
