@@ -29,6 +29,7 @@ using Kingmaker.RuleSystem;
 using static RootMotion.FinalIK.RagdollUtility;
 using System;
 using static RootMotion.FinalIK.InteractionTrigger;
+using BlueprintCore.Utils;
 
 namespace LegacyOfShadows.NewContent.NinjaTricks
 {
@@ -40,6 +41,9 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
         public static void ConfigureVanishingTrick()
         {
+
+            var kiResource = BlueprintTools.GetBlueprint<BlueprintAbilityResource>("9d9c90a9a1f52d04799294bf91c80a82");
+
             var Invisibility_Buff = BlueprintTools.GetBlueprint<BlueprintBuff>("525f980cb29bc2240b93e953974cb325");
             var Improved_Invisibility_Buff = BlueprintTools.GetBlueprint<BlueprintBuff>("e6b35473a237a6045969253beb09777c");
 
@@ -70,8 +74,22 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
                 bp.Range = AbilityRange.Personal;
                 bp.LocalizedDuration = Helpers.CreateString(LoSContext, "VanishingTrickAbility.Duration", "1 round/level");
                 bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
-
+                bp.AddComponent(HlEX.CreateRunActions(upgrade_action));
+                bp.AddContextRankConfig(c => {
+                    c.m_Type = AbilityRankType.Default;
+                    c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
+                    c.m_Class = new BlueprintCharacterClassReference[] { ClassTools.ClassReferences.RogueClass };
+                    c.m_Progression = ContextRankProgression.AsIs;
+                });
+                bp.AddComponent(kiResource.CreateResourceLogic());
             });
+
+            VanishingTrickAbility.SetMiscAbilityParametersSelfOnly();
+
+            var vanishing_trick_feature = HlEX.ConvertAbilityToFeature(VanishingTrickAbility, "", "", "Feature", "Ability", false);
+
+            InvisibleBlade.NinjaTrickInvisibleBladeFeature.AddPrerequisiteFeature(vanishing_trick_feature);
+
 
         }
     }

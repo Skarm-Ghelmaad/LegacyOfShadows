@@ -1909,6 +1909,14 @@ namespace LegacyOfShadows.Utilities
 
         #region |------------------------------------------------------/ ACTION CREATORS  /--------------------------------------------------------|
 
+        public static AbilityEffectRunAction CreateRunActions(params GameAction[] actions)
+        {
+            var result = Helpers.Create<AbilityEffectRunAction>();
+            result.Actions = Helpers.CreateActionList(actions);
+            return result;
+        }
+
+
         public static AddFactContextActions CreateAddFactContextActions(GameAction[] onActivate = null, GameAction[] onDeactivate = null, GameAction[] onNewRound = null)
         {
             var a = Helpers.Create<AddFactContextActions>();
