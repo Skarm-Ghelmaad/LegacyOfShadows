@@ -38,6 +38,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
         private static readonly string VanishingTrickFeatureName = "NinjaTrickVanishingTrickFeature.Name";
         private static readonly string VanishingTrickFeatureDescription = "NinjaTrickVanishingTrickFeature.Description";
+        static public BlueprintFeature NinjaTrickVanishingTrickFeature;
 
         public static void ConfigureVanishingTrick()
         {
