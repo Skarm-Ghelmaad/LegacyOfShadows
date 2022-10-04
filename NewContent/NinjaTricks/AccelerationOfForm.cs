@@ -70,8 +70,8 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
                 bp.SetDescription(LoSContext, AccelerationOfFormFeatureDescription);
                 bp.m_Icon = AccelerationOfFormIcon;
                 bp.ResourceAssetIds = Array.Empty<string>();
-                bp.Type = AbilityType.Extraordinary;
-                bp.ActionType = UnitCommand.CommandType.Move;
+                bp.Type = AbilityType.Supernatural;
+                bp.ActionType = UnitCommand.CommandType.Standard;
                 bp.Range = AbilityRange.Personal;
                 bp.LocalizedDuration = Helpers.CreateString(LoSContext, "NinjaTrickAccelerationOfFormAbility.Duration", "1 round/ 2 levels");
                 bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
@@ -90,25 +90,6 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
 
             var acceleration_of_form_feature = HlEX.ConvertAbilityToFeature(AccelerationOfFormAbility, "", "", "Feature", "Ability", false);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
