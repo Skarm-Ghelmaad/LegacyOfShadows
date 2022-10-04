@@ -182,7 +182,21 @@
     {
       "Key": "NinjaTrickKamikazeFeature.Description",
       "enGB": "A ninja with this ability strikes without concern for her own well-being. The ninja can spend 1 point from her ki pool to give her unarmed strikes and any weapons she wields the Vicious weapon special ability for 1 round per level. The ninja can spend 1 ki point to dismiss this effect as a free action."
+    },
+
+    {
+      "Key": "NinjaTrickAccelerationOfFormFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Acceleration of Form"
+    },
+
+    {
+      "Key": "NinjaTrickAccelerationOfFormFeature.Description",
+      "enGB": "A ninja with this trick can spend 1 ki point as a standard action to gain the benefits of Displacement and Haste for 1 round per 2 ninja levels."
     }
+
 
   ]
 }
