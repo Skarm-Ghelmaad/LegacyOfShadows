@@ -195,6 +195,19 @@
     {
       "Key": "NinjaTrickAccelerationOfFormFeature.Description",
       "enGB": "A ninja with this trick can spend 1 ki point as a standard action to gain the benefits of Displacement and Haste for 1 round per 2 ninja levels."
+    },
+
+    {
+      "Key": "NinjaStyleMasterFeatureSelection.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Style Master"
+    },
+
+    {
+      "Key": "NinjaStyleMasterFeatureSelection.Description",
+      "enGB": "A ninja who selects this ninja trick gains a style feat that she qualifies for as a bonus feat."
     }
 
 

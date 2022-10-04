@@ -55,10 +55,13 @@ namespace LegacyOfShadows.Utilities
         }
 
 
-
-
-
-
+        public static BlueprintFeature[] GetStyleFeats()
+        {
+            return FeatTools.Selections.BasicFeatSelection.AllFeatures
+                    .Select(reference => reference)
+                    .Where(feature => feature.GetComponent<FeatureTagsComponent>().FeatureTags.HasFlag(FeatureTag.Style))
+                    .ToArray();
+        }
 
 
 

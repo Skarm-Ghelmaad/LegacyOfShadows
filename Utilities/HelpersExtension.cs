@@ -86,6 +86,7 @@ using System.ComponentModel;
 using AK.Wwise;
 using System.Reflection.Emit;
 using Kingmaker.UnitLogic.Abilities.Components.Base;
+using static Kingmaker.Dungeon.Actions.DungeonShowResults;
 
 
 namespace LegacyOfShadows.Utilities
@@ -2030,7 +2031,20 @@ namespace LegacyOfShadows.Utilities
 
         #endregion
 
+        #region  |------------------------------------------------------/ PREREQUISITE CREATORS  /--------------------------------------------------------|
 
+
+        public static PrerequisiteNoFeature CreatePrerequisiteNoFeature(this BlueprintFeature feat, bool any = false)
+        {
+            var p = Helpers.Create<PrerequisiteNoFeature>();
+            p.m_Feature = feat.ToReference<BlueprintFeatureReference>();
+            p.Group = any ? Prerequisite.GroupType.Any : Prerequisite.GroupType.All;
+            return p;
+        }
+
+
+
+        #endregion
 
 
 
