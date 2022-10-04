@@ -143,6 +143,45 @@
     {
       "Key": "NinjaTrickHerbalCompoundFeature.Description",
       "enGB": "A ninja with this trick can consume specially prepared herbs to strengthen her mind. The ninja can spend 1 ki point and smoke, eat, or inject an herbal compound as a move action. The ninja takes a –2 penalty to AC and on Reflex saves but gains a +4 alchemical bonus on Will saves for 10 minutes per ninja level."
+    },
+
+    {
+      "Key": "NinjaTrickKamikazeAbility.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Kamikaze"
+    },
+
+    {
+      "Key": "NinjaTrickKamikazeAbility.Description",
+      "enGB": "A ninja with this ability strikes without concern for her own well-being. The ninja can spend 1 point from her ki pool to give her unarmed strikes and any weapons she wields the Vicious weapon special ability for 1 round per level."
+    },
+
+    {
+      "Key": "NinjaTrickKamikazeDismissAbility.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Kamikaze"
+    },
+
+    {
+      "Key": "NinjaTrickKamikazeDismissAbility.Description",
+      "enGB": "A ninja with this ability can spend 1 ki point to dismiss the Kamikaze effect as a free action."
+    },
+
+    {
+      "Key": "NinjaTrickKamikazeFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Kamikaze"
+    },
+
+    {
+      "Key": "NinjaTrickKamikazeFeature.Description",
+      "enGB": "A ninja with this ability strikes without concern for her own well-being. The ninja can spend 1 point from her ki pool to give her unarmed strikes and any weapons she wields the Vicious weapon special ability for 1 round per level. The ninja can spend 1 ki point to dismiss this effect as a free action."
     }
 
   ]

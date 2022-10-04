@@ -87,10 +87,16 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
                 bp.Type = AbilityType.Extraordinary;
                 bp.ActionType = UnitCommand.CommandType.Move;
                 bp.Range = AbilityRange.Personal;
-                bp.LocalizedDuration = Helpers.CreateString(LoSContext, "VanishingTrickAbility.Duration", "10 minutes/level");
+                bp.LocalizedDuration = Helpers.CreateString(LoSContext, "NinjaTrickHerbalCompoundAbility.Duration", "10 minutes/level");
                 bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
                 bp.AddComponent(HlEX.CreateRunActions(Apply_Herb_Comp_Buff));
                 bp.AddComponent(HlEX.CreateAbilitySpawnFx(Owls_Wisdom_Fx_Asset_ID, anchor: AbilitySpawnFxAnchor.SelectedTarget));
+                bp.AddContextRankConfig(c => {
+                    c.m_Type = AbilityRankType.Default;
+                    c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
+                    c.m_Class = new BlueprintCharacterClassReference[] { ClassTools.ClassReferences.RogueClass };
+                    c.m_Progression = ContextRankProgression.AsIs;
+                });
                 bp.AddComponent(kiResource.CreateResourceLogic());
             });
 
