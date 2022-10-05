@@ -210,7 +210,6 @@
       "enGB": "A ninja who selects this ninja trick gains a style feat that she qualifies for as a bonus feat."
     },
 
-
     {
       "Key": "NinjaTrickSeeTheUnseenFeature.Name",
       // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
@@ -222,6 +221,19 @@
     {
       "Key": "NinjaTrickSeeTheUnseenFeature.Description",
       "enGB": "A ninja with this trick learns how to see that which cannot be seen. As a swift action, the ninja can cast See Invisibility, using her level as the caster level. Each use of this ability uses up 1 ki point."
+    },
+
+    {
+      "Key": "NinjaTrickFlurryOfStarsFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Flurry of Stars"
+    },
+
+    {
+      "Key": "NinjaTrickFlurryOfStarsFeature.Description",
+      "enGB": "A ninja with this ability can expend 1 ki point from her ki pool as a swift action before she makes a full-attack attack with shuriken (and darts). During that attack, she can throw two additional shuriken (or darts) at her highest attack bonus, but all of her shuriken (or darts) attacks are made at a –2 penalty, including the two extra attacks. Additionaly, shuriken and darts are considered as light weapons for the purpose of two-weapon fighting"
     }
 
 
