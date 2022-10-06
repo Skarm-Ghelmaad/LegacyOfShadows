@@ -19,13 +19,8 @@ namespace LegacyOfShadows.NewUnitParts
 
         //I have decided to start with a number above 12.000 (while Vek17 suggests > 1.000).
 
-
-        //private static int UseWeaponAsLightWeapon = 12_000;
-
-        //ClearMechanicsFeature((CustomMechanicsFeature) UseWeaponAsLightWeapon);
-
-        const TabletopTweaks.Core.NewUnitParts.UnitPartCustomMechanicsFeatures.CustomMechanicsFeature UseWeaponAsLightWeapon = (TabletopTweaks.Core.NewUnitParts.UnitPartCustomMechanicsFeatures.CustomMechanicsFeature)12000;
-
+        public const CustomMechanicsFeature UseWeaponAsLightWeapon = (CustomMechanicsFeature)12_000;
+        public const CustomMechanicsFeature UseWeaponGroupAsLightWeapon = (CustomMechanicsFeature)12_001;
 
 
     }

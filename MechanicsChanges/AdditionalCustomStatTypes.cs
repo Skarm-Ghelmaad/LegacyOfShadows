@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using static TabletopTweaks.Core.NewUnitParts.CustomStatTypes;
+using static TabletopTweaks.Core.NewUnitParts.UnitPartCustomMechanicsFeatures;
 
 namespace LegacyOfShadows.MechanicsChanges
 {
@@ -22,10 +23,10 @@ namespace LegacyOfShadows.MechanicsChanges
         public static class CustomStatTypes
         {
             //I have agreed with Vek17 to use only numbers over 11.000 for Stats and 1.001.000 for Attributes.
-            public enum CustomStatType : int
-            {
-                Soul = 1_001_001,                           // This attribute is used with Universal Ki mechanics.
-            }
+
+            public const CustomStatType Soul = (CustomStatType)1_001_001; // This attribute is used with Universal Ki mechanics.
+
+
   
         }
 
