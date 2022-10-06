@@ -14,7 +14,7 @@ namespace LegacyOfShadows.NewComponents
     public class ConsiderWeaponCategoriesAsLightWeapon: ConsiderWeaponCategoryAsLightWeapon
     {
 
-        public WeaponCategory[] categories;
+        public WeaponCategory[] Categories;
 
         public override void OnTurnOn()
         {
@@ -22,9 +22,9 @@ namespace LegacyOfShadows.NewComponents
             
             var unit_part_damage_grace = base.Owner.Ensure<UnitPartDamageGrace>();
 
-            for (int i = 0; i < categories.Length; i++)
+            for (int i = 0; i < Categories.Length; i++)
             {
-                Category = categories[i];
+                Category = Categories[i];
 
                 if (!unit_part_damage_grace.HasEntry((WeaponCategory)Category))
                 {
@@ -43,9 +43,9 @@ namespace LegacyOfShadows.NewComponents
 
             var unit_part_damage_grace = base.Owner.Ensure<UnitPartDamageGrace>();
 
-            for (int i = 0; i < categories.Length; i++)
+            for (int i = 0; i < Categories.Length; i++)
             {
-                Category = categories[i];
+                Category = Categories[i];
 
                 if (unit_part_damage_grace.HasEntry((WeaponCategory)Category))
                 {

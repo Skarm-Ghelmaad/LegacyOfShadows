@@ -17,6 +17,9 @@ namespace LegacyOfShadows.NewComponents
 {
     public abstract class ConsiderWeaponCategoryAsLightWeapon : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleCalculateWeaponStats>, IRulebookHandler<RuleCalculateWeaponStats>, ISubscriber, IInitiatorRulebookSubscriber
     {
+
+        // This is used for the Flurry Of Stars ninja trick.
+
         public override void OnTurnOn()
         {
             base.Owner.Ensure<UnitPartCustomMechanicsFeatures>().AddMechanicsFeature(AdditionalUnitPartCustomMechanicsFeatures.UseWeaponAsLightWeapon);

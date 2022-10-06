@@ -33,6 +33,7 @@ using Kingmaker.Enums.Damage;
 using Kingmaker.RuleSystem;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using System.Linq;
+using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
 
 namespace LegacyOfShadows.NewContent.NinjaTricks
 {
@@ -41,9 +42,77 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
     internal class FlurryOfStars
     {
-        private static readonly string FlurryOfStarsFeatureName = "NinjaTrickFlurryOfStarseFeature.Name";
+        private static readonly string FlurryOfStarsFeatureName = "NinjaTrickFlurryOfStarsFeature.Name";
         private static readonly string FlurryOfStarsFeatureDescription = "NinjaTrickFlurryOfStarsFeature.Description";
         static public BlueprintFeature NinjaTrickFlurryOfStarsFeature;
+
+
+        public static void ConfigureFlurryOfStars()
+        {
+
+            var kiResource = BlueprintTools.GetBlueprint<BlueprintAbilityResource>("9d9c90a9a1f52d04799294bf91c80a82");
+
+            var FlurryOfStarsIcon = AssetLoader.LoadInternal(LoSContext, folder: "assets/icons", file: "FlurryOfStars.png");
+
+            var Flurry_Of_Stars_Buff = Helpers.CreateBlueprint<BlueprintBuff>(LoSContext, "FlurryOfStarsBuff", bp => {
+                bp.SetName(LoSContext, FlurryOfStarsFeatureName);
+                bp.SetDescription(LoSContext, FlurryOfStarsFeatureDescription);
+                bp.m_Icon = FlurryOfStarsIcon;
+                bp.FxOnStart = new PrefabLink();
+                bp.FxOnRemove = new PrefabLink();
+                bp.AddComponent(Helpers.Create<BuffExtraAttackCategorySpecific>(c => {
+                    c.Categories = new WeaponCategory[] { WeaponCategory.Dart, WeaponCategory.Shuriken };
+                    c.Extra_Attacks = 2; 
+                    c.Attack_Bonus = -2;
+                }));
+
+            });
+
+            var Apply_Flurry_Of_Stars_Buff = HlEX.CreateContextActionApplyBuff(Flurry_Of_Stars_Buff.ToReference<BlueprintBuffReference>(),
+                                             HlEX.CreateContextDuration(1), 
+                                             false, false, false, false, false);
+
+            var FlurryOfStarsAbility = Helpers.CreateBlueprint<BlueprintAbility>(LoSContext, "NinjaTrickFlurryOfStarsAbility", bp => {
+                bp.SetName(LoSContext, FlurryOfStarsFeatureName);
+                bp.SetDescription(LoSContext, FlurryOfStarsFeatureDescription);
+                bp.m_Icon = FlurryOfStarsIcon;
+                bp.ResourceAssetIds = Array.Empty<string>();
+                bp.Type = AbilityType.Extraordinary;
+                bp.ActionType = UnitCommand.CommandType.Swift;
+                bp.Range = AbilityRange.Personal;
+                bp.LocalizedDuration = Helpers.CreateString(LoSContext, "NinjaTrickFlurryOfStarsAbility.Duration", "1 round");
+                bp.LocalizedSavingThrow = new Kingmaker.Localization.LocalizedString();
+                bp.AddComponent(HlEX.CreateRunActions(Apply_Flurry_Of_Stars_Buff));
+                bp.AddComponent(Helpers.Create<AbilityCasterMainWeaponCheck>(c => {
+                    c.Category = new WeaponCategory[] { WeaponCategory.Dart, WeaponCategory.Shuriken };
+                }));
+                bp.AddComponent(kiResource.CreateResourceLogic());
+            });
+
+            FlurryOfStarsAbility.SetMiscAbilityParametersSelfOnly();
+
+            var flurry_of_stars_feature = HlEX.ConvertAbilityToFeature(FlurryOfStarsAbility, "", "", "Feature", "Ability", false);
+
+            flurry_of_stars_feature.AddComponent(Helpers.Create<ConsiderWeaponCategoriesAsLightWeapon>(c => {
+                 c.Categories = new WeaponCategory[] { WeaponCategory.Dart, WeaponCategory.Shuriken };
+             }));
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }
