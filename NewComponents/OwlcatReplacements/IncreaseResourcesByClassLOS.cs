@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using Kingmaker.EntitySystem.Stats;
 using UnityEngine;
 
-namespace LegacyOfShadows.NewComponents
+namespace LegacyOfShadows.NewComponents.OwlcatReplacements
 {
 
     // This is a variant of IncreaseResourcesByClass which allows for:
@@ -31,7 +31,7 @@ namespace LegacyOfShadows.NewComponents
         {
             get
             {
-                BlueprintCharacterClassReference characterClass = this.m_CharacterClass;
+                BlueprintCharacterClassReference characterClass = m_CharacterClass;
                 if (characterClass == null)
                 {
                     return null;
@@ -45,7 +45,7 @@ namespace LegacyOfShadows.NewComponents
         {
             get
             {
-                BlueprintArchetypeReference archetype = this.m_Archetype;
+                BlueprintArchetypeReference archetype = m_Archetype;
                 if (archetype == null)
                 {
                     return null;
@@ -60,31 +60,31 @@ namespace LegacyOfShadows.NewComponents
 
             float final_Resource_Multiplier = 1.00f;
 
-            if ((this.UseResourceMultiplier == true) & (this.UseResourceMultiplier = true))
+            if (UseResourceMultiplier == true & (UseResourceMultiplier = true))
             {
-                final_Resource_Multiplier = this.ResourceMultiplier / this.ResourceDivisor;
+                final_Resource_Multiplier = ResourceMultiplier / ResourceDivisor;
             }
-            else if ((this.UseResourceMultiplier == false) & (this.UseResourceMultiplier = true))
+            else if (UseResourceMultiplier == false & (UseResourceMultiplier = true))
             {
-                final_Resource_Multiplier = 1.00f / this.ResourceDivisor;
+                final_Resource_Multiplier = 1.00f / ResourceDivisor;
             }
-            else if ((this.UseResourceMultiplier == true) & (this.UseResourceMultiplier = false))
+            else if (UseResourceMultiplier == true & (UseResourceMultiplier = false))
             {
-                final_Resource_Multiplier = this.ResourceMultiplier;
+                final_Resource_Multiplier = ResourceMultiplier;
             }
 
-            if (this.IncreasedByLevel)
+            if (IncreasedByLevel)
             {
-                num = (int)((float)(this.BaseValue + (classLevel * this.LevelIncrease)) * final_Resource_Multiplier);
+                num = (int)((BaseValue + classLevel * LevelIncrease) * final_Resource_Multiplier);
 
                 goto end_result;
 
             }
-            else if (this.IncreasedByLevelStartPlusDivStep)
+            else if (IncreasedByLevelStartPlusDivStep)
             {
-                if (this.StartingLevel <= classLevel)
+                if (StartingLevel <= classLevel)
                 {
-                    if (this.LevelStep == 0)
+                    if (LevelStep == 0)
                     {
                         PFLog.Default.Error("LevelStep is 0. Can't divide by 0", Array.Empty<object>());
                         goto end_result;
@@ -93,7 +93,7 @@ namespace LegacyOfShadows.NewComponents
                     else
                     {
 
-                        num += Math.Max((int)((float)(this.StartingIncrease + this.PerStepIncrease * (classLevel - this.StartingLevel) / this.LevelStep) * final_Resource_Multiplier), this.MinClassLevelIncrease);
+                        num += Math.Max((int)((StartingIncrease + PerStepIncrease * (classLevel - StartingLevel) / LevelStep) * final_Resource_Multiplier), MinClassLevelIncrease);
                         goto end_result;
                     }
 
@@ -112,21 +112,21 @@ namespace LegacyOfShadows.NewComponents
         public void CalculateMaxResourceAmount(BlueprintAbilityResource resource, ref int bonus)
         {
 
-            if (base.Fact.Active && resource == this.m_Resource.Get())
+            if (Fact.Active && resource == m_Resource.Get())
             {
-                UnitDescriptor unit = base.Owner;
+                UnitDescriptor unit = Owner;
 
                 int classlevel = 0;
 
-                if (this.CharacterClass != null)
+                if (CharacterClass != null)
                 {
-                    classlevel = unit.Progression.GetClassLevel(this.CharacterClass);
+                    classlevel = unit.Progression.GetClassLevel(CharacterClass);
                 }
-                if (this.Archetype != null)
+                if (Archetype != null)
                 {
-                    foreach (ClassData classData in base.Owner.Progression.Classes)
+                    foreach (ClassData classData in Owner.Progression.Classes)
                     {
-                        if (classData.CharacterClass != this.CharacterClass && classData.Archetypes.HasItem(this.Archetype))
+                        if (classData.CharacterClass != CharacterClass && classData.Archetypes.HasItem(Archetype))
                         {
                             classlevel += classData.Level;
                             break;
