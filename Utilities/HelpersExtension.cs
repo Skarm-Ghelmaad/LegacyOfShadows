@@ -87,6 +87,9 @@ using AK.Wwise;
 using System.Reflection.Emit;
 using Kingmaker.UnitLogic.Abilities.Components.Base;
 using static Kingmaker.Dungeon.Actions.DungeonShowResults;
+using TabletopTweaks.Core.NewComponents.Properties;
+using Kingmaker.Assets.UnitLogic.Mechanics.Properties;
+
 
 
 namespace LegacyOfShadows.Utilities
@@ -2043,6 +2046,185 @@ namespace LegacyOfShadows.Utilities
         }
 
 
+
+        #endregion
+
+
+        #region  |------------------------------------------------------/ CUSTOM PROPERTY CREATORS  /--------------------------------------------------------|
+
+
+
+        public static CompositeCustomPropertyGetter CreateCompositeCustomPropertyGetter(CompositeCustomPropertyGetter.Mode mode, CompositeCustomPropertyGetter.ComplexCustomProperty[] properties)
+        {
+            var cpg = Helpers.Create<CompositeCustomPropertyGetter>();
+            cpg.CalculationMode = mode;
+            cpg.Properties = properties;
+            return cpg;
+
+        }
+
+        public static CompositePropertyGetter CreateCompositePropertyGetter(CompositePropertyGetter.Mode mode, CompositePropertyGetter.ComplexProperty[] properties )
+	    {
+            var cpg = Helpers.Create<CompositePropertyGetter>();
+            cpg.CalculationMode = mode;
+            cpg.Properties = properties;
+            return cpg;
+        }
+
+        public static CompositePropertyGetter.ComplexProperty CreateComplexProperty(UnitProperty property, int bonus = 0, float numerator = 1.0f, float denominator = 1.0f)
+        {
+            var cp = Helpers.Create<CompositePropertyGetter.ComplexProperty>();
+            cp.Property = property;
+            cp.Bonus = bonus;
+            cp.Numerator = numerator;
+            cp.Denominator = denominator;
+            return cp;
+        }
+
+        public static CompositeCustomPropertyGetter.ComplexCustomProperty ComplexCustomProperty(PropertyValueGetter property, int bonus = 0, float numerator = 1.0f, float denominator = 1.0f)
+        {
+            var ccp = Helpers.Create<CompositeCustomPropertyGetter.ComplexCustomProperty>();
+            ccp.Property = property;
+            ccp.Bonus = bonus;
+            ccp.Numerator = numerator;
+            ccp.Denominator = denominator;
+            return ccp;
+        }
+
+        public static CastingAttributeGetter CreateCastingAttributeGetter()
+        {
+            var ppv = Helpers.Create<CastingAttributeGetter>();
+            return ppv;
+        }
+
+
+        public static CustomProgressionPropertyGetter CreateCustomProgressionPropertyGetter( UnitProperty property, int start = 1, int step = 1)
+        {
+            var ppv = Helpers.Create<CustomProgressionPropertyGetter>();
+            ppv.Property = property;
+            ppv.Start = start;
+            ppv.Step = step;
+            return ppv;
+        }
+
+        public static MaxAttributeBonusGetter CreateMaxAttributeBonusGetter()
+        {
+            var ppv = Helpers.Create<MaxAttributeBonusGetter>();
+            return ppv;
+        }
+
+        public static MaxCastingAttributeGetter CreateMaxCastingAttributeGetter()
+        {
+            var ppv = Helpers.Create<MaxCastingAttributeGetter>();
+            return ppv;
+        }
+
+        public static AnimalPetOwnerRankGetter CreateAnimalPetOwnerRankGetter(UnitProperty property)
+        {
+            var ppv = Helpers.Create<AnimalPetOwnerRankGetter>();
+            ppv.Property = property;
+            return ppv;
+        }
+
+        public static ArcaneSpellFailureChanceGetter CreateArcaneSpellFailureChanceGetter(UnitProperty property)
+        {
+            var ppv = Helpers.Create<ArcaneSpellFailureChanceGetter>();
+            return ppv;
+        }
+
+        public static AreaCrComplexGetter CreateAreaCrComplexGetter(int bonus, int multiplier = 1, int denominator = 1)
+        {
+            var ppv = Helpers.Create<AreaCrComplexGetter>();
+            ppv.Bonus = bonus;
+            ppv.Multiplier = multiplier;
+            ppv.Denominator = denominator;
+            return ppv;
+        }
+
+        public static ClassLevelGetter CreateClassLevelGetter(BlueprintCharacterClassReference character_class, BlueprintArchetypeReference archetype = null)
+        {
+            var ppv = Helpers.Create<ClassLevelGetter>();
+            ppv.m_Class = character_class;
+            ppv.m_Archetype = archetype;
+            return ppv;
+        }
+
+        public static CompanionsCountGetter CreateCompanionsCountGetter()
+        {
+            var ppv = Helpers.Create<CompanionsCountGetter>();
+            return ppv;
+        }
+
+        public static FactRankGetter CreateFactRankGetter(BlueprintUnitFactReference fact)
+        {
+            var ppv = Helpers.Create<FactRankGetter>();
+            ppv.m_Fact = fact;
+            return ppv;
+        }
+
+        public static PropertyWithFactRankGetter CreatePropertyWithFactRankGetter(BlueprintUnitFactReference fact, int rank_multiplier = 1)
+        {
+            var ppv = Helpers.Create<PropertyWithFactRankGetter>();
+            ppv.m_Fact = fact;
+            ppv.m_RankMultiplier = rank_multiplier;
+            return ppv;
+        }
+
+        public static ShieldBonusGetter CreateShieldBonusGetter()
+        {
+            var ppv = Helpers.Create<ShieldBonusGetter>();
+            return ppv;
+        }
+
+        public static SimplePropertyGetter CreateSimplePropertyGetter(UnitProperty property)
+        {
+            var ppv = Helpers.Create<SimplePropertyGetter>();
+            ppv.Property = property;
+            return ppv;
+        }
+
+        public static SkillRankGetter CreateSkillRankGetter(StatType skill)
+        {
+            var ppv = Helpers.Create<SkillRankGetter>();
+            ppv.Skill = skill;
+            return ppv;
+        }
+
+        public static SkillValueGetter CreateSkillValueGetter(StatType skill)
+        {
+            var ppv = Helpers.Create<SkillValueGetter>();
+            ppv.Skill = skill;
+            return ppv;
+        }
+
+        public static SpellLevelGetter CreateSpellLevelGetter(bool from_cast_rule)
+        {
+            var ppv = Helpers.Create<SpellLevelGetter>();
+            ppv.FromCastRule = from_cast_rule;
+            return ppv;
+        }
+
+        public static StatValueGetter CreateStatValueGetter(StatValueGetter.ReturnType type)
+        {
+            var ppv = Helpers.Create<StatValueGetter>();
+            ppv.ValueType = type;
+            return ppv;
+        }
+
+
+        public static SummClassLevelGetter CreateSummClassLevelGetter(BlueprintCharacterClassReference[] character_classes, BlueprintArchetypeReference[] archetypes = null)
+        {
+            var ppv = Helpers.Create<SummClassLevelGetter>();
+            ppv.m_Class = character_classes;
+            ppv.m_Archetypes = archetypes;
+            return ppv;
+        }
+
+        public static UnitWeaponEnhancementGetter CreateUnitWeaponEnhancementGetter(BlueprintCharacterClassReference[] character_classes, BlueprintArchetypeReference[] archetypes = null)
+        {
+            var ppv = Helpers.Create<UnitWeaponEnhancementGetter>();
+            return ppv;
+        }
 
         #endregion
 

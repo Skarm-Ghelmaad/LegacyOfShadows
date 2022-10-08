@@ -234,7 +234,479 @@
     {
       "Key": "NinjaTrickFlurryOfStarsFeature.Description",
       "enGB": "A ninja with this ability can expend 1 ki point from her ki pool as a swift action before she makes a full-attack attack with shuriken (and darts). During that attack, she can throw two additional shuriken (or darts) at her highest attack bonus, but all of her shuriken (or darts) attacks are made at a –2 penalty, including the two extra attacks. Additionaly, shuriken and darts are considered as light weapons for the purpose of two-weapon fighting"
+    },
+
+    {
+      "Key": "MartialArtsTrainingAlchemistFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Alchemist)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingAlchemistFeature.Description",
+      "enGB": "A alchemist with this feature deals damage with her unarmed strikes as if she were a monk of her alchemist level –4. If the alchemist has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingArcanistFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Arcanist)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingArcanistFeature.Description",
+      "enGB": "A arcanist with this feature deals damage with her unarmed strikes as if she were a monk of her arcanist level –4. If the arcanist has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingBarbarianFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Barbarian)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingBarbarianFeature.Description",
+      "enGB": "A barbarian with this feature deals damage with her unarmed strikes as if she were a monk of her barbarian level –4. If the barbarian has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingBardFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Bard)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingBardFeature.Description",
+      "enGB": "A bard with this feature deals damage with her unarmed strikes as if she were a monk of her bard level –4. If the bard has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingBloodragerFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Bloodrager)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingBloodragerFeature.Description",
+      "enGB": "A bloodrager with this feature deals damage with her unarmed strikes as if she were a monk of her bloodrager level –4. If the bloodrager has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingCavalierFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Cavalier)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingCavalierFeature.Description",
+      "enGB": "A cavalier with this feature deals damage with her unarmed strikes as if she were a monk of her cavalier level –4. If the cavalier has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingClericFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Cleric)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingClericFeature.Description",
+      "enGB": "A cleric with this feature deals damage with her unarmed strikes as if she were a monk of her cleric level –4. If the cleric has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingDruidFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Druid)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingDruidFeature.Description",
+      "enGB": "A druid with this feature deals damage with her unarmed strikes as if she were a monk of her druid level –4. If the druid has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingFighterFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Fighter)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingFighterFeature.Description",
+      "enGB": "A fighter with this feature deals damage with her unarmed strikes as if she were a monk of her fighter level –4. If the fighter has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingHunterFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Hunter)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingHunterFeature.Description",
+      "enGB": "A hunter with this feature deals damage with her unarmed strikes as if she were a monk of her hunter level –4. If the hunter has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingInquisitorFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Inquisitor)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingInquisitorFeature.Description",
+      "enGB": "A inquisitor with this feature deals damage with her unarmed strikes as if she were a monk of her inquisitor level –4. If the inquisitor has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingKineticistFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Kineticist)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingKineticistFeature.Description",
+      "enGB": "A kineticist with this feature deals damage with her unarmed strikes as if she were a monk of her kineticist level –4. If the kineticist has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingMagusFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Magus)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingMagusFeature.Description",
+      "enGB": "A magus with this feature deals damage with her unarmed strikes as if she were a monk of her magus level –4. If the magus has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingOracleFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Oracle)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingOracleFeature.Description",
+      "enGB": "A oracle with this feature deals damage with her unarmed strikes as if she were a monk of her oracle level –4. If the oracle has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingPaladinFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Paladin)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingPaladinFeature.Description",
+      "enGB": "A paladin with this feature deals damage with her unarmed strikes as if she were a monk of her paladin level –4. If the paladin has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingRangerFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Ranger)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingRangerFeature.Description",
+      "enGB": "A ranger with this feature deals damage with her unarmed strikes as if she were a monk of her ranger level –4. If the ranger has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingRogueFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Rogue)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingRogueFeature.Description",
+      "enGB": "A rogue with this feature deals damage with her unarmed strikes as if she were a monk of her rogue level –4. If the rogue has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingShamanFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Shaman)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingShamanFeature.Description",
+      "enGB": "A shaman with this feature deals damage with her unarmed strikes as if she were a monk of her shaman level –4. If the shaman has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingSkaldFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Skald)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingSkaldFeature.Description",
+      "enGB": "A skald with this feature deals damage with her unarmed strikes as if she were a monk of her skald level –4. If the skald has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingSlayerFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Slayer)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingSlayerFeature.Description",
+      "enGB": "A slayer with this feature deals damage with her unarmed strikes as if she were a monk of her slayer level –4. If the slayer has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingSorcererFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Sorcerer)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingSorcererFeature.Description",
+      "enGB": "A sorcerer with this feature deals damage with her unarmed strikes as if she were a monk of her sorcerer level –4. If the sorcerer has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingWarpriestFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Warpriest)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingWarpriestFeature.Description",
+      "enGB": "A warpriest with this feature deals damage with her unarmed strikes as if she were a monk of her warpriest level –4. If the warpriest has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingWitchFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Witch)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingWitchFeature.Description",
+      "enGB": "A witch with this feature deals damage with her unarmed strikes as if she were a monk of her witch level –4. If the witch has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingWizardFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Wizard)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingWizardFeature.Description",
+      "enGB": "A wizard with this feature deals damage with her unarmed strikes as if she were a monk of her wizard level –4. If the wizard has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingAssassinFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Assassin)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingAssassinFeature.Description",
+      "enGB": "A assassin with this feature deals damage with her unarmed strikes as if she were a monk of her assassin level –4. If the assassin has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingArcaneTricksterFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (ArcaneTrickster)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingArcaneTricksterFeature.Description",
+      "enGB": "A arcanetrickster with this feature deals damage with her unarmed strikes as if she were a monk of her arcanetrickster level –4. If the arcanetrickster has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingAldoriSwordsmanFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (AldoriSwordsman)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingAldoriSwordsmanFeature.Description",
+      "enGB": "A aldoriswordsman with this feature deals damage with her unarmed strikes as if she were a monk of her aldoriswordsman level –4. If the aldoriswordsman has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingDuelistFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Duelist)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingDuelistFeature.Description",
+      "enGB": "A duelist with this feature deals damage with her unarmed strikes as if she were a monk of her duelist level –4. If the duelist has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingDragonDiscipleFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (DragonDisciple)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingDragonDiscipleFeature.Description",
+      "enGB": "A dragondisciple with this feature deals damage with her unarmed strikes as if she were a monk of her dragondisciple level –4. If the dragondisciple has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingEldritchKnightFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (EldritchKnight)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingEldritchKnightFeature.Description",
+      "enGB": "A eldritchknight with this feature deals damage with her unarmed strikes as if she were a monk of her eldritchknight level –4. If the eldritchknight has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingHellknightFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Hellknight)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingHellknightFeature.Description",
+      "enGB": "A hellknight with this feature deals damage with her unarmed strikes as if she were a monk of her hellknight level –4. If the hellknight has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingHellknightSigniferFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (HellknightSignifer)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingHellknightSigniferFeature.Description",
+      "enGB": "A hellknightsignifer with this feature deals damage with her unarmed strikes as if she were a monk of her hellknightsignifer level –4. If the hellknightsignifer has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingLoremasterFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (Loremaster)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingLoremasterFeature.Description",
+      "enGB": "A loremaster with this feature deals damage with her unarmed strikes as if she were a monk of her loremaster level –4. If the loremaster has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingMysticTheurgeFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (MysticTheurge)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingMysticTheurgeFeature.Description",
+      "enGB": "A mystictheurge with this feature deals damage with her unarmed strikes as if she were a monk of her mystictheurge level –4. If the mystictheurge has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingStalwartDefenderFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (StalwartDefender)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingStalwartDefenderFeature.Description",
+      "enGB": "A stalwartdefender with this feature deals damage with her unarmed strikes as if she were a monk of her stalwartdefender level –4. If the stalwartdefender has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "MartialArtsTrainingWinterWitchFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Martial Arts Training (WinterWitch)"
+    },
+
+    {
+      "Key": "MartialArtsTrainingWinterWitchFeature.Description",
+      "enGB": "A winterwitch with this feature deals damage with her unarmed strikes as if she were a monk of her winterwitch level –4. If the winterwitch has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
     }
+
+
+
+
 
 
   ]

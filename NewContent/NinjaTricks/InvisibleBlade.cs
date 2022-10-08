@@ -39,7 +39,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
             var InvisibleBladeFeature = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, "NinjaTrickInvisibleBladeFeature", bp => {
                 bp.SetName(LoSContext, InvisibleBladeFeatureName);
-                bp.SetDescription(LoSContext, InvisibleBladeFeatureName);
+                bp.SetDescription(LoSContext, InvisibleBladeFeatureDescription);
                 bp.m_Icon = InvisibleBladeIcon;
             });
 
