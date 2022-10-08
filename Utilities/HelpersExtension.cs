@@ -89,8 +89,9 @@ using Kingmaker.UnitLogic.Abilities.Components.Base;
 using static Kingmaker.Dungeon.Actions.DungeonShowResults;
 using TabletopTweaks.Core.NewComponents.Properties;
 using Kingmaker.Assets.UnitLogic.Mechanics.Properties;
-
-
+using Kingmaker.UnitLogic.Class.Kineticist.Properties;
+using LegacyOfShadows.NewComponents.Properties;
+using UnityEngine.Assertions.Must;
 
 namespace LegacyOfShadows.Utilities
 {
@@ -2220,11 +2221,94 @@ namespace LegacyOfShadows.Utilities
             return ppv;
         }
 
-        public static UnitWeaponEnhancementGetter CreateUnitWeaponEnhancementGetter(BlueprintCharacterClassReference[] character_classes, BlueprintArchetypeReference[] archetypes = null)
+        public static UnitWeaponEnhancementGetter CreateUnitWeaponEnhancementGetter()
         {
             var ppv = Helpers.Create<UnitWeaponEnhancementGetter>();
             return ppv;
         }
+
+        public static BaseAtackGetter CreateBaseAtackGetter()
+        {
+            var ppv = Helpers.Create<BaseAtackGetter>();
+            return ppv;
+        }
+
+        public static BaseAttackPropertyWithFeatureList CreateBaseAttackPropertyWithFeatureList( int base_value, int base_attack_divisor, int base_attack_zero, int feature_bonus, BlueprintFeatureReference[] features  )
+        {
+            var ppv = Helpers.Create<BaseAttackPropertyWithFeatureList>();
+            ppv.BaseValue = base_value;
+            ppv.BaseAttackDiv = base_attack_divisor;
+            ppv.BaseAttackZero = base_attack_zero;
+            ppv.FeatureBonus = feature_bonus;
+            ppv.m_Features = features;
+            return ppv;
+        }
+
+        public static CurrentMeleeWeaponDamageStatGetter CreateCurrentMeleeWeaponDamageStatGetter()
+        {
+            var ppv = Helpers.Create<CurrentMeleeWeaponDamageStatGetter>();
+            return ppv;
+        }
+
+        public static CurrentWeaponCriticalMultiplierGetter CreateCurrentWeaponCriticalMultiplierGetter()
+        {
+            var ppv = Helpers.Create<CurrentWeaponCriticalMultiplierGetter>();
+            return ppv;
+        }
+
+        public static FightingDefensivelyACBonusProperty CreateFightingDefensivelyACBonusProperty()
+        {
+            var ppv = Helpers.Create<FightingDefensivelyACBonusProperty>();
+            return ppv;
+        }
+
+        public static FightingDefensivelyAttackPenaltyProperty CreateFightingDefensivelyAttackPenaltyProperty()
+        {
+            var ppv = Helpers.Create<FightingDefensivelyAttackPenaltyProperty>();
+            return ppv;
+        }
+
+        public static LevelBasedPropertyWithFeatureList CreateLevelBasedPropertyWithFeatureList(int base_value, int level_divisor, int level_zero, int feature_bonus, BlueprintFeatureReference[] features)
+        {
+            var ppv = Helpers.Create<LevelBasedPropertyWithFeatureList>();
+            ppv.BaseValue = base_value;
+            ppv.LevelDiv = level_divisor;
+            ppv.LevelZero = level_zero;
+            ppv.m_Features = features;
+            ppv.FeatureBonus = feature_bonus;
+            return ppv;
+        }
+
+        public static StatBonusIfHasFactProperty CreateStatBonusIfHasFactProperty(int multiplier, StatType stat, BlueprintUnitFactReference fact)
+        {
+            var ppv = Helpers.Create<StatBonusIfHasFactProperty>();
+            ppv.Multiplier = multiplier;
+            ppv.Stat = stat;
+            ppv.m_RequiredFact = fact;
+            return ppv;
+        }
+
+
+        public static FactEnabledCompositeCustomPropertyGetter CreateFactEnabledCompositeCustomPropertyGetter (CompositeCustomPropertyGetter.Mode mode, IDictionary<BlueprintUnitFactReference, CompositeCustomPropertyGetter.ComplexCustomProperty> conditional_properties, bool not = false)
+        {
+            var ppv = Helpers.Create<FactEnabledCompositeCustomPropertyGetter>();
+            ppv.CalculationMode = mode;
+            ppv.m_ConditionalProperties = conditional_properties;
+            ppv.Not = not;
+            return ppv;
+        }
+
+        public static FactEnabledCompositePropertyGetter CreateFactEnabledCompositePropertyGetter(CompositePropertyGetter.Mode mode, IDictionary<BlueprintUnitFactReference, CompositePropertyGetter.ComplexProperty> conditional_properties, bool not = false)
+        {
+            var ppv = Helpers.Create<FactEnabledCompositePropertyGetter>();
+            ppv.CalculationMode = mode;
+            ppv.m_ConditionalProperties = conditional_properties;
+            ppv.Not = not;
+            return ppv;
+        }
+
+
+
 
         #endregion
 
