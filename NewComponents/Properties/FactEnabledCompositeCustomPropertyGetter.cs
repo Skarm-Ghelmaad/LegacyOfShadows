@@ -11,60 +11,67 @@ using System.Threading.Tasks;
 using TabletopTweaks.Core.NewComponents.Properties;
 using LegacyOfShadows.NewComponents.Properties;
 using static TabletopTweaks.Core.NewComponents.Properties.CompositeCustomPropertyGetter;
-
+using Kingmaker.UnitLogic.Mechanics.Properties;
+using UnityEngine;
 
 namespace LegacyOfShadows.NewComponents.Properties
 {
 
+    // The original plan was to make it a CompositeCustomPropertyGetter sub-class, but in the end I've made it into a new PropertyValueGetter sub-class.
 
-    public class FactEnabledCompositeCustomPropertyGetter: CompositeCustomPropertyGetter
+    public class FactEnabledCompositeCustomPropertyGetter: PropertyValueGetter
     {
         public override int GetBaseValue(UnitEntityData unit)
         {
             switch (CalculationMode)
             {
                 case Mode.Sum:
-                    Properties = CheckProperties(unit);
                     return Properties.Select(property => property.Calculate(unit)).Sum();
                 case Mode.Highest:
-                    Properties = CheckProperties(unit);
                     return Properties.Select(property => property.Calculate(unit)).Max();
                 case Mode.Lowest:
-                    Properties = CheckProperties(unit);
                     return Properties.Select(property => property.Calculate(unit)).Min();
                 default:
                     return 0;
             }
         }
 
-        public ComplexCustomProperty[] CheckProperties(UnitEntityData unit)
+        public FactEnabledComplexCustomProperty[] Properties = new FactEnabledComplexCustomProperty[0];
+        public Mode CalculationMode;
+
+        public enum Mode : int
         {
-
-
-                List<ComplexCustomProperty> results_list = new List<ComplexCustomProperty>();
-
-                    foreach (var cond_property in this.m_ConditionalProperties)
-                    {
-
-                        if ((cond_property.Key != null) && ((unit.HasFact(cond_property.Key) && (!Not)) || (!unit.HasFact(cond_property.Key) && (Not))))
-                        {
-                            results_list.Add(cond_property.Value);
-                        }
-
-                    }
-
-                    return results_list.ToArray();
+            Sum,
+            Highest,
+            Lowest
         }
 
 
+        public class FactEnabledComplexCustomProperty
+        {
+            public FactEnabledComplexCustomProperty() { }
 
-        public IDictionary<BlueprintUnitFactReference, ComplexCustomProperty> m_ConditionalProperties = new Dictionary<BlueprintUnitFactReference, ComplexCustomProperty>();
+            public int Calculate(UnitEntityData unit)
+            {
+                var iHasFact = 0;
 
-        public bool Not = false;
+                if (((unit.HasFact(this.m_CheckedFact) && (!this.Not))) || ((!unit.HasFact(this.m_CheckedFact)) && (this.Not)))
+                {
+                    iHasFact = 1;
+                }
+
+                return Bonus + Mathf.FloorToInt((Numerator / Denominator) * Property.GetBaseValue(unit)) * iHasFact;
+            }
+
+            public PropertyValueGetter Property;
+            public BlueprintUnitFactReference m_CheckedFact;
+            public int Bonus;
+            public float Numerator = 1;
+            public float Denominator = 1;
+            public bool Not = false;
+        }
 
 
-
-
-
+        
     }
 }

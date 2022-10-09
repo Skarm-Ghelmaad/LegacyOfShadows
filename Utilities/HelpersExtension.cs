@@ -92,6 +92,8 @@ using Kingmaker.Assets.UnitLogic.Mechanics.Properties;
 using Kingmaker.UnitLogic.Class.Kineticist.Properties;
 using LegacyOfShadows.NewComponents.Properties;
 using UnityEngine.Assertions.Must;
+using static LegacyOfShadows.NewComponents.Properties.FactEnabledCompositeCustomPropertyGetter;
+using static LegacyOfShadows.NewComponents.Properties.FactEnabledCompositePropertyGetter;
 
 namespace LegacyOfShadows.Utilities
 {
@@ -2289,26 +2291,47 @@ namespace LegacyOfShadows.Utilities
         }
 
 
-        public static FactEnabledCompositeCustomPropertyGetter CreateFactEnabledCompositeCustomPropertyGetter (CompositeCustomPropertyGetter.Mode mode, IDictionary<BlueprintUnitFactReference, CompositeCustomPropertyGetter.ComplexCustomProperty> conditional_properties, bool not = false)
+        public static FactEnabledCompositeCustomPropertyGetter CreateFactEnabledCompositeCustomPropertyGetter (FactEnabledCompositeCustomPropertyGetter.Mode mode, FactEnabledCompositeCustomPropertyGetter.FactEnabledComplexCustomProperty[] properties)
         {
             var ppv = Helpers.Create<FactEnabledCompositeCustomPropertyGetter>();
             ppv.CalculationMode = mode;
-            ppv.m_ConditionalProperties = conditional_properties;
-            ppv.Not = not;
+            ppv.Properties = properties;
             return ppv;
         }
 
-        public static FactEnabledCompositePropertyGetter CreateFactEnabledCompositePropertyGetter(CompositePropertyGetter.Mode mode, IDictionary<BlueprintUnitFactReference, CompositePropertyGetter.ComplexProperty> conditional_properties, bool not = false)
+        public static FactEnabledCompositePropertyGetter CreateFactEnabledCompositePropertyGetter(FactEnabledCompositePropertyGetter.Mode mode, FactEnabledComplexProperty[] properties)
         {
             var ppv = Helpers.Create<FactEnabledCompositePropertyGetter>();
             ppv.CalculationMode = mode;
-            ppv.m_ConditionalProperties = conditional_properties;
-            ppv.Not = not;
+            ppv.Properties = properties;
             return ppv;
         }
 
+        public static FactEnabledCompositeCustomPropertyGetter.FactEnabledComplexCustomProperty CreateFactEnabledComplexCustomProperty(PropertyValueGetter property, int bonus, float numerator = 1.0f,  float denominator = 1.0f, bool not = false)
+        {
+            var ppv = Helpers.Create<FactEnabledComplexCustomProperty>();
 
+            ppv.Property = property;
+            ppv.Bonus = bonus;
+            ppv.Numerator = numerator;
+            ppv.Denominator = denominator;
+            ppv.Not = not;
 
+            return ppv;
+        }
+
+        public static FactEnabledCompositePropertyGetter.FactEnabledComplexProperty CreateFactEnabledComplexProperty(UnitProperty property, int bonus, float numerator = 1.0f, float denominator = 1.0f, bool not = false)
+        {
+            var ppv = Helpers.Create<FactEnabledComplexProperty>();
+
+            ppv.Property = property;
+            ppv.Bonus = bonus;
+            ppv.Numerator = numerator;
+            ppv.Denominator = denominator;
+            ppv.Not = not;
+
+            return ppv;
+        }
 
         #endregion
 
