@@ -90,10 +90,8 @@ using static Kingmaker.Dungeon.Actions.DungeonShowResults;
 using TabletopTweaks.Core.NewComponents.Properties;
 using Kingmaker.Assets.UnitLogic.Mechanics.Properties;
 using Kingmaker.UnitLogic.Class.Kineticist.Properties;
-using LegacyOfShadows.NewComponents.Properties;
 using UnityEngine.Assertions.Must;
-using static LegacyOfShadows.NewComponents.Properties.FactEnabledCompositeCustomPropertyGetter;
-using static LegacyOfShadows.NewComponents.Properties.FactEnabledCompositePropertyGetter;
+
 
 namespace LegacyOfShadows.Utilities
 {
@@ -2290,50 +2288,6 @@ namespace LegacyOfShadows.Utilities
             return ppv;
         }
 
-
-        public static FactEnabledCompositeCustomPropertyGetter CreateFactEnabledCompositeCustomPropertyGetter (FactEnabledCompositeCustomPropertyGetter.Mode mode, FactEnabledCompositeCustomPropertyGetter.FactEnabledComplexCustomProperty[] properties)
-        {
-            var ppv = Helpers.Create<FactEnabledCompositeCustomPropertyGetter>();
-            ppv.CalculationMode = mode;
-            ppv.Properties = properties;
-            return ppv;
-        }
-
-        public static FactEnabledCompositePropertyGetter CreateFactEnabledCompositePropertyGetter(FactEnabledCompositePropertyGetter.Mode mode, FactEnabledComplexProperty[] properties)
-        {
-            var ppv = Helpers.Create<FactEnabledCompositePropertyGetter>();
-            ppv.CalculationMode = mode;
-            ppv.Properties = properties;
-            return ppv;
-        }
-
-        public static FactEnabledCompositeCustomPropertyGetter.FactEnabledComplexCustomProperty CreateFactEnabledComplexCustomProperty(BlueprintUnitFactReference checked_fact, PropertyValueGetter property, int bonus, float numerator = 1.0f,  float denominator = 1.0f, bool not = false)
-        {
-            var ppv = Helpers.Create<FactEnabledComplexCustomProperty>();
-
-            ppv.m_CheckedFact = checked_fact;
-            ppv.Property = property;
-            ppv.Bonus = bonus;
-            ppv.Numerator = numerator;
-            ppv.Denominator = denominator;
-            ppv.Not = not;
-
-            return ppv;
-        }
-
-        public static FactEnabledCompositePropertyGetter.FactEnabledComplexProperty CreateFactEnabledComplexProperty(BlueprintUnitFactReference checked_fact, UnitProperty property, int bonus, float numerator = 1.0f, float denominator = 1.0f, bool not = false)
-        {
-            var ppv = Helpers.Create<FactEnabledComplexProperty>();
-
-            ppv.m_CheckedFact = checked_fact;
-            ppv.Property = property;
-            ppv.Bonus = bonus;
-            ppv.Numerator = numerator;
-            ppv.Denominator = denominator;
-            ppv.Not = not;
-
-            return ppv;
-        }
 
         #endregion
 

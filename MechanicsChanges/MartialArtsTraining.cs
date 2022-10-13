@@ -35,7 +35,6 @@ using Kingmaker.UnitLogic.Mechanics.Properties;
 using TabletopTweaks.Core.NewComponents.OwlcatReplacements.DamageResistance;
 using TabletopTweaks.Core.NewComponents.Properties;
 using TabletopTweaks.Base.NewContent.Features;
-using LegacyOfShadows.NewComponents.Properties;
 using System.Security.AccessControl;
 
 
