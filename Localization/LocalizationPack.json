@@ -575,16 +575,16 @@
     },
 
     {
-      "Key": "MartialArtsTrainingAldoriSwordsmanFeature.Name",
+      "Key": "MartialArtsTrainingAldoriSwordlordFeature.Name",
       // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
       // links to encycolpedia pages.
       "ProcessTemplates": false,
-      "enGB": "Martial Arts Training (AldoriSwordsman)"
+      "enGB": "Martial Arts Training (Aldori Swordsman)"
     },
 
     {
-      "Key": "MartialArtsTrainingAldoriSwordsmanFeature.Description",
-      "enGB": "A aldoriswordsman with this feature deals damage with her unarmed strikes as if she were a monk of her aldoriswordsman level –4. If the aldoriswordsman has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+      "Key": "MartialArtsTrainingAldoriSwordlordFeature.Description",
+      "enGB": "A aldori swordsman with this feature deals damage with her unarmed strikes as if she were a monk of her aldori swordsman level –4. If the aldori swordsman has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
     },
 
     {
@@ -605,12 +605,12 @@
       // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
       // links to encycolpedia pages.
       "ProcessTemplates": false,
-      "enGB": "Martial Arts Training (DragonDisciple)"
+      "enGB": "Martial Arts Training (Dragon Disciple)"
     },
 
     {
       "Key": "MartialArtsTrainingDragonDiscipleFeature.Description",
-      "enGB": "A dragondisciple with this feature deals damage with her unarmed strikes as if she were a monk of her dragondisciple level –4. If the dragondisciple has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+      "enGB": "A dragon disciple with this feature deals damage with her unarmed strikes as if she were a monk of her dragon disciple level –4. If the dragon disciple has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
     },
 
     {
@@ -618,12 +618,12 @@
       // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
       // links to encycolpedia pages.
       "ProcessTemplates": false,
-      "enGB": "Martial Arts Training (EldritchKnight)"
+      "enGB": "Martial Arts Training (Eldritch Knight)"
     },
 
     {
       "Key": "MartialArtsTrainingEldritchKnightFeature.Description",
-      "enGB": "A eldritchknight with this feature deals damage with her unarmed strikes as if she were a monk of her eldritchknight level –4. If the eldritchknight has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+      "enGB": "A eldritch knight with this feature deals damage with her unarmed strikes as if she were a monk of her eldritch knight level –4. If the eldritch knight has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
     },
 
     {
@@ -644,12 +644,12 @@
       // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
       // links to encycolpedia pages.
       "ProcessTemplates": false,
-      "enGB": "Martial Arts Training (HellknightSignifer)"
+      "enGB": "Martial Arts Training (Hellknight Signifer)"
     },
 
     {
       "Key": "MartialArtsTrainingHellknightSigniferFeature.Description",
-      "enGB": "A hellknightsignifer with this feature deals damage with her unarmed strikes as if she were a monk of her hellknightsignifer level –4. If the hellknightsignifer has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+      "enGB": "A hellknight signifer with this feature deals damage with her unarmed strikes as if she were a monk of her hellknight signifer level –4. If the hellknight signifer has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
     },
 
     {
@@ -670,12 +670,12 @@
       // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
       // links to encycolpedia pages.
       "ProcessTemplates": false,
-      "enGB": "Martial Arts Training (MysticTheurge)"
+      "enGB": "Martial Arts Training (Mystic Theurge)"
     },
 
     {
       "Key": "MartialArtsTrainingMysticTheurgeFeature.Description",
-      "enGB": "A mystictheurge with this feature deals damage with her unarmed strikes as if she were a monk of her mystictheurge level –4. If the mystictheurge has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+      "enGB": "A mystic theurge with this feature deals damage with her unarmed strikes as if she were a monk of her mystic theurge level –4. If the mystic theurge has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
     },
 
     {
@@ -683,12 +683,12 @@
       // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
       // links to encycolpedia pages.
       "ProcessTemplates": false,
-      "enGB": "Martial Arts Training (StalwartDefender)"
+      "enGB": "Martial Arts Training (Stalwart Defender)"
     },
 
     {
       "Key": "MartialArtsTrainingStalwartDefenderFeature.Description",
-      "enGB": "A stalwartdefender with this feature deals damage with her unarmed strikes as if she were a monk of her stalwartdefender level –4. If the stalwartdefender has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+      "enGB": "A stalwart defender with this feature deals damage with her unarmed strikes as if she were a monk of her stalwart defender level –4. If the stalwart defender has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
     },
 
     {
@@ -696,12 +696,25 @@
       // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
       // links to encycolpedia pages.
       "ProcessTemplates": false,
-      "enGB": "Martial Arts Training (WinterWitch)"
+      "enGB": "Martial Arts Training (Winter Witch)"
     },
 
     {
       "Key": "MartialArtsTrainingWinterWitchFeature.Description",
-      "enGB": "A winterwitch with this feature deals damage with her unarmed strikes as if she were a monk of her winterwitch level –4. If the winterwitch has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+      "enGB": "A winter witch with this feature deals damage with her unarmed strikes as if she were a monk of her winter witch level –4. If the winter witch has levels in monk, this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes."
+    },
+
+    {
+      "Key": "AdvancedMartialArtsTrainingFakeLevelFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Advanced Martial Arts Training"
+    },
+
+    {
+      "Key": "AdvancedMartialArtsTrainingFakeLevelFeature.Description",
+      "enGB": "You can use the unarmed strike damage of a 4th level monk or of a monk which is 4 level higher than your monk level (which could stack up to 12 levels higher)."
     }
 
 

@@ -2307,10 +2307,11 @@ namespace LegacyOfShadows.Utilities
             return ppv;
         }
 
-        public static FactEnabledCompositeCustomPropertyGetter.FactEnabledComplexCustomProperty CreateFactEnabledComplexCustomProperty(PropertyValueGetter property, int bonus, float numerator = 1.0f,  float denominator = 1.0f, bool not = false)
+        public static FactEnabledCompositeCustomPropertyGetter.FactEnabledComplexCustomProperty CreateFactEnabledComplexCustomProperty(BlueprintUnitFactReference checked_fact, PropertyValueGetter property, int bonus, float numerator = 1.0f,  float denominator = 1.0f, bool not = false)
         {
             var ppv = Helpers.Create<FactEnabledComplexCustomProperty>();
 
+            ppv.m_CheckedFact = checked_fact;
             ppv.Property = property;
             ppv.Bonus = bonus;
             ppv.Numerator = numerator;
@@ -2320,10 +2321,11 @@ namespace LegacyOfShadows.Utilities
             return ppv;
         }
 
-        public static FactEnabledCompositePropertyGetter.FactEnabledComplexProperty CreateFactEnabledComplexProperty(UnitProperty property, int bonus, float numerator = 1.0f, float denominator = 1.0f, bool not = false)
+        public static FactEnabledCompositePropertyGetter.FactEnabledComplexProperty CreateFactEnabledComplexProperty(BlueprintUnitFactReference checked_fact, UnitProperty property, int bonus, float numerator = 1.0f, float denominator = 1.0f, bool not = false)
         {
             var ppv = Helpers.Create<FactEnabledComplexProperty>();
 
+            ppv.m_CheckedFact = checked_fact;
             ppv.Property = property;
             ppv.Bonus = bonus;
             ppv.Numerator = numerator;
