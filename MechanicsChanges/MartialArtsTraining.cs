@@ -47,7 +47,9 @@ namespace LegacyOfShadows.MechanicsChanges
         // This is an attempt to allow for the acquisition (and stacking) of the Monk's Unarmed Strike feature.
 
         static public BlueprintFeature MartialArtsTrainingFakeLevel;
-
+        private static readonly string UniversalUnarmedStrikeName = "UniversalUnarmedStrike.Name";
+        private static readonly string UniversalUnarmedStrikeDescription = "UniversalUnarmedStrike.Description";
+        static public BlueprintFeature UniversalUnarmedStrike;
 
         public static void ConfigureMonkMartialArtsTraining()
         {
@@ -128,7 +130,14 @@ namespace LegacyOfShadows.MechanicsChanges
             #endregion
 
 
-            #region |------------------------------------------------------/ CREATED GENERIC (MONK) UNARMED STRIKE /------------------------------------------------------------|
+            #region |------------------------------------------------------/ CREATE GENERIC (MONK) UNARMED STRIKE /------------------------------------------------------------|
+
+            monk_1d6_unarmed_strike.CreateCopy(LoSContext, "UniversalUnarmedStrike", bp => {
+                 bp.SetName(LoSContext, UniversalUnarmedStrikeName);
+                 bp.SetDescription(LoSContext, UniversalUnarmedStrikeDescription);
+
+             });
+
 
             #endregion
 
