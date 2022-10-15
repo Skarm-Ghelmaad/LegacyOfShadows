@@ -102,7 +102,7 @@
 
     {
       "Key": "NinjaTrickInvisibleBladeFeature.Description",
-      "enGB": "Whenever a ninja uses the Vanishing Trick ninja trick, she is treated as if she were under the effects of Greater Invisibility."
+      "enGB": "Whenever the character uses the Vanishing Trick ninja trick, she is treated as if she were under the effects of Greater Invisibility."
     },
 
     {
@@ -115,7 +115,7 @@
 
     {
       "Key": "NinjaTrickVanishingTrickFeature.Description",
-      "enGB": "As a swift action, the ninja can disappear for 1 round per level. This ability functions as Invisibility. Using this ability uses up 1 ki point."
+      "enGB": "As a swift action, the character can disappear for 1 round per level. This ability functions as Invisibility. Using this ability uses up 1 ki point."
     },
 
     {
@@ -128,7 +128,7 @@
 
     {
       "Key": "NinjaTrickShadowCloneFeature.Description",
-      "enGB": "The ninja can create shadowy duplicates of herself that conceal her true location. This ability functions as Mirror Image, using the ninja's level as her caster level. Using this ability is a standard action that uses up 1 ki point. The ninja creates 1d4 duplicates plus one duplicates per three caster levels (maximum eight duplicates total) are created. [LONGSTART] These images remain in your space and move with you, mimicking your movements, sounds, and {g|Encyclopedia:CA_Types}actions{/g} exactly.[LONGEND] Whenever you are attacked or are the target of a spell that requires an attack roll, there is a possibility that the attack targets one of your images instead.[LONGSTART] If the attack is a hit, roll randomly to see whether the selected target is real or a figment. If it is a figment, the figment is destroyed. If the attack misses by 5 or less, one of your figments is destroyed by the near miss. Area spells affect you normally and do not destroy any of your figments. Spells and effects that do not require an attack roll affect you normally and do not destroy any of your figments. Spells that require a {g|Encyclopedia:TouchAttack}touch attack{/g} are harmlessly discharged if used to destroy a figment.\nAn attacker must be able to see the figments to be fooled. If you are invisible or the attacker is blind, the spell has no effect (although the normal miss chances still apply).[LONGEND] "
+      "enGB": "A character with this trick can create shadowy duplicates of herself that conceal her true location. This ability functions as Mirror Image, using his class level as her caster level. Using this ability is a standard action that uses up 1 ki point. The charater creates 1d4 duplicates plus one duplicates per three caster levels (maximum eight duplicates total) are created. [LONGSTART] These images remain in your space and move with you, mimicking your movements, sounds, and {g|Encyclopedia:CA_Types}actions{/g} exactly.[LONGEND] Whenever you are attacked or are the target of a spell that requires an attack roll, there is a possibility that the attack targets one of your images instead.[LONGSTART] If the attack is a hit, roll randomly to see whether the selected target is real or a figment. If it is a figment, the figment is destroyed. If the attack misses by 5 or less, one of your figments is destroyed by the near miss. Area spells affect you normally and do not destroy any of your figments. Spells and effects that do not require an attack roll affect you normally and do not destroy any of your figments. Spells that require a {g|Encyclopedia:TouchAttack}touch attack{/g} are harmlessly discharged if used to destroy a figment.\nAn attacker must be able to see the figments to be fooled. If you are invisible or the attacker is blind, the spell has no effect (although the normal miss chances still apply).[LONGEND] "
     },
 
     {
@@ -142,7 +142,7 @@
 
     {
       "Key": "NinjaTrickHerbalCompoundFeature.Description",
-      "enGB": "A ninja with this trick can consume specially prepared herbs to strengthen her mind. The ninja can spend 1 ki point and smoke, eat, or inject an herbal compound as a move action. The ninja takes a –2 penalty to AC and on Reflex saves but gains a +4 alchemical bonus on Will saves for 10 minutes per ninja level."
+      "enGB": "A character with this trick can consume specially prepared herbs to strengthen her mind. The character can spend 1 ki point and smoke, eat, or inject an herbal compound as a move action. The character takes a –2 penalty to AC and on Reflex saves but gains a +4 alchemical bonus on Will saves for 10 minutes per relevant class level."
     },
 
     {
@@ -155,7 +155,7 @@
 
     {
       "Key": "NinjaTrickKamikazeAbility.Description",
-      "enGB": "A ninja with this ability strikes without concern for her own well-being. The ninja can spend 1 point from her ki pool to give her unarmed strikes and any weapons she wields the Vicious weapon special ability for 1 round per level."
+      "enGB": "A character with this ability strikes without concern for her own well-being. The character can spend 1 point from her ki pool to give her unarmed strikes and any weapons she wields the Vicious weapon special ability for 1 round per level."
     },
 
     {
@@ -168,7 +168,7 @@
 
     {
       "Key": "NinjaTrickKamikazeDismissAbility.Description",
-      "enGB": "A ninja with this ability can spend 1 ki point to dismiss the Kamikaze effect as a free action."
+      "enGB": "A character with this ability can spend 1 ki point to dismiss the Kamikaze effect as a free action."
     },
 
     {
@@ -181,7 +181,7 @@
 
     {
       "Key": "NinjaTrickKamikazeFeature.Description",
-      "enGB": "A ninja with this ability strikes without concern for her own well-being. The ninja can spend 1 point from her ki pool to give her unarmed strikes and any weapons she wields the Vicious weapon special ability for 1 round per level. The ninja can spend 1 ki point to dismiss this effect as a free action."
+      "enGB": "A character with this ability strikes without concern for her own well-being. The character can spend 1 point from her ki pool to give her unarmed strikes and any weapons she wields the Vicious weapon special ability for 1 round per level. The character can also spend 1 ki point to dismiss this effect as a free action."
     },
 
     {
@@ -194,7 +194,7 @@
 
     {
       "Key": "NinjaTrickAccelerationOfFormFeature.Description",
-      "enGB": "A ninja with this trick can spend 1 ki point as a standard action to gain the benefits of Displacement and Haste for 1 round per 2 ninja levels."
+      "enGB": "A character with this trick can spend 1 ki point as a standard action to gain the benefits of Displacement and Haste for 1 round per 2 relevant class levels."
     },
 
     {
@@ -207,7 +207,7 @@
 
     {
       "Key": "NinjaStyleMasterFeatureSelection.Description",
-      "enGB": "A ninja who selects this ninja trick gains a style feat that she qualifies for as a bonus feat."
+      "enGB": "A chracter who selects this trick gains a style feat that she qualifies for as a bonus feat."
     },
 
     {
@@ -220,7 +220,7 @@
 
     {
       "Key": "NinjaTrickSeeTheUnseenFeature.Description",
-      "enGB": "A ninja with this trick learns how to see that which cannot be seen. As a swift action, the ninja can cast See Invisibility, using her level as the caster level. Each use of this ability uses up 1 ki point."
+      "enGB": "A character with this trick learns how to see that which cannot be seen. As a swift action, the character can cast See Invisibility, using her relevant class level as the caster level. Each use of this ability uses up 1 ki point."
     },
 
     {
@@ -233,7 +233,21 @@
 
     {
       "Key": "NinjaTrickFlurryOfStarsFeature.Description",
-      "enGB": "A ninja with this ability can expend 1 ki point from her ki pool as a swift action before she makes a full-attack attack with shuriken (and darts). During that attack, she can throw two additional shuriken (or darts) at her highest attack bonus, but all of her shuriken (or darts) attacks are made at a –2 penalty, including the two extra attacks. Additionaly, shuriken and darts are considered as light weapons for the purpose of two-weapon fighting"
+      "enGB": "A character with this ability can expend 1 ki point from her ki pool as a swift action before she makes a full-attack attack with shuriken (and darts). During that attack, she can throw two additional shuriken (or darts) at her highest attack bonus, but all of her shuriken (or darts) attacks are made at a –2 penalty, including the two extra attacks. Additionaly, shuriken and darts are considered as light weapons for the purpose of two-weapon fighting."
+    },
+
+
+    {
+      "Key": "NinjaTrickUnarmedCombatMasteryFeature.Name",
+      // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
+      // links to encycolpedia pages.
+      "ProcessTemplates": false,
+      "enGB": "Unarmed Combat Mastery"
+    },
+
+    {
+      "Key": "NinjaTrickUnarmedCombatMasteryFeature.Description",
+      "enGB": "A character who selects this trick deals damage with her unarmed strikes as if she were a monk of her relevant class level –4. If the character has levels in monk (or other similar features), this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes. A character must have the Improved Unarmed Strike feat before taking this trick."
     }
 
 

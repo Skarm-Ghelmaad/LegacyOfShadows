@@ -88,7 +88,7 @@ namespace LegacyOfShadows.NewComponents.OwlcatReplacements
 
         [SerializeField]
         [FormerlySerializedAs("WeaponType")]
-        private BlueprintWeaponTypeReference m_WeaponType;
+        public BlueprintWeaponTypeReference m_WeaponType;
 
 
     }

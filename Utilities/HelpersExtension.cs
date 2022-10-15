@@ -227,6 +227,15 @@ namespace LegacyOfShadows.Utilities
             return c;
         }
 
+        public static ContextWeaponDamageDiceReplacementWeaponCategory CreateContextWeaponDamageDiceReplacementWeaponCategory( WeaponCategory[] categories, DiceFormula[] dice_formulas, ContextValue value)
+        {
+            var c = Helpers.Create<ContextWeaponDamageDiceReplacementWeaponCategory>();
+            c.Categories = categories;
+            c.Dice_Formulas = dice_formulas;
+            c.Value = value;
+
+            return c;
+        }
 
         public static BlueprintAbilityResource CreateAbilityResource(String name,
                                                                       Sprite icon = null,
@@ -2291,7 +2300,38 @@ namespace LegacyOfShadows.Utilities
 
         #endregion
 
+        #region |----------------------------------------------------/ LEVEL ENTRY MANIPULATION  /--------------------------------------------------------|
 
+        // Note that this code is taken straight-away from Holic's code.
+
+        static public LevelEntry[] RemoveEntries(LevelEntry[] old_entries, Predicate<BlueprintFeatureBase> predicate, bool keep_empty_entries = false)
+        {
+            List<LevelEntry> level_entries = new List<LevelEntry>();
+
+            for (int i = 0; i < old_entries.Length; i++)
+            {
+                var new_entry = new LevelEntry() { Level = old_entries[i].Level };
+
+                foreach (var f in old_entries[i].Features.ToArray())
+                {
+                    if (!predicate(f))
+                    {
+                        new_entry.Features.Add(f);
+                    }
+                }
+
+                if (!new_entry.Features.Empty() || keep_empty_entries)
+                {
+                    level_entries.Add(new_entry);
+                }
+
+            }
+
+            return level_entries.ToArray();
+        }
+
+
+        #endregion
 
     }
 
