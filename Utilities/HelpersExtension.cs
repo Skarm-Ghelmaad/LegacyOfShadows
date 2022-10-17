@@ -1976,6 +1976,15 @@ namespace LegacyOfShadows.Utilities
 
         #region |------------------------------------------------------/ COMPONENT CREATORS  /--------------------------------------------------------|
 
+
+        public static AddFacts CreateAddFacts( params BlueprintUnitFactReference[] facts)
+        {
+            var c = Helpers.Create<AddFacts>();
+            c.m_Facts = facts;
+            return c;
+        }
+
+
         public static AbilityAreaEffectRunAction CreateAreaEffectRunAction(GameAction unitEnter = null, GameAction unitExit = null, GameAction unitMove = null, GameAction round = null)
         {
             var a = Helpers.Create<AbilityAreaEffectRunAction>();

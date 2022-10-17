@@ -64,6 +64,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
             var MartialArtsTrainingPurpleIcon = AssetLoader.LoadInternal(LoSContext, folder: "assets/icons", file: "MartialArtsTrainingPurple.png");
             var MartialArtsTrainingRedIcon = AssetLoader.LoadInternal(LoSContext, folder: "assets/icons", file: "MartialArtsTrainingRed.png");
             var MartialArtsTrainingYellowIcon = AssetLoader.LoadInternal(LoSContext, folder: "assets/icons", file: "MartialArtsTrainingYellow.png");
+            var UnarmedCombatMasteryIcon = AssetLoader.LoadInternal(LoSContext, folder: "assets/icons", file: "UnarmedCombatMastery.png");
 
             MartialArtsTraining.ConfigureMonkMartialArtsTraining();
 
@@ -107,7 +108,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
             var UnarmedCombatMasteryRogueFeature = Helpers.CreateBlueprint<BlueprintFeatureSelection>(LoSContext, "NinjaTrickUnarmedCombatMasteryRogueFeature", bp => {
                 bp.SetName(LoSContext, "Unarmed Combat Mastery");
                 bp.SetDescription(LoSContext, "A rogue who selects this trick deals damage with her unarmed strikes as if she were a monk of her rogue level –4. If the rogue has levels in monk (or other similar features), this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes. A rogue must have the Improved Unarmed Strike feat before taking this trick.");
-                bp.m_Icon = MartialArtsTrainingBlackIcon;
+                bp.m_Icon = UnarmedCombatMasteryIcon;
                 bp.AddComponent(HlEX.CreateHasFactFeatureUnlock(monk_1d6_unarmed_strike.ToReference<BlueprintUnitFactReference>(), UniversalUnarmedStrike.ToReference<BlueprintUnitFactReference>(), true));
                 bp.AddComponent(Helpers.Create<AddFeatureOnApply>(c => {
                     c.m_Feature = RogueMartialArtsTrainingProgression.ToReference<BlueprintFeatureReference>();

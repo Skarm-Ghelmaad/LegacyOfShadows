@@ -14,6 +14,8 @@ using System.Collections.Generic;
 using System.Linq;
 using static TabletopTweaks.Core.Utilities.FeatTools;
 using TabletopTweaks.Core.Utilities;
+using LegacyOfShadows.New_Content.Archetypes;
+using HarmonyLib;
 
 namespace LegacyOfShadows.Utilities
 {
@@ -42,6 +44,22 @@ namespace LegacyOfShadows.Utilities
         {
             var StyleStrikeSelections = new BlueprintFeatureSelection[] { Selections.MonkStyleStrike };
             StyleStrikeSelections.ForEach(selection => selection.AddFeatures(feature));
+
+
+        }
+
+        public static void AddAsNinjaTrick(BlueprintFeature feature, bool advanced_trick = false)
+        {
+            var advanced_talents = BlueprintTools.GetBlueprint<BlueprintFeature>("a33b99f95322d6741af83e9381b2391c");
+            var NinjaTrickSelections = new BlueprintFeatureSelection[] { Ninja.NinjaTrickSelection };
+            feature.Groups = feature.Groups.AddToArray(FeatureGroup.RogueTalent);
+            NinjaTrickSelections.ForEach(selection => selection.AddFeatures(feature));
+
+            if (advanced_trick)
+            {
+                feature.AddPrerequisiteFeature(advanced_talents);
+
+            }
 
 
         }
