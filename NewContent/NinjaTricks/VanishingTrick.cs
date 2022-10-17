@@ -91,6 +91,8 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
             InvisibleBlade.NinjaTrickInvisibleBladeFeature.AddPrerequisiteFeature(vanishing_trick_feature);
 
+            LoSContext.Logger.LogPatch("Created Vanishing Trick ninja trick.", vanishing_trick_feature);
+
 
         }
     }

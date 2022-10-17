@@ -40,6 +40,7 @@ using Kingmaker.UnitLogic.Abilities;
 using static Kingmaker.UnitLogic.Interaction.SpawnerInteractionPart;
 using Kingmaker.Blueprints.Classes.Selection;
 using LegacyOfShadows.NewContent.NinjaTricks;
+using LegacyOfShadows.NewContent.Features;
 
 
 namespace LegacyOfShadows.New_Content.Archetypes
@@ -54,6 +55,42 @@ namespace LegacyOfShadows.New_Content.Archetypes
         static public BlueprintAbility InstinctiveStealthAbility;
         static public BlueprintFeatureSelection NinjaTrickSelection;
 
+
+        static void ConfigureNinjaArchetype()
+        {
+            var Rogue_Array = new BlueprintCharacterClassReference[] { ClassTools.ClassReferences.RogueClass };
+
+            var Ninja_Archetype = Helpers.CreateBlueprint<BlueprintArchetype>(LoSContext, "NinjaArchetype", arc => {
+                arc.SetName(LoSContext, "Ninja");
+                arc.SetDescription(LoSContext, "When the wealthy and the powerful need an enemy eliminated quietly and without fail, they call upon the ninja. When a general needs to sabotage the siege engines of his foes before they can reach the castle walls, he calls upon the ninja. And when fools dare to move against a ninja or her companions, they will find the ninja waiting for them while they sleep, ready to strike. These shadowy killers are masters of infiltration, sabotage, and assassination, using a wide variety of weapons, practiced skills, and mystical powers to achieve their goals.");
+                arc.m_ParentClass = ClassTools.ClassReferences.RogueClass;
+
+                var rogue_proficiencies = BlueprintTools.GetBlueprint<BlueprintFeature>("33e2a7e4ad9daa54eaf808e1483bb43c"); 
+                var weapon_finesse = BlueprintTools.GetBlueprint<BlueprintFeature>("90e54424d682d104ab36436bd527af09"); 
+                var trapfinding = BlueprintTools.GetBlueprint<BlueprintFeature>("dbb6b3bffe6db3547b31c3711653838e"); 
+                var evasion = BlueprintTools.GetBlueprint<BlueprintFeature>("576933720c440aa4d8d42b0c54b77e80"); 
+                var rogue_talent = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("c074a5d615200494b8f2a9c845799d93"); 
+                var finesse_training_selection = BlueprintTools.GetBlueprint<BlueprintFeature>("b78d146cea711a84598f0acef69462ea"); 
+                var danger_sense = BlueprintTools.GetBlueprint<BlueprintFeature>("0bcbe9e450b0e7b428f08f66c53c5136"); 
+                var debilitating_injury = BlueprintTools.GetBlueprint<BlueprintFeature>("def114eb566dfca448e998969bf51586"); 
+                var uncanny_dodge = BlueprintTools.GetBlueprint<BlueprintFeature>("3c08d842e802c3e4eb19d15496145709"); 
+                var improved_uncanny_dodge = BlueprintTools.GetBlueprint<BlueprintFeature>("485a18c05792521459c7d06c63128c79"); 
+                var advanced_talents = BlueprintTools.GetBlueprint<BlueprintFeature>("a33b99f95322d6741af83e9381b2391c"); 
+                var master_strike = BlueprintTools.GetBlueprint<BlueprintFeature>("72dcf1fb106d5054a81fd804fdc168d3");
+
+                ConfigureNinjaProficiencies();
+                NoTrace.ConfigureNoTrace();
+                ConfigureNinjaKiPool();
+                LightSteps.ConfigureLightSteps();
+                ConfigureNinjaTrick();
+                Dispatchment.ConfigureDispatchment();
+                ConfigureNinjaStyleStrikes();
+
+
+            });
+
+
+        }
 
         static void ConfigureNinjaProficiencies()
         {
@@ -84,8 +121,10 @@ namespace LegacyOfShadows.New_Content.Archetypes
                 bp.SetName(LoSContext, NinjaProficienciesFeatureName);
                 bp.SetDescription(LoSContext, NinjaProficienciesFeatureDescription);
 
-            }); 
+            });
             #endregion
+
+            LoSContext.Logger.LogPatch("Created Ninja Proficiencies.", NinjaProficienciesFeature);
 
         }
 
@@ -139,6 +178,8 @@ namespace LegacyOfShadows.New_Content.Archetypes
 
             });
 
+            LoSContext.Logger.LogPatch("Created Extra Attack (minor) ninja trick.", Monk_Ki_Extra_Attack_Ability);
+
             var NinjaKiSpeedBoostAbility = Monk_Ki_Sudden_Speed_Ability.CreateCopy(LoSContext, "NinjaTrickKiSpeedBoostAbility", bp =>
             {
                 bp.SetName(LoSContext, "Ninja Trick: Speed Burst");
@@ -152,6 +193,8 @@ namespace LegacyOfShadows.New_Content.Archetypes
                     });
 
             });
+
+            LoSContext.Logger.LogPatch("Created Ninja Speed Burst (minor) ninja trick.", NinjaKiSpeedBoostAbility);
 
             var InstinctiveStealthAbility = Helpers.CreateBlueprint<BlueprintAbility>(LoSContext, "NinjaTrickInstinctiveStealthAbility", bp =>
             {
@@ -170,12 +213,16 @@ namespace LegacyOfShadows.New_Content.Archetypes
 
             InstinctiveStealthAbility.SetMiscAbilityParametersSelfOnly();
 
+            LoSContext.Logger.LogPatch("Created Instinctive Stealth (minor) ninja trick.", InstinctiveStealthAbility);
+
             var Ninja_Extra_Attack_feature = HlEX.ConvertAbilityToFeature(NinjaExtraAttackAbility, "", "", "Feature", "Ability", false);
+
+
 
             #endregion
 
-            #region | Changes to Ninja Ki Pool |
-            
+            #region | Create Ninja Ki Pool |
+
             var KiPool = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, "KiPoolNinjaFeature", bp =>
             {
                 bp.SetName(LoSContext, "Ki Pool");
@@ -193,12 +240,17 @@ namespace LegacyOfShadows.New_Content.Archetypes
                 bp.AddComponent(HlEX.CreateAddFeatureOnClassLevel(Ninja_Extra_Attack_feature.ToReference<BlueprintFeatureReference>(), new BlueprintCharacterClassReference[] { ClassTools.ClassReferences.RogueClass }, 5, true));
             });
 
+            LoSContext.Logger.LogPatch("Created Ninja Ki Pool.", KiPool);
+
+
             #endregion
 
             #region | Add Ninja Ki Pool to Abundant Ki Pool feat|
 
             Abundant_Ki_Pool.AddPrerequisiteFeature(KiPool, GroupType.Any);  // Added Ninja Ki Pool to Abundant Ki Prerequisites. 
-            
+
+            LoSContext.Logger.LogPatch("Updated Abundant Ki Pool feat.", Abundant_Ki_Pool);
+
             #endregion
 
         }
@@ -280,8 +332,10 @@ namespace LegacyOfShadows.New_Content.Archetypes
 
             stl_strk_wrapper.m_Icon = NinjaStyleStrikeIcon;
 
-            ninja_style_strikes.ComponentsArray = new BlueprintComponent[] { HlEX.CreateAddFacts(stl_strk_wrapper.ToReference<BlueprintUnitFactReference>()) }; 
-                
+            ninja_style_strikes.ComponentsArray = new BlueprintComponent[] { HlEX.CreateAddFacts(stl_strk_wrapper.ToReference<BlueprintUnitFactReference>()) };
+
+            LoSContext.Logger.LogPatch("Created Ninja Style Strikes.", ninja_style_strikes);
+
             #endregion
 
 
@@ -326,6 +380,8 @@ namespace LegacyOfShadows.New_Content.Archetypes
             FeatToolsExtension.AddAsNinjaTrick(UnarmedCombatMastery.NinjaTrickUnarmedCombatMasteryNinjaFeature, true);
             FeatToolsExtension.AddAsNinjaTrick(evasion, true);
             FeatToolsExtension.AddAsNinjaTrick(FlurryOfStars.NinjaTrickFlurryOfStarsFeature, false);
+
+            LoSContext.Logger.LogPatch("Created (canon) Ninja Tricks.", ninja_trick);
 
 
         }

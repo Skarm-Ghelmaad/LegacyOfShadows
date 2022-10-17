@@ -54,8 +54,9 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
                 }
 
 
-
             });
+
+            LoSContext.Logger.LogPatch("Created Style Master ninja trick.", Style_Master_Feature_Selection);
 
 
         }

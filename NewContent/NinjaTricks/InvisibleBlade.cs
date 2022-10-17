@@ -45,6 +45,8 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
             VanishingTrick.ConfigureVanishingTrick();
 
+            LoSContext.Logger.LogPatch("Created Invisible Blade ninja trick.", InvisibleBladeFeature);
+
         }
 
 

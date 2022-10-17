@@ -52,6 +52,8 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
             var shadow_clone_feature = HlEX.ConvertAbilityToFeature(ShadowCloneAbility, "", "", "Feature", "Ability", false);
 
+            LoSContext.Logger.LogPatch("Created Shadow Clone ninja trick.", shadow_clone_feature);
+
 
         }
 

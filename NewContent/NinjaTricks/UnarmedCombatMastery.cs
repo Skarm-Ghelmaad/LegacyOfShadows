@@ -105,6 +105,8 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
                  }));
             });
 
+            LoSContext.Logger.LogPatch("Created Unarmed Combat Mastery (Ninja) ninja trick.", UnarmedCombatMasteryNinjaFeature);
+
             var UnarmedCombatMasteryRogueFeature = Helpers.CreateBlueprint<BlueprintFeatureSelection>(LoSContext, "NinjaTrickUnarmedCombatMasteryRogueFeature", bp => {
                 bp.SetName(LoSContext, "Unarmed Combat Mastery");
                 bp.SetDescription(LoSContext, "A rogue who selects this trick deals damage with her unarmed strikes as if she were a monk of her rogue level –4. If the rogue has levels in monk (or other similar features), this ability stacks with monk levels to determine how much damage she can do with her unarmed strikes. A rogue must have the Improved Unarmed Strike feat before taking this trick.");
@@ -118,6 +120,8 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
                     c.Group = Prerequisite.GroupType.All;
                 }));
             });
+
+            LoSContext.Logger.LogPatch("Created Unarmed Combat Mastery (Rogue) ninja trick.", UnarmedCombatMasteryRogueFeature);
 
 
         }

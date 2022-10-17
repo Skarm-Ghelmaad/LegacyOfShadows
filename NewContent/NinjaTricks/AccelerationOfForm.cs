@@ -92,7 +92,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
             var acceleration_of_form_feature = HlEX.ConvertAbilityToFeature(AccelerationOfFormAbility, "", "", "Feature", "Ability", false);
 
 
-
+            LoSContext.Logger.LogPatch("Created Accelleration of Form ninja trick.", acceleration_of_form_feature);
 
 
         }

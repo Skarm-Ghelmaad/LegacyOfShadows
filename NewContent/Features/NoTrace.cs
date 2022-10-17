@@ -51,6 +51,8 @@ namespace LegacyOfShadows.NewContent.Features
             });
 
 
+            LoSContext.Logger.LogPatch("Created No Trace.", NoTraceFeature);
+
         }
 
     }

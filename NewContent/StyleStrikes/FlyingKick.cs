@@ -56,6 +56,8 @@ namespace LegacyOfShadows.NewContent.StyleStrikes
 
             FeatToolsExtension.AddAsStyleStrike(FlyingKickFeature);
 
+            LoSContext.Logger.LogPatch("Created Flying Kick style strike.", FlyingKickFeature);
+
         }
 
 

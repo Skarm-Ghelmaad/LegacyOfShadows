@@ -97,6 +97,8 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
                  c.Categories = new WeaponCategory[] { WeaponCategory.Dart, WeaponCategory.Shuriken };
              }));
 
+            LoSContext.Logger.LogPatch("Created Flurry of Stars ninja trick.", flurry_of_stars_feature);
+
 
         }
 

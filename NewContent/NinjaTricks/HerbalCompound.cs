@@ -104,6 +104,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
             var herbal_compound_feature = HlEX.ConvertAbilityToFeature(HerbalCompoundAbility, "", "", "Feature", "Ability", false);
 
+            LoSContext.Logger.LogPatch("Created Herbal Compound ninja trick.", herbal_compound_feature);
 
         }
     }

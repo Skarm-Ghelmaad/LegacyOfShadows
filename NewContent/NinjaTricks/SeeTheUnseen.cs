@@ -60,6 +60,9 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
             SeeTheUnseenAbility.m_Icon = SeeTheUnseenIcon;
             SeeTheUnseenAbility.ActionType = UnitCommand.CommandType.Swift;
 
+            var see_the_unseen_feature = HlEX.ConvertAbilityToFeature(SeeTheUnseenAbility, "", "", "Feature", "Ability", false);
+
+            LoSContext.Logger.LogPatch("Created See The Unseen ninja trick.", see_the_unseen_feature);
 
         }
 

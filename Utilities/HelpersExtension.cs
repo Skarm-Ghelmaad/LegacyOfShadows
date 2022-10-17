@@ -2082,7 +2082,21 @@ namespace LegacyOfShadows.Utilities
             return c;
         }
 
+        public static AddAbilityResources CreateAddAbilityResources(this BlueprintAbilityResourceReference resource)
+        {
+            var c = Helpers.Create<AddAbilityResources>();
+            c.m_Resource = resource;
+            c.RestoreAmount = true;
+            return c;
+        }
 
+        public static AddAbilityResources CreateAddAbilityResourcesNoRestore(this BlueprintAbilityResourceReference resource)
+        {
+            var c = Helpers.Create<AddAbilityResources>();
+            c.m_Resource = resource;
+            c.RestoreAmount = false;
+            return c;
+        }
 
         #endregion
 

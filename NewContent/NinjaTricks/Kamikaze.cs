@@ -130,6 +130,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
             var kamikaze_feature = HlEX.ConvertAbilityToFeature(Kamikaze_Wrapper_Ability, "", "", "Feature", "BaseAbility", false);
 
+            LoSContext.Logger.LogPatch("Created Kamikaze ninja trick.", kamikaze_feature);
 
         }
 
