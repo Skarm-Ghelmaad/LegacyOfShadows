@@ -2065,6 +2065,15 @@ namespace LegacyOfShadows.Utilities
             return c;
         }
 
+        public static AbilityShowIfCasterHasFact CreateAbilityShowIfCasterHasFact(BlueprintUnitFactReference checked_fact, bool not = false)
+        {
+            var c = Helpers.Create<AbilityShowIfCasterHasFact>();
+            c.m_UnitFact = checked_fact;
+            c.Not = not;
+            return c;
+        }
+
+
 
         #endregion
 
