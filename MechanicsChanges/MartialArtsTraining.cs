@@ -40,6 +40,7 @@ using LegacyOfShadows.NewComponents.OwlcatReplacements;
 using Kingmaker.RuleSystem;
 
 
+
 namespace LegacyOfShadows.MechanicsChanges
 {
     public class MartialArtsTraining
@@ -49,7 +50,9 @@ namespace LegacyOfShadows.MechanicsChanges
         static public BlueprintFeature MartialArtsTrainingFakeLevel;
         private static readonly string UniversalUnarmedStrikeName = "UniversalUnarmedStrike.Name";
         private static readonly string UniversalUnarmedStrikeDescription = "UniversalUnarmedStrike.Description";
+        static public BlueprintUnitProperty MartialArtsTrainingProperty;
         static public BlueprintFeature UniversalUnarmedStrike;
+
 
         public static void ConfigureMonkMartialArtsTraining()
         {
@@ -179,7 +182,7 @@ namespace LegacyOfShadows.MechanicsChanges
                 bp.Ranks = 40;
                 bp.HideInCharacterSheetAndLevelUp = true;
                 bp.SetName(LoSContext, "Martial Arts Training Fake Level");
-                bp.SetDescription(LoSContext, "This feature grant fake monk levels that are considered to calculate his monk level for purpose");
+                bp.SetDescription(LoSContext, "This feature grant fake monk levels that are considered to calculate his monk level for purpose of the Unarmed Strike feature.");
                 bp.m_Icon = MartialArtsTrainingOrangeIcon;
             });
 

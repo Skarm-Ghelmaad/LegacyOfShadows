@@ -146,6 +146,17 @@ namespace LegacyOfShadows.MechanicsChanges
             #endregion
 
 
+            #region | Make the Extra Attack Buff's name and description generic. |
+
+
+            var Ki_Extra_Attack_Buff = BlueprintTools.GetBlueprint<BlueprintFeature>("cadf8a5c42002494cabfc6c1196b514a");
+
+            Ki_Extra_Attack_Buff.SetName(LoSContext, "Ki - Extra Attack");
+            Ki_Extra_Attack_Buff.SetDescription(LoSContext, "By spending points from his ki pool, the character can make one additional attack at his highest attack bonus when making a full attack. This bonus attack stacks with haste and similar effects.");
+
+
+            #endregion
+
 
         }
 

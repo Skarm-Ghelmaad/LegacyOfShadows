@@ -91,7 +91,7 @@ using TabletopTweaks.Core.NewComponents.Properties;
 using Kingmaker.Assets.UnitLogic.Mechanics.Properties;
 using Kingmaker.UnitLogic.Class.Kineticist.Properties;
 using UnityEngine.Assertions.Must;
-
+using TabletopTweaks.Core.NewComponents;
 
 namespace LegacyOfShadows.Utilities
 {
@@ -2041,6 +2041,30 @@ namespace LegacyOfShadows.Utilities
             a.DestroyOnCast = true;
             return a;
         }
+
+        public static HasFactFeatureUnlock CreateHasFactFeatureUnlock(BlueprintUnitFactReference checked_fact, BlueprintUnitFactReference feature, bool not)
+        {
+            var c = Helpers.Create<HasFactFeatureUnlock>();
+            c.m_CheckedFact = checked_fact;
+            c.m_Feature = feature;
+            c.Not = not;
+            return c;
+        }
+
+        public static AddFeatureOnClassLevel CreateAddFeatureOnClassLevel(BlueprintFeatureReference feature, BlueprintCharacterClassReference[] character_classes, int level, bool before_level = false )
+        {
+            var c = Helpers.Create<AddFeatureOnClassLevel>();
+            c.name = $"AddFeatureOnClassLevel${feature.Get().name}";
+            c.m_Feature = feature;
+            c.m_Class = character_classes[0];
+            c.m_AdditionalClasses = character_classes.Skip(1).ToArray();
+            c.m_Archetypes = new BlueprintArchetypeReference[0];
+            c.Level = level;
+            c.BeforeThisLevel = before_level;
+
+            return c;
+        }
+
 
         #endregion
 
