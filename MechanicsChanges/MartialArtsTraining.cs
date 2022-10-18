@@ -97,6 +97,8 @@ namespace LegacyOfShadows.MechanicsChanges
                 });
             });
 
+            LoSContext.Logger.LogPatch("Created Martial Arts Training property.", MartialArtsTrainingProperty);
+
             #endregion
 
 
@@ -130,16 +132,20 @@ namespace LegacyOfShadows.MechanicsChanges
 
             monk_progression.LevelEntries = HlEX.RemoveEntries(monk_progression.LevelEntries, f => monk_other_fists.Contains(f), keep_empty_entries: true);
 
+            LoSContext.Logger.LogPatch("Condensed Monk's unarmed strike damage.", monk_1d6_unarmed_strike);
+
             #endregion
 
 
             #region |------------------------------------------------------/ CREATE GENERIC (MONK) UNARMED STRIKE /------------------------------------------------------------|
 
-            monk_1d6_unarmed_strike.CreateCopy(LoSContext, "UniversalUnarmedStrike", bp => {
+            var generic_1d6_unarmed_strike = monk_1d6_unarmed_strike.CreateCopy(LoSContext, "UniversalUnarmedStrike", bp => {
                  bp.SetName(LoSContext, UniversalUnarmedStrikeName);
                  bp.SetDescription(LoSContext, UniversalUnarmedStrikeDescription);
 
              });
+
+            LoSContext.Logger.LogPatch("Creaded generic (monk) unarmed strike.", generic_1d6_unarmed_strike);
 
 
             #endregion
@@ -156,8 +162,12 @@ namespace LegacyOfShadows.MechanicsChanges
                                                                                                                             c.m_WeaponType = double_damage_dice_vanilla.m_WeaponType;
                                                                                                                             c.OnlyOnFirstAttack = double_damage_dice_vanilla.OnlyOnFirstAttack;
 
-                                                                                                                        })); 
+                                                                                                                        }));
+            LoSContext.Logger.LogPatch("Patched Hammerblow buff.", hammerblow_buff);
+
             #endregion
+
+
 
         }
 
@@ -186,6 +196,7 @@ namespace LegacyOfShadows.MechanicsChanges
                 bp.m_Icon = MartialArtsTrainingOrangeIcon;
             });
 
+            LoSContext.Logger.LogPatch("Created Martial Arts Training Fake Level.", MartialArtsTrainingFakeLevel);
 
         }
 

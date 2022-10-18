@@ -15,6 +15,7 @@ using static TabletopTweaks.Core.NewUnitParts.UnitPartCustomMechanicsFeatures;
 
 namespace LegacyOfShadows.NewComponents
 {
+    [TypeId("8295DE67810E4705A10FEFC48DB61244")]
     public abstract class ConsiderWeaponCategoryAsLightWeapon : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleCalculateWeaponStats>, IRulebookHandler<RuleCalculateWeaponStats>, ISubscriber, IInitiatorRulebookSubscriber
     {
 

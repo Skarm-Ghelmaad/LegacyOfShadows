@@ -33,6 +33,9 @@ namespace LegacyOfShadows.MechanicsChanges
         private static readonly string WisdomKiPoolCanonFeatureDescription = "WisdomKiPoolCanonFeature.Description";
         private static readonly string CharismaKiPoolCanonFeatureDescription = "CharismaKiPoolCanonFeature.Description";
 
+        static public BlueprintFeature WisdomKiPoolCanonFeature;
+        static public BlueprintFeature CharismaKiPoolCanonFeature;
+
         public static void ConfigureBasicKiResourceChanges()
         {
             var kiPowerFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("e9590244effb4be4f830b1e3fffced13");

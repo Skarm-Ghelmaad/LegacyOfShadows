@@ -17,6 +17,7 @@ namespace LegacyOfShadows.NewComponents
     // This was copied from CotW with just a few aesthetic changes.
 
     [AllowedOn(typeof(BlueprintUnitFact))]
+    [TypeId("1A8A4697EE79498FBFBFFC09E255A9BC")]
     public class ContextWeaponDamageDiceReplacementWeaponCategory : EntityFactComponentDelegate, IInitiatorRulebookHandler<RuleCalculateWeaponStats>, IRulebookHandler<RuleCalculateWeaponStats>, ISubscriber, IInitiatorRulebookSubscriber
     {
         public WeaponCategory[] Categories;

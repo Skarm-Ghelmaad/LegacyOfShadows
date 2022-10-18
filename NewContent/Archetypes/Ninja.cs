@@ -41,9 +41,10 @@ using static Kingmaker.UnitLogic.Interaction.SpawnerInteractionPart;
 using Kingmaker.Blueprints.Classes.Selection;
 using LegacyOfShadows.NewContent.NinjaTricks;
 using LegacyOfShadows.NewContent.Features;
+using BlueprintCore.Utils;
 
 
-namespace LegacyOfShadows.New_Content.Archetypes
+    namespace LegacyOfShadows.New_Content.Archetypes
 {
     public class Ninja
     {
@@ -223,6 +224,8 @@ namespace LegacyOfShadows.New_Content.Archetypes
 
             #region | Create Ninja Ki Pool |
 
+            var canon_ki_modifier_exclusions = new BlueprintUnitFactReference[] { KiResourceChanges.WisdomKiPoolCanonFeature.ToReference<BlueprintUnitFactReference>(), KiResourceChanges.CharismaKiPoolCanonFeature.ToReference<BlueprintUnitFactReference>() };
+
             var KiPool = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, "KiPoolNinjaFeature", bp =>
             {
                 bp.SetName(LoSContext, "Ki Pool");
@@ -233,6 +236,23 @@ namespace LegacyOfShadows.New_Content.Archetypes
                 bp.Ranks = 1;
                 bp.Groups = new FeatureGroup[] { };
                 bp.IsPrerequisiteFor = new List<BlueprintFeatureReference> { Abundant_Ki_Pool.ToReference<BlueprintFeatureReference>() };
+                bp.AddComponent(HlEX.CreateAddAbilityResources(kiResource.ToReference<BlueprintAbilityResourceReference>()));
+                bp.AddComponent(Helpers.Create<IncreaseResourceAmountBasedOnClassOnly>(c => {
+                    c.m_Resource = kiResource.ToReference<BlueprintAbilityResourceReference>();
+                    c.m_CharacterClass = ClassTools.ClassReferences.RogueClass;
+                    c.Subtract = false;
+                    c.IncreasedByLevel = false;
+                    c.IncreasedByLevelStartPlusDivStep = true;
+                    c.StartingLevel = 0;
+                    c.StartingIncrease = 0;
+                    c.LevelStep = 2;
+                    c.PerStepIncrease = 1;
+                    c.Subtract = false;
+                }));
+                bp.AddComponent<HasFactsFeaturesUnlock>(c => {
+                     c.m_CheckedFacts = canon_ki_modifier_exclusions;
+                     c.m_Features = new BlueprintUnitFactReference[] { KiResourceChanges.CharismaKiPoolCanonFeature.ToReference<BlueprintUnitFactReference>() };
+                 });
                 bp.AddComponent<AddFacts>(c =>
                 {
                     c.m_Facts = new BlueprintUnitFactReference[] { NinjaKiSpeedBoostAbility.ToReference<BlueprintUnitFactReference>(), InstinctiveStealthAbility.ToReference<BlueprintUnitFactReference>() };
@@ -241,6 +261,8 @@ namespace LegacyOfShadows.New_Content.Archetypes
             });
 
             LoSContext.Logger.LogPatch("Created Ninja Ki Pool.", KiPool);
+
+            //Adjust ki pool by adding ki points.
 
 
             #endregion

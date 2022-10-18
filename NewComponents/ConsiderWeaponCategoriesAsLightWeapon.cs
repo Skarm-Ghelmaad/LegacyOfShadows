@@ -1,4 +1,5 @@
-﻿using Kingmaker.Enums;
+﻿using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.Enums;
 using Kingmaker.Items;
 using Kingmaker.UnitLogic.Parts;
 using LegacyOfShadows.NewUnitParts;
@@ -11,6 +12,7 @@ using TabletopTweaks.Core.NewUnitParts;
 
 namespace LegacyOfShadows.NewComponents
 {
+    [TypeId("04A76A01B243489D98F1635A0DB8D1C2")]
     public class ConsiderWeaponCategoriesAsLightWeapon: ConsiderWeaponCategoryAsLightWeapon
     {
 

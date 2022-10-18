@@ -17,6 +17,7 @@ using Kingmaker.RuleSystem;
 
 namespace LegacyOfShadows.NewComponents
 {
+    [TypeId("4B4C289264634B8FB879491D1826BCA0")]
     public class BuffExtraAttackCategorySpecific : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleCalculateAttacksCount>, IRulebookHandler<RuleCalculateAttacksCount>, IInitiatorRulebookHandler<RuleCalculateAttackBonusWithoutTarget>, IRulebookHandler<RuleCalculateAttackBonusWithoutTarget>, ISubscriber, IInitiatorRulebookSubscriber
     {
         // This is used for the Flurry Of Stars ninja trick.
