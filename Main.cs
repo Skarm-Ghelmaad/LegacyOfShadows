@@ -1,4 +1,4 @@
-using LegacyOfShadows.Feats;
+//using LegacyOfShadows.Feats;
 using BlueprintCore.Utils;
 using HarmonyLib;
 using Kingmaker;

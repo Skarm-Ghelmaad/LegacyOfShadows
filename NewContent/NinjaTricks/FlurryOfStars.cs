@@ -44,7 +44,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
     {
         private static readonly string FlurryOfStarsFeatureName = "NinjaTrickFlurryOfStarsFeature.Name";
         private static readonly string FlurryOfStarsFeatureDescription = "NinjaTrickFlurryOfStarsFeature.Description";
-        static public BlueprintFeature NinjaTrickFlurryOfStarsFeature;
+
 
 
         public static void ConfigureFlurryOfStars()

@@ -44,20 +44,17 @@ using LegacyOfShadows.NewContent.Features;
 using BlueprintCore.Utils;
 
 
-    namespace LegacyOfShadows.New_Content.Archetypes
+    namespace LegacyOfShadows.NewContent.Archetypes
 {
     public class Ninja
     {
 
         private static readonly string NinjaProficienciesFeatureName = "NinjaProficiencies.Name";
         private static readonly string NinjaProficienciesFeatureDescription = "NinjaProficiencies.Description";
-        static public BlueprintAbility NinjaTrickKiExtraAttackAbility;
-        static public BlueprintAbility NinjaTrickKiSpeedBoostAbility;
-        static public BlueprintAbility InstinctiveStealthAbility;
-        static public BlueprintFeatureSelection NinjaTrickSelection;
 
 
-        static void ConfigureNinjaArchetype()
+
+        public static void ConfigureNinjaArchetype()
         {
             var Rogue_Array = new BlueprintCharacterClassReference[] { ClassTools.ClassReferences.RogueClass };
 
@@ -65,31 +62,81 @@ using BlueprintCore.Utils;
                 arc.SetName(LoSContext, "Ninja");
                 arc.SetDescription(LoSContext, "When the wealthy and the powerful need an enemy eliminated quietly and without fail, they call upon the ninja. When a general needs to sabotage the siege engines of his foes before they can reach the castle walls, he calls upon the ninja. And when fools dare to move against a ninja or her companions, they will find the ninja waiting for them while they sleep, ready to strike. These shadowy killers are masters of infiltration, sabotage, and assassination, using a wide variety of weapons, practiced skills, and mystical powers to achieve their goals.");
                 arc.m_ParentClass = ClassTools.ClassReferences.RogueClass;
-
-                var rogue_proficiencies = BlueprintTools.GetBlueprint<BlueprintFeature>("33e2a7e4ad9daa54eaf808e1483bb43c"); 
-                var weapon_finesse = BlueprintTools.GetBlueprint<BlueprintFeature>("90e54424d682d104ab36436bd527af09"); 
-                var trapfinding = BlueprintTools.GetBlueprint<BlueprintFeature>("dbb6b3bffe6db3547b31c3711653838e"); 
-                var evasion = BlueprintTools.GetBlueprint<BlueprintFeature>("576933720c440aa4d8d42b0c54b77e80"); 
-                var rogue_talent = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("c074a5d615200494b8f2a9c845799d93"); 
-                var finesse_training_selection = BlueprintTools.GetBlueprint<BlueprintFeature>("b78d146cea711a84598f0acef69462ea"); 
-                var danger_sense = BlueprintTools.GetBlueprint<BlueprintFeature>("0bcbe9e450b0e7b428f08f66c53c5136"); 
-                var debilitating_injury = BlueprintTools.GetBlueprint<BlueprintFeature>("def114eb566dfca448e998969bf51586"); 
-                var uncanny_dodge = BlueprintTools.GetBlueprint<BlueprintFeature>("3c08d842e802c3e4eb19d15496145709"); 
-                var improved_uncanny_dodge = BlueprintTools.GetBlueprint<BlueprintFeature>("485a18c05792521459c7d06c63128c79"); 
-                var advanced_talents = BlueprintTools.GetBlueprint<BlueprintFeature>("a33b99f95322d6741af83e9381b2391c"); 
-                var master_strike = BlueprintTools.GetBlueprint<BlueprintFeature>("72dcf1fb106d5054a81fd804fdc168d3");
-
-                ConfigureNinjaProficiencies();
-                NoTrace.ConfigureNoTrace();
-                ConfigureNinjaKiPool();
-                LightSteps.ConfigureLightSteps();
-                ConfigureNinjaTrick();
-                Dispatchment.ConfigureDispatchment();
-                ConfigureNinjaStyleStrikes();
-
-
             });
 
+            var rogue_proficiencies = BlueprintTools.GetBlueprint<BlueprintFeature>("33e2a7e4ad9daa54eaf808e1483bb43c"); 
+            var weapon_finesse = BlueprintTools.GetBlueprint<BlueprintFeature>("90e54424d682d104ab36436bd527af09"); 
+            var trapfinding = BlueprintTools.GetBlueprint<BlueprintFeature>("dbb6b3bffe6db3547b31c3711653838e"); 
+            var evasion = BlueprintTools.GetBlueprint<BlueprintFeature>("576933720c440aa4d8d42b0c54b77e80"); 
+            var rogue_talent = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("c074a5d615200494b8f2a9c845799d93"); 
+            var finesse_training_selection = BlueprintTools.GetBlueprint<BlueprintFeature>("b78d146cea711a84598f0acef69462ea"); 
+            var danger_sense = BlueprintTools.GetBlueprint<BlueprintFeature>("0bcbe9e450b0e7b428f08f66c53c5136"); 
+            var debilitating_injury = BlueprintTools.GetBlueprint<BlueprintFeature>("def114eb566dfca448e998969bf51586"); 
+            var uncanny_dodge = BlueprintTools.GetBlueprint<BlueprintFeature>("3c08d842e802c3e4eb19d15496145709"); 
+            var improved_uncanny_dodge = BlueprintTools.GetBlueprint<BlueprintFeature>("485a18c05792521459c7d06c63128c79"); 
+            var advanced_talents = BlueprintTools.GetBlueprint<BlueprintFeature>("a33b99f95322d6741af83e9381b2391c"); 
+            var master_strike = BlueprintTools.GetBlueprint<BlueprintFeature>("72dcf1fb106d5054a81fd804fdc168d3");
+
+            ConfigureNinjaProficiencies();
+            NoTrace.ConfigureNoTrace();
+            ConfigureNinjaKiPool();
+            LightSteps.ConfigureLightSteps();
+            ConfigureNinjaTrick();
+            Dispatchment.ConfigureDispatchment();
+            ConfigureNinjaStyleStrikes();
+
+            var ninja_prof = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "NinjaProficiencies");
+            var ninja_ki_pool = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "KiPoolNinjaFeature");
+            var ninja_trick = BlueprintTools.GetModBlueprintReference<BlueprintFeatureSelectionReference>(LoSContext, "NinjaTrickSelection");
+            var ninja_no_trace = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "NoTraceFeature");
+            var ninja_dispatchment = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "DispatchmentFeature");
+            var ninja_light_steps = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "LightStepsFeature");
+            var ninja_style_strikes = BlueprintTools.GetModBlueprintReference<BlueprintFeatureSelectionReference>(LoSContext, "NinjaStyleStrike");
+
+            Ninja_Archetype.RemoveFeatures = new LevelEntry[] {
+                                                                Helpers.CreateLevelEntry(1, rogue_proficiencies, trapfinding ),
+                                                                Helpers.CreateLevelEntry(2, evasion, rogue_talent ),
+                                                                Helpers.CreateLevelEntry(3, danger_sense ),
+                                                                Helpers.CreateLevelEntry(4, rogue_talent, debilitating_injury),
+                                                                Helpers.CreateLevelEntry(6, rogue_talent, danger_sense),
+                                                                Helpers.CreateLevelEntry(8, rogue_talent),
+                                                                Helpers.CreateLevelEntry(9, danger_sense),
+                                                                Helpers.CreateLevelEntry(10, rogue_talent),
+                                                                Helpers.CreateLevelEntry(12, rogue_talent, danger_sense),
+                                                                Helpers.CreateLevelEntry(14, rogue_talent),
+                                                                Helpers.CreateLevelEntry(15, danger_sense),
+                                                                Helpers.CreateLevelEntry(16, rogue_talent),
+                                                                Helpers.CreateLevelEntry(18, rogue_talent, danger_sense),
+                                                                Helpers.CreateLevelEntry(20, rogue_talent), 
+
+                                                                };
+
+            Ninja_Archetype.AddFeatures = new LevelEntry[] {
+                                                                Helpers.CreateLevelEntry(1, ninja_prof ),
+                                                                Helpers.CreateLevelEntry(2, ninja_ki_pool, ninja_trick  ),
+                                                                Helpers.CreateLevelEntry(3, ninja_no_trace ),
+                                                                Helpers.CreateLevelEntry(4, ninja_trick, ninja_dispatchment),
+                                                                Helpers.CreateLevelEntry(5, ninja_style_strikes ),
+                                                                Helpers.CreateLevelEntry(6, ninja_trick, ninja_no_trace, ninja_light_steps ),
+                                                                Helpers.CreateLevelEntry(8, ninja_trick),
+                                                                Helpers.CreateLevelEntry(9, ninja_no_trace),
+                                                                Helpers.CreateLevelEntry(10, ninja_trick, ninja_style_strikes),
+                                                                Helpers.CreateLevelEntry(12, ninja_trick, ninja_no_trace),
+                                                                Helpers.CreateLevelEntry(14, ninja_trick),
+                                                                Helpers.CreateLevelEntry(15, ninja_no_trace, ninja_style_strikes ),
+                                                                Helpers.CreateLevelEntry(16, ninja_trick),
+                                                                Helpers.CreateLevelEntry(18, ninja_trick, ninja_no_trace),
+                                                                Helpers.CreateLevelEntry(20, ninja_trick, ninja_style_strikes ),
+
+                                                                };
+
+            ClassTools.Classes.RogueClass.Progression.m_UIDeterminatorsGroup = ClassTools.Classes.RogueClass.Progression.m_UIDeterminatorsGroup.AppendToArray(ninja_prof.Get().ToReference<BlueprintFeatureBaseReference>());
+            ClassTools.Classes.RogueClass.Progression.UIGroups[3].Features.Add(ninja_ki_pool);
+            ClassTools.Classes.RogueClass.Progression.UIGroups[3].Features.Add(ninja_light_steps);
+            ClassTools.Classes.RogueClass.Progression.UIGroups[3].Features.Add(ninja_dispatchment);
+            ClassTools.Classes.RogueClass.m_Archetypes = ClassTools.Classes.RogueClass.m_Archetypes.AppendToArray(Ninja_Archetype.ToReference<BlueprintArchetypeReference>());
+
+            LoSContext.Logger.LogPatch("Added Ninja Rogue archetype.", Ninja_Archetype);
 
         }
 
@@ -224,7 +271,10 @@ using BlueprintCore.Utils;
 
             #region | Create Ninja Ki Pool |
 
-            var canon_ki_modifier_exclusions = new BlueprintUnitFactReference[] { KiResourceChanges.WisdomKiPoolCanonFeature.ToReference<BlueprintUnitFactReference>(), KiResourceChanges.CharismaKiPoolCanonFeature.ToReference<BlueprintUnitFactReference>() };
+            var wis_ki_points_bonus = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "WisdomKiPoolCanonFeature");
+            var cha_ki_points_bonus = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "CharismaKiPoolCanonFeature");
+
+            var canon_ki_modifier_exclusions = new BlueprintUnitFactReference[] { wis_ki_points_bonus.Get().ToReference<BlueprintUnitFactReference>(), cha_ki_points_bonus.Get().ToReference<BlueprintUnitFactReference>() };
 
             var KiPool = Helpers.CreateBlueprint<BlueprintFeature>(LoSContext, "KiPoolNinjaFeature", bp =>
             {
@@ -251,7 +301,7 @@ using BlueprintCore.Utils;
                 }));
                 bp.AddComponent<HasFactsFeaturesUnlock>(c => {
                      c.m_CheckedFacts = canon_ki_modifier_exclusions;
-                     c.m_Features = new BlueprintUnitFactReference[] { KiResourceChanges.CharismaKiPoolCanonFeature.ToReference<BlueprintUnitFactReference>() };
+                     c.m_Features = new BlueprintUnitFactReference[] { cha_ki_points_bonus.Get().ToReference<BlueprintUnitFactReference>() };
                  });
                 bp.AddComponent<AddFacts>(c =>
                 {
@@ -281,9 +331,10 @@ using BlueprintCore.Utils;
         {
             var NinjaStyleStrikeIcon = AssetLoader.LoadInternal(LoSContext, folder: "assets/icons", file: "NinjaStyleStrike.png");
             var monk_style_strikes = Selections.MonkStyleStrike;
+            var NinjaTrickKiExtraAttackAbility = BlueprintTools.GetModBlueprint<BlueprintAbility>(LoSContext, "NinjaTrickKiExtraAttackAbility");
 
             #region | Create Ninja Style Strikes from Monk Style Strike |
-            
+
             var ninja_style_strikes = monk_style_strikes.CreateCopy(LoSContext, "NinjaStyleStrike", bp =>
             {
                 bp.SetDescription(LoSContext, "At 5th level, a ninja can learn one type of style strike, as the monk class feature. Whenever she spends ki from her ki pool to make an additional attack, she can designate that additional attack as a style strike, regardless of the weapon she uses to make the attack. The attack is resolved as normal, but it has a different effect depending upon the type of strike chosen. At 10th level and every 5 levels thereafter, a ninja learns an additional style strike. She must choose which style strike to apply before the attack roll is made. Unlike a monk, a ninja does not gain the ability to designate more than one attack as a style strike per round.");
@@ -389,19 +440,29 @@ using BlueprintCore.Utils;
             UnarmedCombatMastery.ConfigureUnarmedCombatMastery();
             FlurryOfStars.ConfigureFlurryOfStars();
 
+            var ninja_style_master = BlueprintTools.GetModBlueprintReference<BlueprintFeatureSelectionReference>(LoSContext, "NinjaStyleMasterFeatureSelection");
+            var n_trick_accelleration_form = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "NinjaTrickAccelerationOfFormFeature");
+            var n_trick_shadow_clone = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "NinjaTrickShadowCloneFeature");
+            var n_trick_vanishing_trick = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "NinjaTrickVanishingTrickFeature");
+            var n_trick_invisible_blade = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "NinjaTrickInvisibleBladeFeature");
+            var n_trick_see_unseen = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "NinjaTrickSeeTheUnseenFeature");
+            var n_trick_herbal_compound = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "NinjaTrickHerbalCompoundFeature");
+            var n_trick_kamikaze = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "NinjaTrickKamikazeFeature");
+            var n_trick_unarmed_combat_mastery = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "NinjaTrickUnarmedCombatMasteryNinjaFeature");
+            var n_trick_flurry_stars = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "NinjaTrickFlurryOfStarsFeature");
 
             FeatToolsExtension.AddAsNinjaTrick(improved_unarmed_strike, false);
-            FeatToolsExtension.AddAsNinjaTrick(StyleMaster.NinjaStyleMasterFeatureSelection, false);
-            FeatToolsExtension.AddAsNinjaTrick(AccelerationOfForm.NinjaTrickAccelerationOfFormFeature, false);
-            FeatToolsExtension.AddAsNinjaTrick(ShadowClone.NinjaTrickShadowCloneFeature, false);
-            FeatToolsExtension.AddAsNinjaTrick(VanishingTrick.NinjaTrickVanishingTrickFeature, false);
-            FeatToolsExtension.AddAsNinjaTrick(InvisibleBlade.NinjaTrickInvisibleBladeFeature, true);
-            FeatToolsExtension.AddAsNinjaTrick(SeeTheUnseen.NinjaTrickSeeTheUnseenFeature, true);
-            FeatToolsExtension.AddAsNinjaTrick(HerbalCompound.NinjaTrickHerbalCompoundFeature, false);
-            FeatToolsExtension.AddAsNinjaTrick(Kamikaze.NinjaTrickKamikazeFeature, false);
-            FeatToolsExtension.AddAsNinjaTrick(UnarmedCombatMastery.NinjaTrickUnarmedCombatMasteryNinjaFeature, true);
+            FeatToolsExtension.AddAsNinjaTrick(ninja_style_master, false);
+            FeatToolsExtension.AddAsNinjaTrick(n_trick_accelleration_form, false);
+            FeatToolsExtension.AddAsNinjaTrick(n_trick_shadow_clone, false);
+            FeatToolsExtension.AddAsNinjaTrick(n_trick_vanishing_trick, false);
+            FeatToolsExtension.AddAsNinjaTrick(n_trick_invisible_blade, true);
+            FeatToolsExtension.AddAsNinjaTrick(n_trick_see_unseen, true);
+            FeatToolsExtension.AddAsNinjaTrick(n_trick_herbal_compound, false);
+            FeatToolsExtension.AddAsNinjaTrick(n_trick_kamikaze, false);
+            FeatToolsExtension.AddAsNinjaTrick(n_trick_unarmed_combat_mastery, true);
             FeatToolsExtension.AddAsNinjaTrick(evasion, true);
-            FeatToolsExtension.AddAsNinjaTrick(FlurryOfStars.NinjaTrickFlurryOfStarsFeature, false);
+            FeatToolsExtension.AddAsNinjaTrick(n_trick_flurry_stars, false);
 
             LoSContext.Logger.LogPatch("Created (canon) Ninja Tricks.", ninja_trick);
 

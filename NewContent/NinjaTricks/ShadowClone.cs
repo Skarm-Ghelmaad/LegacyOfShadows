@@ -32,7 +32,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
     {
         private static readonly string ShadowCloneFeatureName = "NinjaTrickShadowCloneFeature.Name";
         private static readonly string ShadowCloneFeatureDescription = "NinjaTrickShadowCloneFeature.Description";
-        static public BlueprintFeature NinjaTrickShadowCloneFeature;
+
 
         public static void ConfigureShadowClone()
         {

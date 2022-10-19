@@ -1,41 +1,52 @@
 ﻿{
   "NewSettingsOffByDefault": false,
+  "Archetypes": {
+    "DisableAll": false,
+    "Settings": {
+      "Ninja": {
+        "Enabled": true,
+        "Homebrew": false,
+        "Description": "A rogue archetype that uses ki-fuelled (ninja) tricks that focus on martial arts, misdirection, mental manipulation and assassination."
+      }
+    }
+  },
+  "Feats": {
+    "DisableAll": false,
+    "Settings": {
+    }
+  },
+  "NinjaTricks": {
+    "DisableAll": false,
+    "Settings": {
+    }
+  },
+  "RogueTalents": {
+    "DisableAll": false,
+    "Settings": {
+    }
+  },
+  "SlayerTalents": {
+    "DisableAll": false,
+    "Settings": {
+    }
+  },
+  "WildTalents": {
+    "DisableAll": false,
+    "Settings": {
+
+    }
+  },
+  "Items": {
+    "DisableAll": false,
+    "Settings": {
+    }
+  },
   "Spells": {
     "DisableAll": false,
     "Settings": {
-    },
-    "Feats": {
-      "DisableAll": false,
-      "Settings": {
-      }
-    },
-    "Items": {
-      "DisableAll": false,
-      "Settings": {
-      }
-    },
-    "NinjaTricks": {
-      "DisableAll": false,
-      "Settings": {
-      }
-    },
-    "RogueTalents": {
-      "DisableAll": false,
-      "Settings": {
-      }
-    },
-    "SlayerTalents": {
-      "DisableAll": false,
-      "Settings": {
-      }
-    },
-    "WildTalents": {
-      "DisableAll": false,
-      "Settings": {
-
-      }
     }
-
-
   }
+
+
+
 }

@@ -35,7 +35,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
     {
         private static readonly string HerbalCompoundFeatureName = "NinjaTrickHerbalCompoundFeature.Name";
         private static readonly string HerbalCompoundFeatureDescription = "NinjaTrickHerbalCompoundFeature.Description";
-        static public BlueprintFeature NinjaTrickHerbalCompoundFeature;
+
 
         public static void ConfigureHerbalCompound()
         {

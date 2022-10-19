@@ -48,7 +48,9 @@ namespace LegacyOfShadows.NewComponents
             }
 
             var wielder_size = evt.Initiator.Descriptor.State.Size;                     // This causes the weapon to scale based on size change.
-            var base_damage = evt.WeaponDamageDiceOverride.HasValue ? evt.WeaponDamageDiceOverride.Value : evt.Weapon.Blueprint.BaseDamage;
+
+            var base_damage = evt.WeaponDamageDice.HasModifications ? evt.WeaponDamageDice.ModifiedValue : evt.Weapon.Blueprint.BaseDamage;
+            //var base_damage = evt.WeaponDamageDiceOverride.HasValue ? evt.WeaponDamageDiceOverride.Value : evt.Weapon.Blueprint.BaseDamage;
             var base_dice = evt.Initiator.Body.IsPolymorphed ? base_damage : WeaponDamageScaleTable.Scale(base_damage, wielder_size);
             var new_dice = WeaponDamageScaleTable.Scale(this.Dice_Formulas[dice_index], wielder_size);
 
@@ -57,7 +59,9 @@ namespace LegacyOfShadows.NewComponents
 
             if (new_dmg_avg > current_dmg_avg)
             {
-                evt.WeaponDamageDiceOverride = Dice_Formulas[dice_index];
+                //evt.WeaponDamageDiceOverride = Dice_Formulas[dice_index];
+
+                evt.WeaponDamageDice.Modify(Dice_Formulas[dice_index], base.Fact);
             }
 
 

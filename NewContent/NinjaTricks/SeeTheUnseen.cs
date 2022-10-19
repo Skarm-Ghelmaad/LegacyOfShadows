@@ -41,7 +41,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
     {
         private static readonly string SeeTheUnseenFeatureName = "NinjaTrickSeeTheUnseenFeature.Name";
         private static readonly string SeeTheUnseenFeatureDescription = "NinjaTrickSeeTheUnseenFeature.Description";
-        static public BlueprintFeature NinjaTrickSeeTheUnseenFeature;
+
 
         public static void ConfigureSeeTheUnseen()
         {

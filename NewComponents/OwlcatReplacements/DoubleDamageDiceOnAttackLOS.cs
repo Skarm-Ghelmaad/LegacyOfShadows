@@ -46,13 +46,14 @@ namespace LegacyOfShadows.NewComponents.OwlcatReplacements
             }
             if (this.CheckCondition(ruleAttackWithWeapon))
             {
-                var current_weapon_damage_rolls = evt.DamageBundle.WeaponDamage.Dice.Rolls;
-                var current_weapon_damage_dice = evt.DamageBundle.WeaponDamage.Dice.Dice;
+                var current_weapon_damage_rolls = evt.DamageBundle.WeaponDamage.Dice.BaseFormula.Rolls;
+                    
+                var current_weapon_damage_dice = evt.DamageBundle.WeaponDamage.Dice.BaseFormula.Dice;
 
                 var current_weapon_damage = evt.DamageBundle.WeaponDamage;
                 var base_weapon_damage = ruleAttackWithWeapon.Weapon.DamageDice;
 
-                var current_weapon_damage_avg = current_weapon_damage.Dice.MinValue(0,true) + current_weapon_damage.Dice.MaxValue(0,true);
+                var current_weapon_damage_avg = current_weapon_damage.Dice.BaseFormula.MinValue(0,true) + current_weapon_damage.Dice.BaseFormula.MaxValue(0,true);
                 int base_weapon_damage_avg = (base_weapon_damage.MaxValue(0,true) + base_weapon_damage.MinValue(0,true));
 
                 if (current_weapon_damage_avg > base_weapon_damage_avg)

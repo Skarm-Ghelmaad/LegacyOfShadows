@@ -34,7 +34,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
         private static readonly string StyleMasterFeatureSelectionName = "NinjaStyleMasterFeatureSelection.Name";
         private static readonly string StyleMasterFeatureSelectionDescription = "NinjaStyleMasterFeatureSelection.Description";
-        static public BlueprintFeature NinjaStyleMasterFeatureSelection;
+
 
         public static void ConfigureStyleMaster()
         {
@@ -44,7 +44,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
                 bp.SetName(LoSContext, StyleMasterFeatureSelectionName);
                 bp.SetDescription(LoSContext, StyleMasterFeatureSelectionDescription);
                 bp.m_Icon = null;
-                bp.CreatePrerequisiteNoFeature(NinjaStyleMasterFeatureSelection);
+               
 
                 var current_style_feats = FeatToolsExtension.GetStyleFeats();
 
@@ -55,6 +55,8 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
 
             });
+
+            Style_Master_Feature_Selection.CreatePrerequisiteNoFeature(Style_Master_Feature_Selection);
 
             LoSContext.Logger.LogPatch("Created Style Master ninja trick.", Style_Master_Feature_Selection);
 

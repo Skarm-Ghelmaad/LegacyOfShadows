@@ -31,7 +31,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
     {
         private static readonly string InvisibleBladeFeatureName = "NinjaTrickInvisibleBladeFeature.Name";
         private static readonly string InvisibleBladeFeatureDescription = "NinjaTrickInvisibleBladeFeature.Description";
-        static public BlueprintFeature NinjaTrickInvisibleBladeFeature;
+
 
         public static void ConfigureInvisibleBlade()
         {

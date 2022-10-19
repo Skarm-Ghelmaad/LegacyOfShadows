@@ -93,6 +93,7 @@ using Kingmaker.UnitLogic.Class.Kineticist.Properties;
 using UnityEngine.Assertions.Must;
 using TabletopTweaks.Core.NewComponents;
 
+
 namespace LegacyOfShadows.Utilities
 {
     public static class HelpersExtension

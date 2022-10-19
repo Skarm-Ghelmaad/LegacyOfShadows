@@ -40,7 +40,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
     {
         private static readonly string AccelerationOfFormFeatureName = "NinjaTrickAccelerationOfFormFeature.Name";
         private static readonly string AccelerationOfFormFeatureDescription = "NinjaTrickAccelerationOfFormFeature.Description";
-        static public BlueprintFeature NinjaTrickAccelerationOfFormFeature;
+
 
 
         public static void ConfigureAccelerationOfForm()

@@ -44,8 +44,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
     {
         private static readonly string UnarmedCombatMasteryNinjaFeatureName = "NinjaTrickUnarmedCombatMasteryNinjaFeature.Name";
         private static readonly string UnarmedCombatMasteryNinjaFeatureDescription = "NinjaTrickUnarmedCombatMasteryNinjaFeature.Description";
-        static public BlueprintFeature NinjaTrickUnarmedCombatMasteryNinjaFeature;
-        static public BlueprintFeature NinjaTrickUnarmedCombatMasteryRogueFeature;
+
 
         public static void ConfigureUnarmedCombatMastery()
         {
@@ -68,6 +67,8 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
             MartialArtsTraining.ConfigureMonkMartialArtsTraining();
 
+            var monk_fake_levels = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "MartialArtsTrainingFakeLevel");
+
             var RogueMartialArtsTrainingProgression = Helpers.CreateBlueprint<BlueprintProgression>(LoSContext, "RogueMartialArtsTrainingProgression", bp => {
                 bp.SetName(LoSContext, "Rogue Martial Training");
                 bp.SetDescription(LoSContext, "The character treats his rogue level -4 as monk level for the purposes of unarmed strike damage.");
@@ -83,7 +84,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
                     {
                         Level = i,
                         m_Features = new List<BlueprintFeatureBaseReference> {
-                            MartialArtsTrainingFakeLevel.ToReference<BlueprintFeatureBaseReference>()
+                            monk_fake_levels.Get().ToReference<BlueprintFeatureBaseReference>()
                         },
                     })
                     .ToArray();

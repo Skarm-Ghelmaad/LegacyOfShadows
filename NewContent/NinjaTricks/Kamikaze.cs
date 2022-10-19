@@ -44,7 +44,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
         private static readonly string KamikazeFeatureDescription = "NinjaTrickKamikazeFeature.Description";
         private static readonly string KamikazeAbilityDescription = "NinjaTrickKamikazeAbility.Description";
         private static readonly string KamikazeDismissAbilityDescription = "NinjaTrickKamikazeDismissAbility.Description";
-        static public BlueprintFeature NinjaTrickKamikazeFeature;
+
 
         public static void ConfigureKamikaze()
         {

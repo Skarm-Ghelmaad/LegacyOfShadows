@@ -28,6 +28,7 @@ namespace LegacyOfShadows.NewContent.Features
         private static readonly string DispatchmentFeatureName = "NinjaDispatchmentFeature.Name";
         private static readonly string DispatchmentDescription = "NinjaDispatchmentFeature.Description";
 
+
         private static BlueprintCharacterClassReference[] RogueClassArray()
         {
             return new BlueprintCharacterClassReference[] { ClassTools.ClassReferences.RogueClass };

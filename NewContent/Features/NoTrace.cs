@@ -26,6 +26,7 @@ namespace LegacyOfShadows.NewContent.Features
 
 
 
+
         public static void ConfigureNoTrace() 
         {
             var NoTraceIcon = BlueprintTools.GetBlueprint<BlueprintFeature>("97a6aa2b64dd21a4fac67658a91067d7").Icon; // No Trace uses Fast Stealth icon

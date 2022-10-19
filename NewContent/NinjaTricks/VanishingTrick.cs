@@ -38,7 +38,6 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
         private static readonly string VanishingTrickFeatureName = "NinjaTrickVanishingTrickFeature.Name";
         private static readonly string VanishingTrickFeatureDescription = "NinjaTrickVanishingTrickFeature.Description";
-        static public BlueprintFeature NinjaTrickVanishingTrickFeature;
 
         public static void ConfigureVanishingTrick()
         {
@@ -47,6 +46,8 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
             var Invisibility_Buff = BlueprintTools.GetBlueprint<BlueprintBuff>("525f980cb29bc2240b93e953974cb325");
             var Improved_Invisibility_Buff = BlueprintTools.GetBlueprint<BlueprintBuff>("e6b35473a237a6045969253beb09777c");
+
+            var n_trick_invisible_blade = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(LoSContext, "NinjaTrickInvisibleBladeFeature");
 
             var VanishingTrickIcon = AssetLoader.LoadInternal(LoSContext, folder: "assets/icons", file: "VanishingTrick.png");
 
@@ -61,7 +62,7 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
                                                                             false, false, false, false, false);
 
 
-            var upgrade_action = HlEX.CreateConditional(HlEX.CreateContextConditionHasFact(InvisibleBlade.NinjaTrickInvisibleBladeFeature), Apply_Improved_Invisibility_Buff, Apply_Invisibility_Buff);
+            var upgrade_action = HlEX.CreateConditional(HlEX.CreateContextConditionHasFact(n_trick_invisible_blade), Apply_Improved_Invisibility_Buff, Apply_Invisibility_Buff);
 
 
 
@@ -89,7 +90,9 @@ namespace LegacyOfShadows.NewContent.NinjaTricks
 
             var vanishing_trick_feature = HlEX.ConvertAbilityToFeature(VanishingTrickAbility, "", "", "Feature", "Ability", false);
 
-            InvisibleBlade.NinjaTrickInvisibleBladeFeature.AddPrerequisiteFeature(vanishing_trick_feature);
+
+
+            n_trick_invisible_blade.Get().AddPrerequisiteFeature(vanishing_trick_feature);
 
             LoSContext.Logger.LogPatch("Created Vanishing Trick ninja trick.", vanishing_trick_feature);
 

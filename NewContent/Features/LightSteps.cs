@@ -35,6 +35,7 @@ namespace LegacyOfShadows.NewContent.Features
         private static readonly string LightStepsFeatureName = "NinjaLightStepsFeature.Name";
         private static readonly string LightStepsFeatureDescription = "NinjaLightStepsFeature.Description";
 
+
         private static BlueprintCharacterClassReference[] RogueClassArray()
         {
             return new BlueprintCharacterClassReference[] { ClassTools.ClassReferences.RogueClass };

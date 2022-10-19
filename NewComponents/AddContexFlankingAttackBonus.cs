@@ -34,24 +34,11 @@ namespace LegacyOfShadows.NewComponents
     public class AddContexFlankingAttackBonus : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleCalculateAttackBonus>, IRulebookHandler<RuleCalculateAttackBonus>, ISubscriber, IInitiatorRulebookSubscriber
     {
 
-        public BlueprintUnitFact EnablingFact
-        {
-            get
-            {
-                BlueprintUnitFactReference enablingFact = this.m_EnablingFact;
-                if (enablingFact == null)
-                {
-                    return null;
-                }
-                return enablingFact.Get();
-            }
-        }
 
         public void OnEventAboutToTrigger(RuleCalculateAttackBonus evt)
         {
             bool isFlatFooted = Rulebook.Trigger<RuleCheckTargetFlatFooted>(new RuleCheckTargetFlatFooted(evt.Initiator, evt.Target)).IsFlatFooted;
-            bool flag = base.Owner.Descriptor.HasFact(EnablingFact);
-            if ((evt.Target.CombatState.IsFlanked || isFlatFooted || evt.TargetIsFlanked) && flag)
+            if (evt.Target.CombatState.IsFlanked || isFlatFooted || evt.TargetIsFlanked)
             {
                 int ContextAttackBonus = this.CalculateContexFlankingAttackBonus(base.Fact.MaybeContext);
                 if (this.HasMinimal)
@@ -92,8 +79,6 @@ namespace LegacyOfShadows.NewComponents
         [ShowIf("HasMinimal")]
         public int Minimal;
 
-        [SerializeField]
-        private BlueprintUnitFactReference m_EnablingFact;
 
     }
 }
